@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 0;">
+<head>
+    <meta charset="UTF-8">
+    <script src="__STATIC__/student/bootstrap/js/jq.js"></script>
+    <link rel="stylesheet" href="__STATIC__/student/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/student/css/base.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="__STATIC__/student/css/stipend.css">
+    <link rel="stylesheet" href="__STATIC__/student/css/printstylesheet.css" media="print"/>
+
+    <title>助学金</title>
+    <script src="__STATIC__/student/v/lib/jquery.js"></script>
+    <script src="__STATIC__/student/v/dist/jquery.validate.min.js"></script>
+    <script src="__STATIC__/student/v/dist/localization/messages_zh.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <script src="__STATIC__/student/bootstrap/js/bootstrap.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/teacher/js/grant.js" charset="utf-8"></script>
+
+</head>
+<style>
+    * {
+        font-size: 16px;
+    }
+    input {
+        padding: 0;
+    }
+
+    td {
+        text-align: center;
+        height: 30px;
+    }
+
+</style>
+<body>
+<div class="x-nav">
+     <span class="layui-breadcrumb" lay-separator="|">
+        <a href="javascript:history.back(-1)">返回上级</a>
+        <a><cite>审查助学金资料</cite></a>
+        </span>
+    <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);"
+       title="刷新">
+        <i class="layui-icon">&#xe669;</i></a>
+</div>
+
+<div class="x-body">
+    <fieldset class="layui-elem-field">
+        <legend style="border: none;width: inherit;">
+            {$grant['stu_name']}的助学金申请资料--
+            <span>申请时间{$grant['create_time']}</span>
+
+            {if condition="$grant['grant_flag'] == 1"}
+            <span class="layui-badge-rim layui-bg-orange">待审查</span>
+            {elseif condition="$grant['grant_flag'] == 2" /}
+            <span class="layui-badge-rim layui-bg-green">审查通过</span>
+            {else/}
+            <span class="layui-badge">审查未通过</span>
+            {/if}
+        </legend>
+        <div class="layui-field-box">
+                <form action="" class="pc" id="pc">
+                    <h3 class="text-center">广州市技工院校国家助学金申请表</h3>
+                    <p class="text-center">({$grant['grant_startTime']}学年) ({$grant['grant_endTime']}学年)</p>
+                    <div style="width: 794px; margin: 0 auto;">
+                        学校名称:{$grant['grant_school']}
+                        <span style="float: right;">( 此表入学生档案 )</span>
+                    </div>
+                    <table border="1" align="center" width="794" style="margin: 0 auto;">
+                        <tr>
+                            <td align="center">姓名</td>
+                            <td>{$grant['stu_name']}</td>
+                            <td align="center">性别</td>
+                            <td>{$grant['stu_sex']}</td>
+                            <td align="center">出生年月</td>
+                            <td style="width: 100px;">{$grant['stu_birthday']}</td>
+                            <td rowspan="6" width="150" class="a1">+</td>
+                        </tr>
+                        <tr>
+                            <td align="center">籍贯</td>
+                            <td>{$grant['grant_jg']}</td>
+
+                            <td align="center">民族</td>
+                            <td>{$grant['stu_nation']}</td>
+                            <td align="center">政治面目</td>
+                            <td>{$grant['stu_politicalstatus']}</td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td align="center">学号</td>
+                            <td colspan="5">{$grant['stu_number']}</td>
+                        </tr>
+                        <tr>
+                            <td align="center">身份证号</td>
+                            <td colspan="5">
+                                {$grant['stu_identity']}
+                            </td>
+                        </tr>
+                        <tr style="height: 50px;">
+                            <td colspan="2" align="center">户口所在地</td>
+                            <td colspan="4">{$grant['stu_hukouaddress']}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">中考准考证号</td>
+                            <td colspan="1">{$grant['grant_examination']}</td>
+                            <td colspan="" align="center">何时毕业于何学校</td>
+                            <td colspan="3">{$grant['grant_graduateFromSchool']}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="5" align="center">家庭主要成员情况</td>
+                            <td align="center">姓名</td>
+                            <td align="center">性别</td>
+                            <td align="center">年龄</td>
+                            <td align="center">与本人关系</td>
+                            <td colspan="2" align="center">工作或学校单位</td>
+                        </tr>
+                        <tr>
+                            <td>{$grant['family_name1']}</td>
+                            <td>{$grant['family_sex1']}</td>
+                            <td>{$grant['family_age1']}</td>
+                            <td>{$grant['family_relationship1']}</td>
+                            <td colspan="2">{$grant['family_work1']}</td>
+                        </tr>
+                        <tr>
+                            <td>{$grant['family_name2']}</td>
+                            <td>{$grant['family_sex2']}</td>
+                            <td>{$grant['family_age2']}</td>
+                            <td>{$grant['family_relationship2']}</td>
+                            <td colspan="2">{$grant['family_work2']}</td>
+                        </tr>
+                        <tr>
+                            <td>{$grant['family_name3']}</td>
+                            <td>{$grant['family_sex3']}</td>
+                            <td>{$grant['family_age3']}</td>
+                            <td>{$grant['family_relationship3']}</td>
+                            <td colspan="2">{$grant['family_work3']}</td>
+                        </tr>
+                        <tr>
+                            <td>{$grant['family_name4']}</td>
+                            <td>{$grant['family_sex4']}</td>
+                            <td>{$grant['family_age4']}</td>
+                            <td>{$grant['family_relationship4']}</td>
+                            <td colspan="2">{$grant['family_work4']}</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" align="center">家庭地址及固定电话</td>
+                            <td colspan="3">{$grant['grant_familyAddesPhone']}</td>
+                            <td align="center">邮政编码</td>
+                            <td>{$grant['stu_postalcode']}</td>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">联系人</td>
+                            <td colspan="2">{$grant['stu_name']}</td>
+                            <td align="center">联系手机(电话)</td>
+                            <td colspan="3">{$grant['stu_phone']}</td>
+                        </tr>
+                        <tr>
+                            <td align="center">就读专业</td>
+                            <td colspan="3">{$grant['stu_specialty']}</td>
+                            <td align="center">年级</td>
+                            <td colspan="2">{$grant['grant_grade']}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1" align="center">学生申请理由</td>
+                            <td colspan="6" class="liyou" style="text-align: inherit">
+                                <input type="checkbox" name="kn" class="inputradio">
+                                <input type="checkbox" name="kn" class="inputradio">
+                                困难家庭（农村、城市低保或特困家庭子女；孤残学生、烈士子女或优抚家庭子女；本人或家庭成员因工伤残或患重大疾病；家庭遭受重大灾害或变故；父母双方或一方残疾<br/>
+                                <input type="checkbox" name="kn" class="inputradio">
+                                <input type="checkbox" name="kn" class="inputradio"> 涉农专业<br/>
+                                <p class="p1">申请人签名:<input type="text" class="input7"></p>
+                                <p class="p2">家长或法定监护人签名: <input type="text" class="input7"></p>
+                                <p class="p3">申请人联系方式:<input type="text" class="input7"></p>
+                                <ul class="ul1">
+                                    <li><input type="text" class="input55">年</li>
+                                    <li><input type="text" class="input55">月</li>
+                                    <li><input type="text" class="input55">日</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1" align="center">班级评审意见</td>
+                            <td colspan="6" style="text-align: inherit">
+                                <p class="p4">班主任(签名): <input type="text" class="input7"></p>
+                                <ul class="ul2" style="margin-left: 0px;">
+                                    <li><input type="text" class="input55">年</li>
+                                    <li><input type="text" class="input55">月</li>
+                                    <li><input type="text" class="input55">日</li>
+                                </ul>
+                                <p class="p5" style="margin-top: -17px;">班主任(签名): <input type="text" class="input7"></p>
+                                <ul class="ul3">
+                                    <li><input type="text" class="input55">年</li>
+                                    <li><input type="text" class="input55">月</li>
+                                    <li><input type="text" class="input55">日</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="1" align="center">学校认定意见</td>
+                            <td colspan="6" class="liyou" style="text-align: inherit">
+                                <input type="checkbox" name="ty" class="inputradio">
+                                <input type="checkbox" name="ty" class="inputradio"> 同意认定为助学金对象。 (<input type="checkbox"
+                                                                                                         name="zz"
+                                                                                                         class="inputradio">
+                                困难家庭、<input type="checkbox" name="zz" class="inputradio"> 涉农专业)<br/>
+                                <input type="checkbox" name="ty" class="inputradio">
+                                <input type="checkbox" name="ty" class="inputradio"> 不同意认定为助学金对象。<br/>
+                                <p class="p6">负责人(加盖机构公章): <input type="text" class="input7"></p>
+                                <ul class="ul4" style="margin-left: 0px;margin-top: 14px">
+                                    <li><input type="text" class="input55">年</li>
+                                    <li><input type="text" class="input55">月</li>
+                                    <li><input type="text" class="input55">日</li>
+                                </ul>
+                                <p class="p7" style="margin-top: -14px">负责人(加盖机构公章): <input type="text" class="input7"></p>
+                                <ul class="ul5" style="margin-top: -4px">
+                                    <li><input type="text" class="input55">年</li>
+                                    <li><input type="text" class="input55">月</li>
+                                    <li><input type="text" class="input55">日</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+
+            <!--移动端:表 -->
+            <form action="" class="yidong" id="yidong">
+                <table class="table table-bordered">
+                    <h4 class="text-center">广州市技工院校国家助学金申请表</h4>
+                    <p class="text-center">(此表入学生档案)</p>
+                    <tbody>
+                    <tr>
+                        <td>学校名称: <input type="text" placeholder="(规范全称)" name="grant_school"
+                                         value="{$grant['grant_school']}"></td>
+                    </tr>
+                    <tr>
+                        <td>(<input type="text" class="input1" name="grant_startTime"
+                                    value="{$grant['grant_startTime']}">)学年 (<input type="text" class="input1"
+                                                                                    name="grant_endTime"
+                                                                                    value="{$grant['grant_endTime']}">)
+                            学年
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="xiangpian"><a href="#">上传相片</a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>姓名: <input type="text" name="stu_name" value="{$grant['stu_name']}"></td>
+                    </tr>
+                    <tr>
+                        <td>性别：<input type="text" class="input7" name="stu_sex" value="{$grant['stu_sex']}"></td>
+                    </tr>
+                    <tr>
+                        <td>出生年月: <input type="date" name="stu_birthday" value="{$grant['stu_birthday']}"></td>
+                    </tr>
+                    <tr>
+                        <td>籍贯: <input type="text" name="grant_jg" value="{$grant['grant_jg']}"></td>
+                    </tr>
+                    <tr>
+                        <td>民族: <input type="text" name="stu_nation" value="{$grant['stu_nation']}"></td>
+                    </tr>
+                    <tr>
+                        <td>政治面貌：<input type="text" class="input7" name="stu_politicalstatus"
+                                        value="{$grant['stu_politicalstatus']}"></td>
+                    </tr>
+                    <tr>
+                        <td>学号: <input type="text" placeholder="全国技工院校电子注册管理系统编号" name="stu_number"
+                                       value="{$grant['stu_number']}"></td>
+                    </tr>
+                    <tr>
+                        <td>身份证号码: <input type="text" name="stu_identity" value="{$grant['stu_identity']}"></td>
+                    </tr>
+                    <tr>
+                        <td>户口所在地: <input type="text" name="" placeholder="X省X市X县(市、区)X镇(街道)X村(号)"
+                                          name="stu_hukouaddress" value="{$grant['stu_hukouaddress']}"></td>
+                    </tr>
+                    <tr>
+                        <td>中考准考证号: <input type="text" name="grant_examination" value="{$grant['grant_examination']}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>何时毕业于何学校: <input type="text" name="grant_graduateFromSchool"
+                                             value="{$grant['grant_graduateFromSchool']}"></td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-center">家庭主要人员及情况</p></td>
+                    </tr>
+                    {if condition="$grant['family_name1']"}
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name1"
+                                       value="{$grant['family_name1']}"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex1" value="{$grant['family_sex1']}"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age1" value="{$grant['family_age1']}"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship1"
+                                          value="{$grant['family_relationship1']}"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work1"
+                                            value="{$grant['family_work1']}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name2"
+                                       value="{$grant['family_name2']}"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex2" value="{$grant['family_sex2']}"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age2" value="{$grant['family_age2']}"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship2"
+                                          value="{$grant['family_relationship2']}"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work2"
+                                            value="{$grant['family_work2']}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name3"
+                                       value="{$grant['family_name3']}"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex3" value="{$grant['family_sex3']}"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age3" value="{$grant['family_age3']}"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship3"
+                                          value="{$grant['family_relationship3']}"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work3"
+                                            value="{$grant['family_work3']}"></td>
+                    </tr>
+
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name4"
+                                       value="{$grant['family_name4']}"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex4" value="{$grant['family_sex4']}"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age4" value="{$grant['family_age4']}"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship4"
+                                          value="{$grant['family_relationship4']}"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work4"
+                                            value="{$grant['family_work4']}"></td>
+                    </tr>
+                    {else/}
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name1"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex1"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age1"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship1"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work1"></td>
+                    </tr>
+
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name2"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex2"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age2"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship2"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work2"></td>
+                    </tr>
+
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name3"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex3"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age3"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship3"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work3"></td>
+                    </tr>
+
+                    <tr>
+                        <td>姓名: <input type="text" placeholder="先写户主" name="family_name4"></td>
+                    </tr>
+                    <tr>
+                        <td>性别: <input type="text" name="family_sex4"></td>
+                    </tr>
+                    <tr>
+                        <td>年龄: <input type="text" name="family_age4"></td>
+                    </tr>
+                    <tr>
+                        <td>与本人关系: <input type="text" name="family_relationship4"></td>
+                    </tr>
+                    <tr>
+                        <td>工作或学习单位: <input type="text" class="input2" name="family_work4"></td>
+                    </tr>
+                    {/if}
+
+
+                    <tr>
+                        <td>家庭地址及固定电话: <input type="text" class="input3" name="grant_familyAddesPhone"
+                                              value="{$grant['grant_familyAddesPhone']}"></td>
+                    </tr>
+                    <tr>
+                        <td>邮政编码: <input type="text" name="stu_postalcode" value="{$grant['stu_postalcode']}"></td>
+                    </tr>
+                    <tr>
+                        <td>联系人: <input type="text" name="grant_contacts" value="{$grant['stu_name']}"></td>
+                    </tr>
+                    <tr>
+                        <td>联系电话(手机): <input type="text" name="stu_phone" value="{$grant['stu_phone']}"></td>
+                    </tr>
+                    <tr>
+                        <td>就读专业: <input type="text" name="stu_specialty" value="{$grant['stu_specialty']}"></td>
+                    </tr>
+                    <tr>
+                        <td>年级: <input type="text" placeholder="20**级" name="grant_grade"
+                                       value="{$grant['grant_grade']}"></td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-center">学生申请理由</p></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"> <input type="checkbox">困难家庭(农村、城市低保或特困难家庭子女;孤残学生、烈士子女或优抚家庭子女;本人或家庭成员因工伤残或患重大疾病;家庭遭重大灾害或变故;父母双方或一方残疾)<br/>
+                            <input type="checkbox"> <input type="checkbox">涉农专业<br/>
+                            申请人签名: <input type="text"><br>
+                            申请人联系方式: <input type="text" class="input4"><br>
+                            家长过法定监护人签名: <input type="text" class="input4">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-center">班级评审意见</p></td>
+                    </tr>
+                    <tr>
+                        <td>班主任签名: <input type="text"><input type="date"><br>
+                            班主任签名: <input type="text"><input type="date">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><p class="text-center">学校认定意见</p></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"> <input type="checkbox">同意认定为助学金对象。(<input type="checkbox">困难家庭<input
+                                type="checkbox">涉农专业)<br/>
+                            <input type="checkbox"> <input type="checkbox">不同意认定为助学金对象。<br/>
+                            负责人(加盖机构公章): <br/><br/><input type="date"><br>
+                            负责人(加盖机构公章): <br/><br/><input type="date">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+            <input type="hidden" value="{$grant['grant_flag']}" id="grant_flag">
+
+            </table>
+
+
+            <button class="layui-btn layui-btn-danger print x-right">打印</button>
+            <input type="hidden" value="{$grant['grant_id']}" id="grant_id">
+        </div>
+
+    </fieldset>
+</div>
+
+
+</body>
+</html>

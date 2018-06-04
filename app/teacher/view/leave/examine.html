@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <script src="__STATIC__/student/bootstrap/js/jq.js"></script>
+    <link rel="stylesheet" href="__STATIC__/student/css/personal.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="__STATIC__/student/css/base.css">
+
+    <title>审查请假资料</title>
+    <script src="__STATIC__/student/v/lib/jquery.js"></script>
+    <script src="__STATIC__/student/v/dist/jquery.validate.min.js"></script>
+    <!--<script src="__STATIC__/student/v/dist/localization/messages_zt5h.js"></script>-->
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <script src="__STATIC__/student/bootstrap/js/bootstrap.js"></script>
+    <script src="__STATIC__/teacher/js/leave.js"></script>
+</head>
+<body>
+<div class="x-nav">
+     <span class="layui-breadcrumb" lay-separator="|">
+        <a href="javascript:history.back(-1)">返回上级</a>
+        <a><cite>审查请假资料</cite></a>
+        </span>
+    <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);"
+       title="刷新">
+        <i class="layui-icon">&#xe669;</i></a>
+</div>
+<div class="x-body">
+    <fieldset class="layui-elem-field">
+
+        <legend>{$leave['leave_name']}的请假申请资料--
+            <span>申请时间{$leave['create_time']}</span>
+
+            {if condition="$leave['leave_flag'] == 1"}
+            <span class="layui-badge-rim layui-bg-orange">待审查</span>
+            {elseif condition="$leave['leave_flag'] == 2" /}
+            <span class="layui-badge-rim layui-bg-green">审查通过</span>
+            {else/}
+            <span class="layui-badge">审查未通过</span>
+            {/if}
+        </legend>
+        <div class="layui-field-box">
+            <table class="layui-table" >
+                <tbody>
+                <tr>
+                    <td>姓名: {$leave['leave_name']}</td>
+                <tr>
+                    <td>性别: {$leave['leave_sex']}</td>
+                </tr>
+                <tr>
+                    <td>学号: {$leave['leave_number']}</td>
+                </tr>
+                <tr>
+                    <td>班级: {$leave['leave_className']}</td>
+                </tr>
+                <tr>
+                    <td>请假类别: {$leave['leave_category']}</td>
+                </tr>
+                <tr>
+                    <td>请假原因: <br><p>&nbsp;&nbsp;&nbsp;&nbsp;{$leave['leave_content']}</p></td>
+                </tr>
+                <tr>
+                    <td>请假时间:&nbsp;&nbsp;{$leave['leave_startTime']} 至 {$leave['leave_endTime']}</td>
+                </tr>
+                <tr>
+                    <td>联系电话: {$leave['leave_phone']}</td>
+                </tr>
+                <tr>
+                    <td>家长电话: {$leave['leave_parentPhone']}</td>
+                </tr>
+                </tbody>
+            </table>
+            {if condition="$leave['leave_flag'] == 1"}
+            <div style="display: flex; justify-content:center;">
+                <button class="layui-btn examine" data-leave_flag="2">通过审查</button>
+                <button class="layui-btn layui-btn-danger examine" data-leave_flag="3">未通过审查</button>
+            </div>
+            {/if}
+            <input type="hidden" value="{$leave['leave_id']}" id="leave_id">
+        </div>
+    </fieldset>
+</div>
+
+
+
+</body>
+</html>

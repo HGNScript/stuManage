@@ -1,0 +1,207 @@
+body{
+	margin-bottom: 60px;
+}
+/*移动端样式*/
+.yidong{
+	display: none;
+}
+input{
+	border:none;
+	padding-left: 30px;
+	}
+.span1{
+	display: block;
+	width: 20px;
+	height: 20px;
+	border:1px solid #000;
+	margin-left: 10px;
+	float:left;
+}
+.input1{
+	width:50px;
+	padding-left: 10px;
+}
+.input2{
+	width: 160px;
+}
+.xiangpian{
+	width: 150px;
+	height: 180px;
+	border:1px solid black;
+	text-align: center;
+	line-height: 150px;
+}
+.xiangpian > a{
+	text-decoration: none;
+	color: #666;
+}
+.btn-group{
+	width: 140px;
+	height: 48px;
+	display: block;
+	margin:0 auto;
+}
+footer{
+	width: 100%;
+	height: 60px;
+	background: #f8f8f8;
+	line-height: 60px;
+	position: fixed;
+	bottom: 0;
+	clear: both;
+	}
+footer p{
+	text-align: center;
+	}
+
+/*兼容*/
+.navbar-nav{
+	margin-top: 30px;
+	margin-left: 50px;
+	font-size: 18px;
+}
+@media (max-width:800px) {
+	.xiangpian{
+		margin: 0 auto;
+	}
+	.yidong{
+		display: block;
+	}
+	.pc{
+		display: none;
+	}
+	.form1{
+	width: 100%;
+	margin:0 auto;
+	}
+	.navbar-nav{
+	margin-top: 0px;
+	margin-left: -13px;
+	}
+}
+/*pc端样式*/
+.input5{
+ 	width:50px;
+}
+.input55{
+	width:46px;
+	padding-left: 10px;
+	line-height: 20px;
+}
+.input6{
+	width: 550px;
+}
+.a1{
+	font-size: 40px;
+	color: #999;
+	text-align: center;
+}
+.input7{
+	width:120px;
+}
+.input8{
+	width: 450px;
+}
+.input9{
+	width: 300px
+}
+.input10{
+	width: 50px;
+	line-height: 20px;
+}
+.liyou{
+	padding-top: 20px;
+	padding-left: 20px;
+}
+.p1{
+	margin-left: 10px;
+	margin-top:20px;
+}
+.p2{
+	float: right;
+	margin-right: 100px;
+	margin-top: -33px;
+}
+.p3{
+	margin-left: 10px;
+}
+.ul1{
+	float:right;
+	margin-right: 80px;
+	margin-top: -30px;
+}
+.ul1 > li {
+	float:left;
+	list-style: none;
+}
+.p4{
+	margin-top: 10px;
+	margin-left: 20px;
+}
+.p5{
+	float:right;
+	margin-right: 270px;
+	margin-top: -30px;
+}
+.ul2{
+	margin-left: -40px;
+}
+.ul2 > li{
+	float:left;
+	list-style: none;
+}
+.ul3{
+	margin-left: 205px;
+}
+.ul3 > li{
+	float:left;
+	list-style: none;
+}
+.p6{
+	margin-top: -32px;
+	margin-right: 25px;
+	float: right;
+}
+.ul4{
+	float:left;	
+	margin-left: 20px;
+}
+.ul4 > li{
+	float:left;
+	list-style: none;
+}
+.p7{
+	margin-top: 20px;
+	margin-left: -10px;
+}
+.ul5{
+	margin-left: -55px;
+}
+.ul5 > li{
+	float: left;
+	list-style: none;
+}
+.p8{
+	float: right;
+	margin-top: -32px;
+	margin-right: 290px;
+}
+.ul6{
+	margin-left: 185px;
+}
+.ul6 > li{
+	float: left;
+	list-style: none;
+}
+.p9{
+	float: right;
+	margin-top:-32px;
+	margin-right: 40px;
+}
+.ul7{
+	margin-left: 430px;
+}
+.ul7 > li{
+	float: left;
+	list-style: none;
+}

@@ -1,0 +1,44 @@
+body{
+	margin-bottom: 60px;
+}
+.navbar-nav{
+	margin-top: 30px;
+	margin-left: 50px;
+	font-size: 18px;
+}
+.form1{
+	width: 60%;
+	margin:0 auto;
+}
+.btn-group{
+	width: 140px;
+	height: 48px;
+	display: block;
+	margin:0 auto;
+}
+@media (max-width: 600px) {
+	.form1{
+	width: 100%;
+	margin:0 auto;
+	}
+	.navbar-nav{
+	margin-top: 0px;
+	margin-left: -13px;
+	}
+}
+input{
+	border:none;
+	padding-left: 30px;
+}
+footer{
+	width: 100%;
+	height: 60px;
+	background: #f8f8f8;
+	line-height: 60px;
+	position: fixed;
+	bottom: 0;
+	clear: both;
+}
+footer p{
+	text-align: center;
+}

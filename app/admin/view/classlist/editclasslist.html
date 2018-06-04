@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="__STATIC__/xadmin/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/basejs.js"></script>
+    <script type="text/javascript" src="__STATIC__/admin/js/classlist.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="x-nav">
+        <span class="layui-breadcrumb" lay-separator="|">
+        <a href="javascript:history.back(-1)">返回上级</a>
+        <a><cite>添加班级</cite></a>
+        </span>
+        <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#xe669;</i></a>
+    </div>
+    <div class="x-body">
+        <form class="layui-form layui-col-lg4 layui-col-md4 layui-col-sm8 layui-col-xs12 layui-col-md-offset4 layui-col-sm-offset4">
+            <div class="layui-form-item">
+                <label for="class_name" class="layui-form-label">
+                    班级名称
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="class_name" name="class_name" autocomplete="off" class="layui-input" value="{$oldClasslist['class_name']}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="class_specialty" class="layui-form-label">
+                    专业
+                </label>
+                <div class="layui-input-inline">
+                    <input type="text" id="class_specialty" name="class_specialty" autocomplete="off" class="layui-input" value="{$oldClasslist['class_specialty']}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="" class="layui-form-label">
+                    辅导员
+                </label>
+                <div class="layui-input-inline">
+                    <select name="classtch_id" lay-verify="">
+                        {if condition="!$oldClasslist['classtch_id']"}
+                        <option selected="selected" value="">选择一位教师</option>
+                        {foreach name='classtch' item='v'}
+                        <option value="{$v['classtch_id']}">{$v['classtch_name']}</option>
+                        {/foreach}
+                        {else/}
+                        {foreach name='classtch' item='v'}
+
+                        {if condition="$oldClasslist['classtch_id'] === $v['classtch_id']"}
+
+                        <option selected="selected" value="{$v['classtch_id']}">{$v['classtch_name']}</option>
+                        {else/}
+                        <option value="{$v['classtch_id']}">{$v['classtch_name']}</option>
+                        {/if}
+                        {/foreach}
+                        {/if}
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <button type="button" class="layui-btn x-right" lay-filter="add" lay-submit="">
+                    编辑
+                </button>
+            </div>
+            <input type="hidden" name="class_staffRoom" value="{$staffRoom}" id="staffRoom">
+            <input type="hidden" name="class_grade" value="{$grade}" id="class_grade">
+            <input type="hidden" name="" value="{$class_id}" id="class_id">
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="__STATIC__/student/bootstrap/css/bootstrap.min.css">
+    <script src="__STATIC__/student/bootstrap/js/jq.js"></script>
+    <script src="__STATIC__/student/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="__STATIC__/student/css/index.css">
+    <link rel="stylesheet" href="__STATIC__/student/css/base.css">
+    <title>学生管理系统</title>
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <!--<link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">-->
+    <script src="__STATIC__/student/v/lib/jquery.js"></script>
+    <script src="__STATIC__/student/v/dist/jquery.validate.min.js"></script>
+    <script src="__STATIC__/student/v/dist/localization/messages_zh.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+
+</head>
+<style type="text/css">
+    .log {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 40px;
+    }
+    .log h4 {
+        text-align: center;
+    }
+    .log a {
+        text-align: center;
+        text-decoration:none;
+    }
+</style>
+<body>
+<!-- 导航 -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="__STATIC__/student/img/logo1.png" alt="" class="img-responsive">
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{:url('/Stuleave')}">请假</a></li>
+                <li><a href="{:url('/Stugrant')}">助学金</a></li>
+                <li><a href="{:url('/Stuinfo')}">个人信息</a></li>
+                <li><a href="{:url('/Stureduction')}">学费减免</a></li>
+                <li>
+                    <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true">
+                        {:session('student.stu_name')}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="javascript:;" onclick="x_admin_show('更改密码','/student/Index/editPsd')">更改密码</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/student/Index/out">退出</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    </div>
+</nav>
+<!-- 图片、内容 -->
+<div class="container">
+    <div class="row visible-on">
+        <!-- <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <a href="personal.html"><div class="secp"><span class="glyphicon glyphicon-user user"></span><p>个人信息</p></div></a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <a href="askforleave.html"><div class="secp1"><span class="glyphicon glyphicon-file file"></span><p>请假条</p></div></a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <a href="stipend.html"><div class="secp2"><span class="glyphicon glyphicon-education education"></span><p>助学金</p></div></a>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3">
+            <a href="reduction.html"><div class="secp3"><span class="glyphicon glyphicon-usd usd"></span><p>学费减免</p></div></a>
+        </div> -->
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 log">
+            <a href="{:url('/Stuleave')}">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                <h4>请假条</h4>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 log">
+            <a href="{:url('/Stugrant')}">
+                <span class="glyphicon glyphicon-oil"></span>
+                <h4>助学金</h4>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 log">
+            <a href="{:url('/Stuinfo')}">
+                <span class="glyphicon glyphicon-education"></span>
+                <h4>学生信息</h4>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 log">
+            <a href="{:url('/Stureduction')}">
+                <span class="glyphicon glyphicon-yen"></span>
+                <h4>学费减免</h4>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- 页脚 -->
+<footer>
+    <p>@CopyRight 2013 Bootply | ALL rights reserved</p>
+</footer>
+</body>
+</html>

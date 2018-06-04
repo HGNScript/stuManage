@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>广州城建学生管理系统</title>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!-- <link rel="shortcut icon" href="__STATIC__/xadmin/favicon.ico" type="image/x-icon" /> -->
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="__STATIC__/xadmin/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <script type="text/javascript" src="__STATIC__/teacher/js/login.js"></script>
+</head>
+
+<body>
+<div class="x-nav">
+    <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#xe669;</i></a>
+</div>
+<div class="x-body layui-row">
+    <form class="layui-form layui-col-lg4 layui-col-md8 layui-col-sm8 layui-col-xs11 layui-col-md-offset4 layui-col-sm-offset4" id="editPsd">
+        <div class="layui-form-item">
+            <label for="tch_numBer" class="layui-form-label">
+                工号
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="tch_numBer" name="tch_numBer" autocomplete="off" class="layui-input" placeholder="工号">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="newtch_psw" class="layui-form-label">
+                新密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="newtch_psw" name="newtch_psw" autocomplete="off" class="layui-input" placeholder="新密码">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="newtch_psws" class="layui-form-label">
+                新密码
+            </label>
+            <div class="layui-input-inline">
+                <input type="password" id="newtch_psws" name="newtch_psws" autocomplete="off" class="layui-input" placeholder="再次输入新密码">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="tch_phone" class="layui-form-label">
+                联系电话
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="tch_phone" name="tch_phone" autocomplete="off" class="layui-input" placeholder="联系电话">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label for="validate" class="layui-form-label">
+                验证码
+            </label>
+            <div class="layui-input-inline" style="width: 60%">
+                <input type="text" id="validate" name="validate" autocomplete="off" class="layui-input" placeholder="验证码" style="width: 30%;display: inline-block">
+                <button class="layui-btn layui-btn-primary" id="getValidate" type="button" style="width: 63%;margin-left: 10px;padding: 0 5px;">获取验证码</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            </label>
+            <button class="layui-btn x-right" type="button" id="submit">
+                重置密码
+            </button>
+        </div>
+        <input type="hidden" value="" id="validateVal" name="validateVal">
+    </form>
+</div>
+
+</body>
+
+</html>

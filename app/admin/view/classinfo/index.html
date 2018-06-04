@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> -->
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="__STATIC__/xadmin/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-nav">
+        <span class="layui-breadcrumb" lay-separator="|">
+        <a href="javascript:history.back(-1)">返回上级</a>
+        <a><cite>班级信息</cite></a>
+        </span>
+    <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#xe669;</i></a>
+</div>
+<div class="x-body">
+    <fieldset class="layui-elem-field">
+        <legend>{$class['class_grade']}&nbsp;{$class['class_staffRoom']}&nbsp;{$class['class_name']}</legend>
+        <div class="layui-field-box">
+
+            <div class="layui-row">
+                <div class="layui-form layui-col-md12 x-so" id="searchForm">
+                    <input id="input" type="text" name="search" placeholder="请输入班级或专业名称"  class="layui-input">
+                    <button type="button" id="search" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
+                </div>
+            </div>
+
+            {if condition="(session('admin.admin_authority') == 1)"}
+              <button class="layui-btn layui-btn-danger" id="delAll"><i class="layui-icon"></i>批量删除</button>
+                <a class="layui-btn" href="addClassstu?class_id={$class_id}"><i class="layui-icon"></i>添加</a>
+                <button type="button" class="layui-btn" id="excel">
+                    <i class="layui-icon">&#xe67c;</i>批量添加
+                </button>
+
+                 <a class="layui-btn" href="/teacher/Grant/index?class_id={$class_id}&grant_flag=1">助学金申请文件</a>
+            <a class="layui-btn" href="/teacher/Reduction/index?class_id={$class_id}&reduction_flag=1">免学费申请文件</a>
+
+            {elseif condition="(session('admin.admin_authority') == 2) " /}
+            <button class="layui-btn layui-btn-danger" id="delAll"><i class="layui-icon"></i>批量删除</button>
+                <a class="layui-btn" href="addClassstu?class_id={$class_id}"><i class="layui-icon"></i>添加</a>
+                <button type="button" class="layui-btn" id="excel">
+                    <i class="layui-icon">&#xe67c;</i>批量添加
+                </button>
+            {elseif condition="(session('admin.admin_authority') == 3) " /}
+             <a class="layui-btn" href="/teacher/Grant/index?class_id={$class_id}&grant_flag=1">助学金申请文件</a>
+            <a class="layui-btn" href="/teacher/Reduction/index?class_id={$class_id}&reduction_flag=1">免学费申请文件</a>
+            {/if}
+
+
+
+
+
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>
+                        <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                    </th>
+                    <th>学号</th>
+                    <th>学生名称</th>
+                    <th>学生联系电话</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+            <div class="page">
+                <div id="test1"></div>
+            </div>
+        </div>
+    </fieldset>
+
+
+    <input type="hidden" value="{$class_id}" id="class_id">
+    <input type="hidden" value="{:session('admin.admin_authority')}" id="authority">
+</div>
+</body>
+<script src="__STATIC__/admin/js/basejs.js"></script>
+<script src="__STATIC__/admin/js/classinfo.js"></script>
+
+</html>

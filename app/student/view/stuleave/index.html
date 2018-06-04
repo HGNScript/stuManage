@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="__STATIC__/student/bootstrap/css/bootstrap.min.css">
+    <script src="__STATIC__/student/bootstrap/js/jq.js"></script>
+    <link rel="stylesheet" href="__STATIC__/student/css/personal.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <link rel="stylesheet" href="__STATIC__/student/css/base.css">
+
+    <title>请假申请</title>
+    <script src="__STATIC__/student/v/lib/jquery.js"></script>
+    <script src="__STATIC__/student/v/dist/jquery.validate.min.js"></script>
+    <!--<script src="__STATIC__/student/v/dist/localization/messages_zt5h.js"></script>-->
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <script src="__STATIC__/student/bootstrap/js/bootstrap.js"></script>
+    <script src="__STATIC__/student/js/leave.js"></script>
+
+</head>
+<body>
+<!-- 导航 -->
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#example-navbar-collapse">
+                <span class="sr-only">切换导航</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="__STATIC__/student/img/logo1.png" alt="" class="img-responsive">
+        </div>
+        <div class="collapse navbar-collapse" id="example-navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="{:url('/stuIndex')}">首页</a></li>
+                <li><a href="{:url('/Stuleave')}">请假</a></li>
+                <li><a href="{:url('/Stugrant')}">助学金</a></li>
+                <li><a href="{:url('/Stuinfo')}">个人信息</a></li>
+                <li><a href="{:url('/Stureduction')}">学费减免</a></li>
+                <li>
+                    <a class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="true">
+                        {:session('student.stu_name')}
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="javascript:;" onclick="x_admin_show('更改密码','/student/Index/editPsd')">更改密码</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/student/Index/out">退出</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    </div>
+</nav>
+<!-- 请假条 -->
+<form action="" method="" class="form1" id="leave">
+
+
+    {if condition="$leave"}
+    <table class="table table-bordered">
+        <h3 class="text-center">请假条</h3>
+        <tbody>
+        <tr>
+            <td>姓名: <input type="text" name="leave_name" value="{$leave['leave_name']}"></td>
+        <tr>
+            {if condition="$leave['leave_sex'] == '女'"}
+            <td>性别: <input type="radio" name="leave_sex" value="男"> 男 <input type="radio" name="leave_sex" checked="checked" value="女"> 女</td>
+            {else/}
+            <td>性别: <input type="radio" name="leave_sex" checked="checked" value="男"> 男 <input type="radio" name="leave_sex" value="女"> 女</td>
+            {/if}
+        </tr>
+        <tr>
+            <td>学号: <input type="text" name="leave_number" value="{$leave['leave_number']}"></td>
+        </tr>
+        <tr>
+            <td>班级: <input type="text" name="leave_className" value="{$leave['leave_className']}"></td>
+        </tr>
+        <tr>
+            {if condition="$leave['leave_category'] == '事假'"}
+            <td>请假类别: <input type="radio" name="leave_category" checked="checked" value="事假"> 事假 <input type="radio" name="leave_category" value="病假"> 病假 <input type="radio" name="leave_category" value="其他"> 其他</td>
+            {elseif condition="$leave['leave_category'] == '病假'"/}
+            <td>请假类别: <input type="radio" name="leave_category"  value="事假"> 事假 <input type="radio" name="leave_category" value="病假" checked="checked"> 病假 <input type="radio" name="leave_category" value="其他"> 其他</td>
+            {elseif condition="$leave['leave_category'] == '其他'"/}
+            <td>请假类别: <input type="radio" name="leave_category" value="事假"> 事假 <input type="radio" name="leave_category" value="病假"> 病假 <input type="radio" name="leave_category" value="其他" checked="checked"> 其他</td>
+            {else/}
+            <td>请假类别: <input type="radio" name="leave_category" checked="checked" value="事假"> 事假 <input type="radio" name="leave_category" value="病假"> 病假 <input type="radio" name="leave_category" value="其他"> 其他</td>
+            {/if}
+        </tr>
+        <tr>
+            <td>请假原因:<br><textarea name="leave_content" id="" rows="5" style="width: 100%;" >{$leave['leave_content']}</textarea></td>
+        </tr>
+        <tr>
+            <td>请假时间:<br/><input type="text" name="leave_startTime" value="{$leave['leave_startTime']}" placeholder="点击选择时间" id="time" > 至 <input type="text" name="leave_endTime" placeholder="点击选择时间" value="{$leave['leave_endTime']}" id="time2"></td>
+        </tr>
+        <tr>
+            <td>联系电话: <input type="text" name="leave_phone" value="{$leave['leave_phone']}"></td>
+        </tr>
+        <tr>
+            <td>家长电话: <input type="text" name="leave_parentPhone" value="{$leave['leave_parentPhone']}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <input type="hidden" value="{$leave['leave_id']}" name="id">
+    <input type="hidden" value="0" name="leave_flag" id="leave_flag">
+    {else/}
+    <table class="table table-bordered">
+        <h3 class="text-center">请假条</h3>
+        <tbody>
+        <tr>
+            <td>姓名: <input type="text" name="leave_name" value="{$stuinfo['stu_name']}"></td>
+        <tr>
+            {if condition="$stuinfo['stu_sex'] == '女'"}
+            <td>性别: <input type="radio" name="leave_sex" value="男"> 男 <input type="radio" name="leave_sex" checked="checked" value="女"> 女</td>
+            {else/}
+            <td>性别: <input type="radio" name="leave_sex" checked="checked" value="男"> 男 <input type="radio" name="leave_sex" value="女"> 女</td>
+            {/if}
+        </tr>
+        <tr>
+            <td>学号: <input type="text" name="leave_number" value="{$stuinfo['stu_number']}"></td>
+        </tr>
+        <tr>
+            <td>班级: <input type="text" name="leave_className" value="{$stuinfo['class_name']}"></td>
+        </tr>
+        <tr>
+            <td>请假类别: <input type="radio" name="leave_category" checked="checked" value="事假"> 事假 <input type="radio" name="leave_category" value="病假"> 病假 <input type="radio" name="leave_category" value="其他"> 其他</td>
+        </tr>
+        <tr>
+            <td>请假原因:<br><textarea name="leave_content" id="" rows="5" style="width: 100%;" >{$leave['leave_content']}</textarea></td>
+        </tr>
+        <tr>
+            <td>请假时间:<br/><input type="text" name="leave_startTime" value="{$leave['leave_startTime']}" placeholder="点击选择时间" id="time" > 至 <input type="text" name="leave_endTime" placeholder="点击选择时间" value="{$leave['leave_endTime']}" id="time2"></td>
+        </tr>
+        <tr>
+            <td>联系电话: <input type="text" name="leave_phone" value="{$stuinfo['stu_phone']}"></td>
+        </tr>
+        <tr>
+            <td>家长电话: <input type="text" name="leave_parentPhone" value="{$stuinfo['stu_familyphone']}"></td>
+        </tr>
+        </tbody>
+    </table>
+    {/if}
+
+    <input type="hidden" value="{$leave['leave_id']}" name="id">
+    {if condition="$leave['leave_flag'] == 0"}
+    <input type="hidden" value="0" name="leave_flag" id="leave_flag">
+    {else/}
+    <input type="hidden" value="{$leave['leave_flag']}" name="leave_flag" id="leave_flag">
+    {/if}
+</form>
+<!-- 按钮 -->
+<div class="btn-group btn-group-lg " style="margin:93px auto;">
+    <button type="button" class="btn btn-default .btn-group-justified submit" id="leavefoKeep">保存</button>
+    <button type="button" class="btn btn-default .btn-group-justified submit" id="leavefoSubmit">提交</button>
+</div>
+<!-- 页脚 -->
+<footer>
+    <p>@CopyRight 2013 Bootply | ALL rights reserved</p>
+</footer>
+</body>
+<script>
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#time' //指定元素
+        });
+    });
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#time2' //指定元素
+        });
+    });
+</script>
+</html>

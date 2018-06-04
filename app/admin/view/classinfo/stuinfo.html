@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" /> -->
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="__STATIC__/xadmin/node_modules/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style>
+    .xiangpian{
+        width: 150px;
+        height: 180px;
+        border:1px solid black;
+        text-align: center;
+        line-height: 150px;
+        margin:0 auto;
+    }
+    .xiangpian > a{
+        text-decoration: none;
+        color: #666;
+    }
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+<div class="x-nav">
+        <span class="layui-breadcrumb" lay-separator="|">
+        <a href="javascript:history.back(-1)">返回上级</a>
+        <a><cite>个人信息</cite></a>
+        </span>
+    <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon">&#xe669;</i></a>
+</div>
+
+<fieldset class="layui-elem-field">
+    <legend>{$stuInfo['class_name']}&nbsp;{$stuInfo['stu_name']}</legend>
+    <div class="layui-field-box">
+        <div class="x-body">
+            <table class="layui-table">
+                <tbody>
+                <tr>
+                    <td colspan="2"><div class="xiangpian"><img style="width: 100%;height: 100%;max-width: none;" src="" alt=""></div></td>
+                </tr>
+                <tr>
+                    <td>学习形式: {$stuInfo['stu_studystyle']}</td>
+                    <td>姓名: {$stuInfo['stu_name']}</td>
+                </tr>
+                <tr>
+                </tr>
+                <tr>
+                    <td>学号: {$stuInfo['stu_number']}</td>
+                    <td>身份证号码: {$stuInfo['stu_identity']}</td>
+
+                </tr>
+                <tr>
+                    <td>性别: {$stuInfo['stu_sex']}</td>
+                    <td>出生日期: {$stuInfo['stu_birthday']}</td>
+                </tr>
+                <tr>
+                    <td>民族: {$stuInfo['stu_nation']}</td>
+                    <td>联系电话: {$stuInfo['stu_phone']}</td>
+                </tr>
+                <tr>
+                    <td>政治面貌: {$stuInfo['stu_politicalstatus']}</td>
+                    <td>户口所在地: {$stuInfo['stu_hukouaddress']}</td>
+                </tr>
+                <tr>
+                    <td>户口性质: {$stuInfo['stu_hokoustyle']}</td>
+                    <td>学习专业名称: {$stuInfo['stu_specialty']}</td>
+                </tr>
+                <tr>
+                    <td>毕业学校: {$stuInfo['stu_graduation']}</td>
+                    <td>招生年份: {$stuInfo['stu_enrolmentyear']}</td>
+                </tr>
+                <tr>
+                    <td>招生季度: {$stuInfo['stu_enrollmentquarter']}</td>
+                    <td>班级: {$stuInfo['class_name']}</td>
+                </tr>
+                <tr>
+                    <td>专业级别: {$stuInfo['stu_professionallevel']}</td>
+                    <td>入学前文化程度: {$stuInfo['stu_Preschooleducation']}</td>
+                </tr>
+                <tr>
+                    <td>学制: {$stuInfo['stu_schoolsystem']}</td>
+                    <td>家庭联系人: {$stuInfo['stu_familycontact']}</td>
+                </tr>
+                <tr>
+                    <td>家庭联系电话: {$stuInfo['stu_familyphone']}</td>
+                    <td>家庭年总收入: {$stuInfo['stu_totalannualincomefamily']}</td>
+                </tr>
+                <tr>
+                    <td>家庭人均收入: {$stuInfo['stu_percapitaincomefamily']}</td>
+                    <td>是否10万以下民族: {$stuInfo['stu_100thousand']}</td>
+                </tr>
+                <tr>
+                    <td>是否家庭困难: {$stuInfo['stu_familydifficulties']}</td>
+                    <td>是否低保: {$stuInfo['stu_familylow']}</td>
+                </tr>
+                <tr>
+                    <td>收入来源: {$stuInfo['stu_sourceincome']}</td>
+                    <td>邮政编码: {$stuInfo['stu_postalcode']}</td>
+                </tr>
+                <tr>
+                    <td>国别: {$stuInfo['stu_differentcountries']}</td>
+                    <td>证件类型: {$stuInfo['stu_certificatestyle']}</td>
+                </tr>
+                <tr>
+                    <td>户口地址: {$stuInfo['stu_hukouaddresstow']}</td>
+                    <td>是否退役士兵: {$stuInfo['stu_retiredsoldier']}</td>
+                </tr>
+                <tr>
+                    <td>入学总分: {$stuInfo['stu_totalentrancescore']}</td>
+                    <td>宿舍号: {$stuInfo['stu_dormnumber']}</td>
+                </tr>
+                <tr>
+                    <td>办学点名称: {$stuInfo['stu_nameofschoolrunningpoint']}</td>
+                    <td>学生类别: {$stuInfo['stu_classstudents']}</td>
+                </tr>
+                <tr>
+                    <td>户口区域: {$stuInfo['stu_hukouquyu']}</td>
+                    <td>户籍所在地: {$stuInfo['stu_hukouaddressf']}</td>
+                </tr>
+                <tr>
+                    <td>是否三侨: {$stuInfo['stu_sanqiao']}</td>
+                    <td>学生状态: {$stuInfo['stu_state']}</td>
+                </tr>
+                <tr>
+                    <td>原部队: {$stuInfo['stu_originaltroops']}</td>
+                    <td>原军衔: {$stuInfo['stu_originalmilitaryrank']}</td>
+                </tr>
+                <tr>
+                    <td>入伍地: {$stuInfo['stu_enlist']}</td>
+                    <td>入伍时间: {$stuInfo['stu_enlisttime']}</td>
+                </tr>
+                <tr>
+                    <td>退役时间: {$stuInfo['stu_demobilizedtime']}</td>
+                    <td>退役方式: {$stuInfo['stu_demobilizedstyle']}</td>
+                </tr>
+                <tr>
+                    <td>健康状况: {$stuInfo['stu_health']}</td>
+                    <td>广州市户口地区: {$stuInfo['stu_guangzhouHukou']}</td>
+                </tr>
+                <tr>
+                    <td>原毕业学校: {$stuInfo['stu_guangzhouprimaryschool']}</td>
+                    <td>原毕业学校源省: {$stuInfo['stu_sourceprovince']}</td>
+                </tr>
+                <tr>
+                    <td>原毕业学校源市: {$stuInfo['stu_shengyuancity']}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+
+
+</body>
+</html>
