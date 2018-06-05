@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
     <script type="text/javascript" src="__STATIC__/xadmin/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
     <script type="text/javascript" src="__STATIC__/teacher/js/index.js"></script>
 
@@ -48,7 +49,7 @@
             <li>
                 <a href="javascript:;">
                 <i class="layui-icon">&#xe68e;</i>
-                <cite>{$vo['class_name']}</cite>
+                <cite class="parent">{$vo['class_name']}</cite>
                 </a>
                 <ul class="sub-menu">
                     <li>
@@ -60,21 +61,21 @@
                     <li>
                         <a _href="/teacher/Leave/index?class_id={$vo['class_id']}&leave_flag=1">
                             <i class="layui-icon">&#xe629;</i>
-                            <cite id="leave">请假申请
+                            <cite class="leave">请假申请
                             </cite>
                         </a>
                     </li>
                     <li>
                         <a _href="/teacher/Grant/index?class_id={$vo['class_id']}&grant_flag=1">
                             <i class="layui-icon">&#xe629;</i>
-                            <cite id="grant">助学金申请
+                            <cite class="grant">助学金申请
                             </cite>
                         </a>
                     </li>
                     <li>
                         <a _href="/teacher/Reduction/index?class_id={$vo['class_id']}&reduction_flag=1">
                             <i class="layui-icon">&#xe629;</i>
-                            <cite id="reduction">免学费申请
+                            <cite class="reduction">免学费申请
                             </cite>
                         </a>
                     </li>

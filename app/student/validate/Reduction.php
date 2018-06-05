@@ -32,24 +32,6 @@ class Reduction extends BaseValidate {
         'family_relationship1' => 'require|chs',
         'family_work1' => 'require|chs',
 
-        'family_name2' => 'require|chs',
-        'family_sex2' => 'require|chs',
-        'family_age2' => 'require|number',
-        'family_relationship2' => 'require|chs',
-        'family_work2' => 'require|chs',
-
-        'family_name3' => 'require|chs',
-        'family_sex3' => 'require|chs',
-        'family_age3' => 'require|number',
-        'family_relationship3' => 'require|chs',
-        'family_work3' => 'require|chs',
-
-        'family_name4' => 'require|chs',
-        'family_sex4' => 'require|chs',
-        'family_age4' => 'require|number',
-        'family_relationship4' => 'require|chs',
-        'family_work4' => 'require|chs',
-
         'reduction_familyAddesPhone' => 'require|chsAlphaNum',
         'stu_postalcode' => 'require|number',
         'reduction_contacts' => 'require|chs',
@@ -115,54 +97,6 @@ class Reduction extends BaseValidate {
 
         'family_work1.require' => '家庭成员(1)工作或学校单位不能为空',
         'family_work1.chs' => '家庭成员(1)工作或学校单位只能为中文',
-
-
-
-
-        'family_name2.require' => '"家庭成员(2)名称"不能为空',
-        'family_name2.chs' => '"家庭成员(2)名称"只能为中文',
-
-        'family_sex2.require' => '"家庭成员(2)性别"不能为空',
-        'family_sex2.chs' => '"家庭成员(2)性别"只能为中文',
-
-        'family_age2.require' => '"家庭成员(2)年龄"不能为空',
-        'family_age2.number' => '"年龄"只能为数字',
-
-        'family_relationship2.require' => '"家庭成员(2)与本人关系"不能为空',
-        'family_relationship2.chs' => '"家庭成员(2)与本人关系"只能为中文',
-
-        'family_work2.require' => '"家庭成员(2)工作或学校单位"不能为空',
-        'family_work2.chs' => '"家庭成员(2)工作或学校单位"只能为中文',
-
-
-
-        'family_name3require' => '"家庭成员(3)名称"不能为空',
-        'family_name3.chs' => '"家庭成员(3)名称"只能为中文',
-
-        'family_sex3.require' => '"家庭成员(3)性别"不能为空',
-        'family_sex3.chs' => '"家庭成员(3)性别"只能为中文',
-
-        'family_age3.require' => '"家庭成员(3)年龄"不能为空',
-        'family_age3.number' => '"年龄"只能为数字',
-
-        'family_relationship3.require' => '家庭成员(3)与本人关系不能为空',
-        'family_relationship3.chs' => '家庭成员(3)与本人关系只能为中文',
-
-        'family_work3.require' => '"家庭成员(3)工作或学校单位"不能为空',
-        'family_work3.chs' => '"家庭成员(3)工作或学校单位"只能为中文',
-
-
-
-
-
-        'family_name4.require' => '"家庭成员(4)名称"不能为空',
-        'family_name4.chs' => '"家庭成员(4)名称"只能为中文',
-
-        'family_sex4.require' => '"家庭成员(4)性别"不能为空',
-        'family_sex4.chs' => '"家庭成员(4)性别"只能为中文',
-
-        'family_age4.require' => '"家庭成员(4)年龄"不能为空',
-        'family_age4.number' => '"年龄"只能为数字',
 
         'family_relationship4.require' => '"家庭成员(4)与本人关系"不能为空',
         'family_relationship4.chs' => '"家庭成员(4)与本人关系"只能为中文',

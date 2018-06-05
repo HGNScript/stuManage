@@ -80,13 +80,45 @@ $(function(){
             traditional: true,
             dataType: "json",
             success: function(data) {
-               if (data['leaveNotice']) {
-                $("#leave").append(' &nbsp;&nbsp;&nbsp;<span class="layui-badge leave">'+data['leaveNotice']+'</span>')
-               } else if (data['grantNotice']) {
-                    $("#grant").append(' &nbsp;&nbsp;&nbsp;<span class="layui-badge grant">'+data['grantNotice']+'</span>')
-               } else if (data['reductionNotice']) {
-                   $("#reduction").append(' &nbsp;&nbsp;&nbsp;<span class="layui-badge reduction">'+data['reductionNotice']+'</span>')
-               }
+
+                $(".grant").each(function(i){
+                    var _this = $(this)
+                    var class_name = $(this).parents("ul").prev().children('cite').html()
+
+                    $.each(data, function(index, array) {
+                        if (array['class_name'] == class_name) {
+                            if (array['grant']) {
+                                _this.append(' &nbsp;&nbsp;&nbsp;<span class="layui-badge">'+array['grant']+'</span>')
+                            }
+                        }
+                    })
+                });
+
+                $(".leave").each(function(i){
+                    var _this = $(this)
+                    var class_name = $(this).parents("ul").prev().children('cite').html()
+
+                    $.each(data, function(index, array) {
+                        if (array['class_name'] == class_name) {
+                            if (array['leave']) {
+                                _this.append(' &nbsp;&nbsp;&nbsp;<span class="layui-badge">'+array['leave']+'</span>')
+                            }
+                        }
+                    })
+                });
+
+                $(".reduction").each(function(i){
+                    var _this = $(this)
+                    var class_name = $(this).parents("ul").prev().children('cite').html()
+
+                    $.each(data, function(index, array) {
+                        if (array['class_name'] == class_name) {
+                            if (array['reduction']) {
+                                _this.append(' &nbsp;&nbsp;&nbsp;<span class="layui-badge">'+array['reduction']+'</span>')
+                            }
+                        }
+                    })
+                });
             }
         });
     }

@@ -15,11 +15,10 @@ class Leave extends BaseModel {
 
     public function search($search, $leave_flag, $class_id) {
         return  $this->alias('l')
-            ->join('student s','l.stu_id = s.stu_id')
-            ->join('class c','s.class_id = c.class_id')
+            ->join('class c','l.class_id = c.class_id')
             ->where('l.leave_name','like', "%".$search."%")
             ->where('l.leave_flag', $leave_flag)
-            ->where('s.class_id', $class_id)
+            ->where('c.class_id', $class_id)
             ->select();
     }
 }

@@ -85,11 +85,19 @@ class Index extends BaseController {
     }
 
     public function notice() {
-        $leaveNotice = (new \app\teacher\model\Leave())->where('leave_flag', 1)->select();
-        $grantNotice = (new \app\teacher\model\Grant())->where('grant_flag', 1)->select();
-        $reductionNotice = (new \app\teacher\model\reduction())->where('reduction_flag', 1)->select();
+        $classtch_id = Session::get('teacher.tch_id');
 
-        return json(['leaveNotice' => sizeof($leaveNotice), 'grantNotice' => sizeof($grantNotice), 'reductionNotice' => sizeof($reductionNotice)]);
+        $notice = (new tch())->notice($classtch_id);
+
+        return json($notice);
+    }
+
+    public function classNotice() {
+        $class_id = input('get.class_id');
+
+        $notice = (new tch())->classNotice($class_id);
+
+        return json($notice);
     }
 
 

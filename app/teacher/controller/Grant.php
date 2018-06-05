@@ -9,6 +9,7 @@
 namespace app\teacher\controller;
 
 
+use app\student\model\student;
 use think\Controller;
 use think\Session;
 
@@ -33,6 +34,7 @@ class Grant extends Controller {
         $this->assign('grant_flag', $grant_flag);
         $this->assign('class_id', $class_id);
         $this->assign('class', $class);
+
         return $this->fetch();
     }
 
@@ -52,9 +54,11 @@ class Grant extends Controller {
         $grant_id = input('get.grant_id');
 
         $grant = \app\teacher\model\Grant::get($grant_id);
+        $class_id = (new student())->where('stu_id', $grant['stu_id'])->value('class_id');
 
         $this->assign('grant', $grant);
         $this->assign('stuinfo', null);
+        $this->assign('class_id', $class_id);
         return $this->fetch();
     }
 

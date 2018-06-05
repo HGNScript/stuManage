@@ -9,6 +9,7 @@
 namespace app\teacher\controller;
 
 
+use app\student\model\student;
 use think\Controller;
 use think\Session;
 
@@ -52,8 +53,11 @@ class Reduction extends Controller {
         $reduction_id = input('get.reduction_id');
 
         $reduction = \app\teacher\model\reduction::get($reduction_id);
+        $class_id = (new student())->where('stu_id', $reduction['stu_id'])->value('class_id');
+
 
         $this->assign('reduction', $reduction);
+        $this->assign('class_id', $class_id);
         return $this->fetch();
     }
 

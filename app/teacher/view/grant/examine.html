@@ -495,9 +495,10 @@
                 <button class="layui-btn examine" data-grant_flag="2">通过审查</button>
                 <button class="layui-btn layui-btn-danger examine" data-grant_flag="3">未通过审查</button>
             </div>
-            <button class="layui-btn layui-btn-danger print x-right">打印</button>
             {/if}
+            <button class="layui-btn layui-btn-danger print x-right">打印</button>
             <input type="hidden" value="{$grant['grant_id']}" id="grant_id">
+            <input type="hidden" value="{$class_id}" id="class_id">
         </div>
 
     </fieldset>

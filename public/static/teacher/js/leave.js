@@ -3,27 +3,58 @@ $(function () {
     $('#search').click(function(){
         search()
     })
+
+    $('#input').keypress(function (event) {
+        console.log(1)
+        var keynum = (event.keyCode ? event.keyCode : event.which);
+        if (keynum == '13') {
+            search()
+        }
+    });
+
 })
 
 var notice = function (){
+    var class_id = $('#class_id').val()
         $.ajax({
             type: "get",
-            url: '/teacher/Index/notice',
+            url: '/teacher/Index/classNotice?class_id='+class_id,
             traditional: true,
             dataType: "json",
+            beforeSend:function(XMLHttpRequest){
+                layer.close(layer.index);
+                layer.load()
+            },
             success: function(data) {
-                console.log(data)
-               if (data['leaveNotice']) {
-                    parent.$(".leave").remove();
-                    parent.$("#leave").append('&nbsp;&nbsp;&nbsp;<span class="layui-badge leave">'+data['leaveNotice']+'</span>')
-                    javascript:history.back(-1)
-               } else {
-                    parent.$(".leave").remove();
-                    javascript:history.back(-1)
-               }
+
+                parent.$(".leave").each(function(i){
+                    var _this = $(this)
+                    var class_name = $(this).parents("ul").prev().children('cite').html()
+
+                    if (data['class_name'] == class_name) {
+                        if (data['leave']) {
+
+                            parent.$('.layui-this').find("span").replaceWith(`<span class="layui-badge">`+data['leave']+`</span>`)
+
+                            _this.html('')
+                            _this.html('请假申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">'+data['leave']+'</span>')
+
+                        } else {
+
+                            parent.$('.layui-this').find("span").remove()
+
+                            _this.html('')
+                            _this.html('请假申请')
+                        }
+                    }
+                });
+
+                javascript:history.back(-1)
+
             }
         });
     }
+
 
 var examine = function () {
     $('.examine').click(function () {
@@ -111,7 +142,7 @@ function search() {
                         <a href="/teacher/Leave/examine?leave_id=` + array['leave_id'] + `">
                             <p style="border: 1px solid #c0ced3; display: inline-block;padding: 10px;width:40%; border-radius: 5px">
                                 申请人： ` + array['leave_name'] + `
-                                <br>申请人联系电话： ` + array['leave_phone'] + `
+                                <br>申请人联系电话： ` + array['stu_phone'] + `
                                 <br>所属班级： ` + array['class_name'] + `
                             </p>
                         </a>

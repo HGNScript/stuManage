@@ -66,7 +66,7 @@
                     <td>请假时间:&nbsp;&nbsp;{$leave['leave_startTime']} 至 {$leave['leave_endTime']}</td>
                 </tr>
                 <tr>
-                    <td>联系电话: {$leave['leave_phone']}</td>
+                    <td>联系电话: {$leave['stu_phone']}</td>
                 </tr>
                 <tr>
                     <td>家长电话: {$leave['leave_parentPhone']}</td>
@@ -80,6 +80,7 @@
             </div>
             {/if}
             <input type="hidden" value="{$leave['leave_id']}" id="leave_id">
+            <input type="hidden" value="{$leave['class_id']}" id="class_id">
         </div>
     </fieldset>
 </div>

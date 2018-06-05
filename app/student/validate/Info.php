@@ -27,7 +27,7 @@ class Info extends BaseValidate {
         'stu_graduation' => 'require|chs',
         'stu_enrolmentyear' => 'require|number',
         'stu_enrollmentquarter' => 'require',
-        'class_name' => 'require|chs',
+        'class_name' => 'require',
         'stu_professionallevel' => 'require|chs',
         'stu_Preschooleducation' => 'require|chs',
         'stu_schoolsystem' => 'require|chs',
@@ -116,7 +116,6 @@ class Info extends BaseValidate {
         'stu_graduation.chs' => '"毕业学校"只能为中文',
         'stu_enrolmentyear.number' => '"招生年份"只能为数字',
 
-        'class_name.chs' => '"班级名称"只能为中文',
         'stu_professionallevel.chs' => '"专业级别"只能为中文',
         'stu_Preschooleducation.chs' => '"入学前文化程度"只能为中文',
 

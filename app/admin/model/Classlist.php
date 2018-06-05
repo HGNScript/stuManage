@@ -199,11 +199,11 @@ class Classlist extends BaseModel {
             $arr = [];
             array_push($arr, $rows['stu_studystyle']);
             array_push($arr, $rows['stu_name']);
-            array_push($arr, $rows['stu_identity']);
+            array_push($arr, '\''.$rows['stu_identity']);
             array_push($arr, $rows['stu_sex']);
             array_push($arr, $rows['stu_birthday']);
             array_push($arr, $rows['stu_nation']);
-            array_push($arr, $rows['stu_phone']);
+            array_push($arr, '\''.$rows['stu_phone']);
             array_push($arr, $rows['stu_politicalstatus']);
             array_push($arr, $rows['stu_hukouaddress']);
             array_push($arr, $rows['stu_hokoustyle']);

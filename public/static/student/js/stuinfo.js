@@ -34,7 +34,8 @@ $(function () {
                 field: 'images',
                 done: function (res) {
                     $('#img_url').val(res['url'])
-                    $('#img').attr('src', res['url'])
+                    $('#upload').empty()
+                    $('#upload').append(`<img src="`+res['url']+`" style="display: inline-block;width: 100%;height: 100%;" id="img">`)
                 },
             });
         });

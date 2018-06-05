@@ -7,28 +7,55 @@ $(function () {
     $('#search').click(function(){
         search()
     })
+    $('#input').keypress(function (event) {
+        var keynum = (event.keyCode ? event.keyCode : event.which);
+        if (keynum == '13') {
+            search()
+        }
+    });
 })
 
 var notice = function (){
-        $.ajax({
-            type: "get",
-            url: '/teacher/Index/notice',
-            traditional: true,
-            dataType: "json",
-            success: function(data) {
-               if (data['reductionNotice']) {
-                    parent.$(".reduction").remove();
-                    parent.$("#reduction").append('&nbsp;&nbsp;&nbsp;<span class="layui-badge reduction">'+data['reductionNotice']+'</span>')
-                   javascript:history.back(-1)
+    var class_id = $('#class_id').val()
+    console.log(class_id)
+    $.ajax({
+        type: "get",
+        url: '/teacher/Index/classNotice?class_id='+class_id,
+        traditional: true,
+        dataType: "json",
+        beforeSend:function(XMLHttpRequest){
+            layer.close(layer.index);
+            layer.load()
+        },
+        success: function(data) {
 
-               } else {
-                    parent.$(".reduction").remove();
-                   javascript:history.back(-1)
+            parent.$(".reduction").each(function(i){
+                var _this = $(this)
+                var class_name = $(this).parents("ul").prev().children('cite').html()
 
-               }
-            }
-        });
-    }
+                if (data['class_name'] == class_name) {
+                    if (data['reduction']) {
+
+                        parent.$('.layui-this').find("span").replaceWith(`<span class="layui-badge">`+data['reduction']+`</span>`)
+
+                        _this.html('')
+                        _this.html('请假申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">'+data['reduction']+'</span>')
+
+                    } else {
+
+                        parent.$('.layui-this').find("span").remove()
+
+                        _this.html('')
+                        _this.html('请假申请')
+                    }
+                }
+            });
+
+            javascript:history.back(-1)
+
+        }
+    });
+}
 
 var examine = function () {
     $('.examine').click(function () {

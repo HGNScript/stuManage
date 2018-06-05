@@ -49,7 +49,7 @@
 <div class="x-body">
     <fieldset class="layui-elem-field">
         <legend>
-            {$class['class_grade']}&nbsp;{$class['class_staffRoom']}&nbsp;{$class['class_name']}&nbsp;&nbsp;&nbsp;
+            {$class['class_grade']}&nbsp;{$class['class_staffRoom']}&nbsp;{$class['class_name']}&nbsp;&nbsp;&nbsp;请假文件
 
             {if condition="$leave_flag == 1"}
             <span class="layui-badge-rim layui-bg-orange">待审查</span>
@@ -77,7 +77,7 @@
                         <a href="/teacher/leave/examine?leave_id={$vo['leave_id']}">
                             <p style="border: 1px solid #c0ced3; display: inline-block;padding: 10px;width:35%; border-radius: 5px">
                                 申请人： {$vo['leave_name']}
-                                <br>申请人联系电话： {$vo['leave_phone']}
+                                <br>申请人联系电话： {$vo['stu_phone']}
                                 <br>所属班级： {$vo['leave_className']}
                             </p>
                         </a>
