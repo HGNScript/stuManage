@@ -41,7 +41,7 @@ class BaseModel extends Model {
         $appid = 1400095432;
         $appkey = "9aeee6eea3a684068f66f651f9b26f48";
         $phone = [$phone];
-        $templId = 131681;
+        $templId = $templId;
 
 
         try {

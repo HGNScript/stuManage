@@ -27,7 +27,7 @@
 <div class="x-nav">
     <span class="layui-breadcrumb" lay-separator="|">
         {if condition="session('admin.admin_id')"}
-                <a href="javascript:history.back(-1)">返回上级</a>
+                <a href="/admin/Classinfo/index?class_id={$class_id}">返回上级</a>
         {/if}
         {if condition="$reduction_flag == 1"}
         <a href="/admin/reduction/index?class_id={$class_id}&reduction_flag=1"><cite>待审查<cite></a>

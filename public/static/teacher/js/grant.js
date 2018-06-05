@@ -38,14 +38,14 @@ var notice = function (){
                         parent.$('.layui-this').find("span").replaceWith(`<span class="layui-badge">`+data['grant']+`</span>`)
 
                         _this.html('')
-                        _this.html('请假申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">'+data['grant']+'</span>')
+                        _this.html('助学金申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">'+data['grant']+'</span>')
 
                     } else {
 
                         parent.$('.layui-this').find("span").remove()
 
                         _this.html('')
-                        _this.html('请假申请')
+                        _this.html('助学金申请')
                     }
                 }
             });

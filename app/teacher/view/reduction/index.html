@@ -26,9 +26,6 @@
 <body>
 <div class="x-nav">
     <span class="layui-breadcrumb" lay-separator="|">
-        {if condition="session('admin.admin_id') && session('admin.tch_id==null')"}
-                <a href="/admin/Classinfo/index?class_id={$class_id}">返回上级</a>
-        {/if}
         {if condition="$reduction_flag == 1"}
         <a href="/teacher/reduction/index?class_id={$class_id}&reduction_flag=1"><cite>待审查<cite></a>
         <a href="/teacher/reduction/index?class_id={$class_id}&reduction_flag=2">审查通过</a>

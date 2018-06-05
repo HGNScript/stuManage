@@ -82,20 +82,20 @@ class Grant extends BaseValidate {
 
         'grant_graduateFromSchool.require' => '"何时毕业于何学校"不能为空',
 
-        'family_name1.require' => '家庭成员(1)名称不能为空',
-        'family_name1.chs' => '家庭成员(1)名称只能为中文',
+        'family_name1.require' => '家庭成员至少需填写户主信息',
+        'family_name1.chs' => '家庭成员名称只能为中文',
 
-        'family_sex1.require' => '家庭成员(1)性别不能为空',
-        'family_sex1.chs' => '家庭成员(1)性别只能为中文',
+        'family_sex1.require' => '家庭成员性别不能为空',
+        'family_sex1.chs' => '家庭成员性别只能为中文',
 
-        'family_age1.require' => '家庭成员(1)年龄不能为空',
+        'family_age1.require' => '家庭成员年龄不能为空',
         'family_age1.number' => '年龄只能为数字',
 
-        'family_relationship1.require' => '家庭成员(1)与本人关系不能为空',
-        'family_relationship1.chs' => '家庭成员(1)与本人关系只能为中文',
+        'family_relationship1.require' => '家庭成员与本人关系不能为空',
+        'family_relationship1.chs' => '家庭成员与本人关系只能为中文',
 
-        'family_work1.require' => '家庭成员(1)工作或学校单位不能为空',
-        'family_work1.chs' => '家庭成员(1)工作或学校单位只能为中文',
+        'family_work1.require' => '家庭成员工作或学校单位不能为空',
+        'family_work1.chs' => '家庭成员工作或学校单位只能为中文',
 
 
         'grant_familyAddesPhone.require' => '"家庭地址及固定电话"不能为空',

@@ -14,11 +14,11 @@ use sms\SmsMultiSender;
 
 
 class BaseModel extends Model {
-    public function sms($phone, $paramsArr) {
+    public function sms($phone, $paramsArr, $templId) {
         $appid = 1400095432;
         $appkey = "9aeee6eea3a684068f66f651f9b26f48";
         $phone = [$phone];
-        $templId = 127661;
+        $templId = $templId;
 
 
         try {

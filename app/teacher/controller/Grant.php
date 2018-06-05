@@ -78,7 +78,7 @@ class Grant extends Controller {
                 $paramsArr = ["未通过"];
             }
 
-            $res = (new \app\teacher\model\Leave())->sms($grant['stu_phone'], $paramsArr);
+            $res = (new \app\teacher\model\Leave())->sms($grant['stu_phone'], $paramsArr, 131678);
             return $res;
 
         } else {

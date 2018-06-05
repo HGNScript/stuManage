@@ -77,7 +77,7 @@ class Reduction extends Controller {
                 $paramsArr = ["未通过"];
             }
 
-            $res = (new \app\teacher\model\reduction())->sms($reduction['stu_phone'], $paramsArr);
+            $res = (new \app\teacher\model\reduction())->sms($reduction['stu_phone'], $paramsArr, 131680);
             return $res;
 
         } else {

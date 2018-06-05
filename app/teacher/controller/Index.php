@@ -81,7 +81,7 @@ class Index extends BaseController {
     public function out(){
         session('teacher.tch_id', null);
         session('teacher.tch_name', null);
-        $this->redirect('Login');
+        $this->redirect('/tchLogin');
     }
 
     public function notice() {

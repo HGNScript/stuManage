@@ -67,7 +67,7 @@ class Leave extends BaseController {
                 $paramsArr = ["未通过"];
             }
 
-            $res = (new \app\teacher\model\Leave())->sms($leave['stu_phone'], $paramsArr);
+            $res = (new \app\teacher\model\Leave())->sms($leave['stu_phone'], $paramsArr, 127661);
             return $res;
 
         } else {

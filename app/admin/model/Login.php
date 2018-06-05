@@ -32,7 +32,7 @@ class Login extends Model {
 
         $paramsArr = [$randNumber];
 
-        $res = (new BaseModel())->sms($admin_phone, $paramsArr, null);
+        $res = (new BaseModel())->sms($admin_phone, $paramsArr, 131681);
 
         return $res;
     }

@@ -13,7 +13,7 @@ class Info extends BaseValidate {
     protected $rule = [
         'stu_imgurl' => 'require',
         'stu_studystyle'  =>  'require|chs',
-        'stu_name' => 'require|chsAlpha',
+        'stu_name' => 'require|chs',
         'stu_number' => 'require|number',
         'stu_identity' => 'require|number',
         'stu_sex' => 'require',
@@ -53,7 +53,7 @@ class Info extends BaseValidate {
         'stu_originalmilitaryrank' => 'chs',
         'stu_enlist' => 'chs',
         'stu_demobilizedstyle' => 'chs',
-        'stu_health' => 'chs',
+        'stu_health' => 'require|chs',
         'stu_guangzhouHukou' => 'chs',
         'stu_guangzhouprimaryschool' => 'chs',
         'stu_sourceprovince' => 'chs',
@@ -105,7 +105,7 @@ class Info extends BaseValidate {
         'stu_health.require' => '"健康状况"不能为空',
 
         'stu_studystyle.chs' => '"学习形式"只能为中文',
-        'stu_name.chsAlpha' => '"名称"只能为中文或字母',
+        'stu_name.chs' => '"名称"只能为中文',
         'stu_number.number' => '"学号"只能为数字',
         'stu_identity.number' => '"身份证"只能为数字',
         'stu_nation.chs' => '"民族"只能为中文',
