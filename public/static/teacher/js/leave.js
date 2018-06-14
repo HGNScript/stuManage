@@ -26,7 +26,7 @@ var notice = function (){
                 layer.load()
             },
             success: function(data) {
-
+                layer.close(layer.index);
                 parent.$(".leave").each(function(i){
                     var _this = $(this)
                     var class_name = $(this).parents("ul").prev().children('cite').html()

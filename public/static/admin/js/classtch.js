@@ -61,10 +61,10 @@ function page(search) {
                                         <td>` + array['classtch_email'] + `</td>
                                         <td class="td-manage">
                                             <a title="编辑教师信息" href="/admin/Classtch/editClasstch?classtch_id=` + array['classtch_id'] + `&staffRoom=`  + array['classtch_staffRoom'] + `">
-                                            <i class="layui-icon">&#xe642;</i>
+                                            <span class="layui-badge-rim layui-bg-orange">编辑教师信息</span>
                                           </a>
                                                   <a title="删除" onclick="del(this,'` + array['classtch_id'] + `')" href="javascript:;">
-                                                <i class="layui-icon">&#xe640;</i>
+                                                <span class="layui-badge">删除</span>
                                               </a>
                                                 </td>
                                             </tr>`;

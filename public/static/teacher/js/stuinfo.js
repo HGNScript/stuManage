@@ -4,13 +4,14 @@ $(function () {
 })
 
 var stuinfoNotice = function () {
-    $('#stuinfoNotice').click(function () {
+    $('.stuinfoNotice').click(function () {
         var stu_id = $('#stu_id').val()
+        var noticeFlag = $(this).attr('data-noticeFlag')
 
         layer.confirm("你确定要回学生信息，并通知学生吗？", function (index) {
             $.ajax({
                 type: "post",
-                url: '/teacher/Classinfo/stuinfoNotice',
+                url: '/teacher/Classinfo/stuinfoNotice?noticeFlag='+ noticeFlag,
                 traditional: true,
                 dataType: "json",
                 data: {'stu_id': stu_id},
@@ -19,19 +20,35 @@ var stuinfoNotice = function () {
                     layer.load()
                 },
                 success: function (res) {
-                    console.log(res)
                     layer.close(layer.index);
                     if (res['valid'] == 1) {
                         if (res['msg'].detail[0]['result'] != 0) {
-                            layer.alert("已驳回学生信息,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
-                                layer.close(index);
-                                javascript:history.back(-1)
-                            });
+                            if (noticeFlag == 'infoBug') {
+                                layer.alert("已驳回学生信息,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
+                                    layer.close(index);
+                                    // javascript:history.back(-1)
+                                    location.reload();
+                                });
+                            } else {
+                                layer.alert(res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
+                                    layer.close(index);
+                                    location.reload();
+                                });
+                            }
+                            
                         } else {
-                            layer.alert("已驳回学生信息，已将通知发送至学生", function(index){
-                                layer.close(index);
-                                javascript:history.back(-1)
-                            });
+                            if (noticeFlag == 'infoBug') {
+                                 layer.alert("已驳回学生信息，已将通知发送至学生", function(index){
+                                    layer.close(index);
+                                    location.reload();
+                                });
+                            } else {
+                                layer.alert("已通知学生填写信息", function(index){
+                                    layer.close(index);
+                                    location.reload();
+                                });
+                            }
+                           
                         }
                     } else {
                         layer.msg(res['msg'])

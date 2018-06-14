@@ -48,8 +48,8 @@
                     <i class="layui-icon">&#xe67c;</i>批量添加
                 </button>
 
-                 <a class="layui-btn" href="/teacher/Grant/index?class_id={$class_id}&grant_flag=1">助学金申请文件</a>
-            <a class="layui-btn" href="/teacher/Reduction/index?class_id={$class_id}&reduction_flag=1">免学费申请文件</a>
+                 <a class="layui-btn" href="/admin/Grant/index?class_id={$class_id}&grant_flag=1">助学金申请文件</a>
+            <a class="layui-btn" href="/admin/Reduction/index?class_id={$class_id}&reduction_flag=1">免学费申请文件</a>
 
             {elseif condition="(session('admin.admin_authority') == 2) " /}
             <button class="layui-btn layui-btn-danger" id="delAll"><i class="layui-icon"></i>批量删除</button>
@@ -74,6 +74,9 @@
                     </th>
                     <th>学号</th>
                     <th>学生名称</th>
+                    <th>性别</th>
+                    <th>身份证</th>
+                    <th>宿舍号</th>
                     <th>学生联系电话</th>
                     <th>操作</th>
                 </tr>

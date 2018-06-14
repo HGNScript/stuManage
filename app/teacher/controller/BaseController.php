@@ -14,10 +14,8 @@ use think\Session;
 
 class BaseController extends Controller {
     protected function _initialize() {
-        if (!Session::get('teacher.tch_id') && !Session::get('admin.admin_id')) {
-	        if (!Session::get('teacher.tch_id')) {
-	            $this->redirect('/tchLogin');
-	        }
-	    }
-	}
+        if (!Session::get('teacher.classtch_id')) {
+            $this->redirect('/tchLogin');
+        }
+    }
 }

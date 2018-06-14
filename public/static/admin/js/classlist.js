@@ -67,13 +67,13 @@ function page(search) {
                                                 <td data-id="` + array['class_id'] + `" style="width: 20%">` + array['classtch_name'] + `</td>
                                                 <td class="td-manage">
                                                  <a title="查看班级信息" href="/admin/ClassInfo/index?class_id=` + array['class_id'] + `&staffRoom=`  + array['class_staffRoom'] + `&grade=`  + array['class_grade'] + `">
-                                                <i class="layui-icon">&#xe62d;</i>
+                                                <span class="layui-badge-rim layui-bg-blue">查看学生信息</span>  
                                               </a>
                                                 <a title="编辑班级信息" href="/admin/Classlist/editClasslist?class_id=` + array['class_id'] + `&staffRoom=`  + array['class_staffRoom'] + `&grade=`  + array['class_grade'] + `">
-                                                <i class="layui-icon">&#xe642;</i>
+                                                <span class="layui-badge-rim layui-bg-orange">编辑班级信息</span> 
                                               </a>
                                                       <a title="删除" class="del" data-id="` + array['class_id'] + `" href="javascript:;">
-                                                    <i class="layui-icon">&#xe640;</i>
+                                                    <span class="layui-badge">删除</span>  
                                                   </a>
                                                   </a>
                                                      <a class="layui-btn layui-btn-small export"  href="/admin/Classlist/export?class_id=` + array['class_id'] + `" title="导出班级数据">
@@ -94,7 +94,7 @@ function page(search) {
                                                 <td data-id="` + array['class_id'] + `" style="width: 20%">` + array['classtch_name'] + `</td>
                                                 <td class="td-manage">
                                                  <a title="查看班级信息" href="/admin/ClassInfo/index?class_id=` + array['class_id'] + `&staffRoom=`  + array['class_staffRoom'] + `&grade=`  + array['class_grade'] + `">
-                                                <i class="layui-icon">&#xe62d;</i>
+                                                <span class="layui-badge-rim layui-bg-blue">查看学生信息</span>
                                               </a>
                                                   </a>
                                                      <a class="layui-btn layui-btn-small export"  href="/admin/Classlist/export?class_id=` + array['class_id'] + `" title="导出班级数据">

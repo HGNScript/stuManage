@@ -38,7 +38,7 @@ class Classlist extends BaseController {
 
         //获取表单上传文件
         $file = request()->file('excel');
-        $info = $file->validate(['size'=>15678,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
+        $info = $file->validate(['size'=>80000,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
         $staffRoom = input('get.staffRoom');
         $grade = input('get.grade');
         $res = (new classListModel())->excelAddClasslist($file , $info, $staffRoom, $grade);
@@ -129,13 +129,13 @@ class Classlist extends BaseController {
         vendor("PHPExcel.PHPExcel");
 
         $objPHPExcel = new \PHPExcel();
+        $class_name = classListModel::get($class_id);
 
         $objPHPExcel->getProperties();
 
-//        $class_name = db('class')->where('class_id', $class_id)->value('class_name');
         $stuData = (new \app\admin\model\Classinfo())->getExportData($class_id);
 
-        (new classListModel)->export($objPHPExcel, $stuData);
+        (new classListModel)->export($objPHPExcel, $stuData, $class_name);
 
     }
 }

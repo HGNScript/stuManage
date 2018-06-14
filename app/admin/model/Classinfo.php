@@ -59,6 +59,9 @@ class Classinfo extends BaseModel {
                 if (!$n) {
                     $data[$k]['stu_name'] = $v[0];
                     $data[$k]['stu_number'] = $v[1];
+                    $data[$k]['stu_sex'] = $v[2];
+                    $data[$k]['stu_identity'] = $v[3];
+                    $data[$k]['stu_dormnumber'] = $v[4];
                     $data[$k]['class_id'] = $class_id;
                     $data[$k]['stu_password'] = md5('gzcj');
                 }
@@ -128,6 +131,10 @@ class Classinfo extends BaseModel {
                     ->join('class c','s.class_id= c.class_id','LEFT')
                     ->where('s.class_id', $class_id)
                     ->order('s.stu_number')->select();
+    }
+
+    public function getStuInfoFlag($stu_id) {
+        return $this->where('stu_id', $stu_id)->value('stu_infoflag');
     }
 
 }

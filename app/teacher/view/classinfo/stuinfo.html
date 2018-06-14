@@ -49,13 +49,19 @@
 </div>
 <div class="x-body">
     <fieldset class="layui-elem-field">
+    {if condition="$stuInfo"}
     <legend>{$stuInfo['class_name']}&nbsp;{$stuInfo['stu_name']}</legend>
-
+    {else/}
+    <legend>{$stuHead['class_name']}&nbsp;{$stuHead['stu_name']}</legend>
+    {/if}
     {if condition="$stuInfo['stu_infoflag'] == 1"}
-     <button type="button" id="stuinfoNotice" class="layui-btn layui-btn-danger x-right" style="margin:10px"><i class="layui-icon">信息有误，通知该学生</i></button>
+     <button type="button" data-noticeFlag="infoBug" class="stuinfoNotice layui-btn layui-btn-danger x-right" style="margin:10px"><i class="layui-icon">信息有误，通知该学生</i></button>
     {/if}
     <div class="layui-field-box">
         <div class="x-body">
+            {if condition="!$stuInfo"}
+            <div style="text-align: center; font-weight: bold; font-size: 18px;">该生还未提交个人详细信息 <button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该生</button></div>
+            {else/}
             <table class="layui-table">
                 <tbody>
                 <tr>
@@ -173,10 +179,16 @@
                 </tr>
                 </tbody>
             </table>
+            {/if}
+            
         </div>
     </div>
 </fieldset>
-<input type="hidden" value="{$stuInfo['stu_id']}" id="stu_id">
+    {if condition="$stuInfo"}
+    <input type="hidden" value="{$stuInfo['stu_id']}" id="stu_id">
+    {else/}
+    <input type="hidden" value="{$stuHead['stu_id']}" id="stu_id">
+    {/if}
 </div>
 
 </body>

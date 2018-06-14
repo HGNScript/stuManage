@@ -38,7 +38,7 @@ class Classtch extends BaseController {
 
             //获取表单上传文件
             $file = request()->file('excel');
-            $info = $file->validate(['size'=>15678,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
+            $info = $file->validate(['size'=>80000,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
             $staffRoom = input('get.staffRoom');
             $res = (new classtchModel())->excelAddClasstch($info, $staffRoom);
             return json($res);

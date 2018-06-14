@@ -42,17 +42,20 @@ function page(search) {
                                 $("#tbody").empty()
                                 var data_html = ""
                                 if (!data.length > 0) {
-                                    $("#tbody").append('<td colspan="5" style="text-align: center;"> 暂时没有数据 </td>');
+                                    $("#tbody").append('<td colspan="7" style="text-align: center;"> 暂时没有数据 </td>');
                                 } else {
                                     var grade = $('#grade').val();
                                     $.each(data, function(index, array) {
                                         data_html += `<tr>
                                     <td>` + array['stu_number'] + `</td>
                                     <td>` + array['stu_name'] + `</td>
+                                    <td>` + array['stu_sex'] + `</td>
+                                    <td>` + array['stu_identity'] + `</td>
+                                    <td>` + array['stu_dormnumber'] + `</td>
                                     <td>` + array['stu_phone'] + `</td>
                                     <td class="td-manage">
-                                         <a title="查看学生信息" href="/teacher/ClassInfo/stuInfo?stu_id=` + array['stu_id'] + `">
-                                        <i class="layui-icon">&#xe62d;</i>
+                                         <a href="/teacher/ClassInfo/stuInfo?stu_id=` + array['stu_id'] + `">
+                                        <span class="layui-badge-rim layui-bg-blue">查看学生信息</span>
                                       </a>
                                             </td>
                                         </tr>`;

@@ -26,6 +26,7 @@
 <body>
 <div class="x-nav">
     <span class="layui-breadcrumb" lay-separator="|">
+        {if condition="$grant_flag == 1"}
         <a href="/teacher/grant/index?class_id={$class_id}&grant_flag=1"><cite>待审查<cite></a>
         <a href="/teacher/grant/index?class_id={$class_id}&grant_flag=2">审查通过</a>
         <a href="/teacher/grant/index?class_id={$class_id}&grant_flag=3">审查未通过</a>

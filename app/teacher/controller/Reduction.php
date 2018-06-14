@@ -15,7 +15,7 @@ use think\Session;
 
 class Reduction extends Controller {
     protected function _initialize() {
-        if (!Session::get('teacher.tch_id') && !Session::get('admin.admin_id') ) {
+        if (!Session::get('teacher.classtch_id') && !Session::get('admin.admin_id') ) {
             $this->redirect('/tchLogin');
         }
     }

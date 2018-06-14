@@ -51,7 +51,7 @@ function page(search) {
                                 $("#tbody").empty()
                                 var data_html = ""
                                 if (!data.length > 0) {
-                                    $("#tbody").append('<td colspan="5" style="text-align: center;"> 暂时没有数据 </td>');
+                                    $("#tbody").append('<td colspan="8" style="text-align: center;"> 暂时没有数据 </td>');
                                 } else {
                                     var grade = $('#grade').val();
                                     if (authority != 3) {
@@ -62,16 +62,18 @@ function page(search) {
                                         </td>
                                         <td>` + array['stu_number'] + `</td>
                                         <td>` + array['stu_name'] + `</td>
+                                        <td>` + array['stu_sex'] + `</td>
+                                        <td>` + array['stu_identity'] + `</td>
+                                        <td>` + array['stu_dormnumber'] + `</td>
                                         <td>` + array['stu_phone'] + `</td>
                                         <td class="td-manage">
                                          <a title="查看学生信息" href="/admin/ClassInfo/stuInfo?stu_id=` + array['stu_id'] + `">
-                                        <i class="layui-icon">&#xe62d;</i>
-                                          </a>
+                                        <span class="layui-badge-rim layui-bg-blue">查看学生信息</span>                                          </a>
                                             <a title="编辑学生信息" href="/admin/Classinfo/editClassStu?stu_id=` + array['stu_id'] + `&class_id=`  + array['class_id']  + `">
-                                            <i class="layui-icon">&#xe642;</i>
+                                            <span class="layui-badge-rim layui-bg-orange">编辑学生信息</span>  
                                           </a>
                                               <a title="删除" class="del" data-id="` + array['stu_id'] + `" href="javascript:;">
-                                            <i class="layui-icon">&#xe640;</i>
+                                            <span class="layui-badge">查看学生信息</span>  
                                           </a>
                                             </td>
                                         </tr>`;
@@ -84,10 +86,13 @@ function page(search) {
                                         </td>
                                         <td>` + array['stu_number'] + `</td>
                                         <td>` + array['stu_name'] + `</td>
+                                        <td>` + array['stu_sex'] + `</td>
+                                        <td>` + array['stu_identity'] + `</td>
+                                        <td>` + array['stu_dormnumber'] + `</td>
                                         <td>` + array['stu_phone'] + `</td>
                                         <td class="td-manage">
                                          <a title="查看学生信息" href="/admin/ClassInfo/stuInfo?stu_id=` + array['stu_id'] + `">
-                                        <i class="layui-icon">&#xe62d;</i>
+                                        <span class="layui-badge-rim layui-bg-blue">查看学生信息</span>   
                                           </a>
                                             </td>
                                         </tr>`;

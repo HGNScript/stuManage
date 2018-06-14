@@ -36,7 +36,7 @@ class Classinfo extends BaseController {
 
         //获取表单上传文件
         $file = request()->file('excel');
-        $info = $file->validate(['size'=>15678,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
+        $info = $file->validate(['size'=>80000,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
         $class_id = input('get.class_id');
         $res = (new ClasssinfoModel())->excelAddStu($info, $class_id);
         return json($res);

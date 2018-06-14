@@ -36,8 +36,8 @@ class Login extends Controller {
                 return new LoginException();
             }
 
-            Session::set('teacher.tch_name',$teacher['classtch_name']);
-            Session::set('teacher.tch_id',$teacher['classtch_id']);
+            Session::set('teacher.classtch_name',$teacher['classtch_name']);
+            Session::set('teacher.classtch_id',$teacher['classtch_id']);
         }
 
         return $this->fetch();

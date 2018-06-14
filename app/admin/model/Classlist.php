@@ -69,8 +69,8 @@ class Classlist extends BaseModel {
                 foreach($excel_array as $k=>$v) {
                     // $n = $this->where('class_name', $v[0])->find();
                     // if (!$n) {
-                        $data[$k]['class_name'] = $v[0];
-                        $data[$k]['class_specialty'] = $v[1];
+                        $data[$k]['class_specialty'] = $v[0];
+                        $data[$k]['class_name'] = $v[1];
                         $data[$k]['class_grade'] = $grade;
                         $data[$k]['class_staffRoom'] = $staffRoom;;
                     // }
@@ -123,7 +123,7 @@ class Classlist extends BaseModel {
                     ->find();
     }
 
-    public function export($objPHPExcel, $stuData) {
+    public function export($objPHPExcel, $stuData, $class_name) {
         $header=[
             '学习形式',
             '姓名',
@@ -266,7 +266,7 @@ class Classlist extends BaseModel {
 
         $objPHPExcel->setActiveSheetIndex(0); // 设置活动单指数到第一个表,所以Excel打开这是第一个表
 
-        $fileName =  'test.xls';
+        $fileName = $class_name['class_name'].'.xls';
 
         header('Content-Disposition: attachment;filename='.$fileName);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
