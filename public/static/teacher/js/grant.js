@@ -12,6 +12,16 @@ $(function () {
             search()
         }
     });
+
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('select(test)', function(data){
+            search()
+        });
+    });
+
+    
+
 })
 
 var notice = function (){
@@ -145,13 +155,30 @@ function search() {
     var search = $('#input').val()
     var class_id = $('#class_id').val()
     var grant_flag = $('#grant_flag').val()
+    var month = $('#month').val();
+
+    if (!search && !month) {
+        layer.msg('输入你要查询的数据或月份', {
+            time: 1000
+        })
+    }
     $.ajax({
         type: "post",
         url: '/teacher/Grant/search',
         traditional: true,
-        dataType: "json",
-        data: {'grant_flag': grant_flag, 'search': search, 'class_id': class_id},
+        dataType: "json",   
+        data: {'grant_flag': grant_flag, 'search': search, 'class_id': class_id, 'month': month},
+        beforeSend: function (){
+            layer.load()
+        },
         success: function (data) {
+            layer.close(layer.index);
+            if (!data.length > 0) {
+                layer.msg('没有您查找的数据', {
+                    time: 1000,
+                })
+            }
+
             $("#ul").empty()
             var data_html = ""
             $.each(data, function(index, array) {

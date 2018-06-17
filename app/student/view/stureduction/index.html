@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
     <link rel="stylesheet" href="__STATIC__/student/css/printstylesheet.css" media="print" />
     <link rel="stylesheet" href="__STATIC__/student/css/base.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+
     <title>学费减免</title>
     <script src="__STATIC__/student/v/lib/jquery.js"></script>
     <script src="__STATIC__/student/v/dist/jquery.validate.min.js"></script>
@@ -17,6 +19,107 @@
     <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
     <script src="__STATIC__/student/js/reduction.js"></script>
 </head>
+
+<style>
+    * {
+        font-size: 14px;
+    }
+
+    input {
+        padding: 0;
+    }
+
+    td {
+        text-align: center;
+        height: 30px;
+    }
+
+    #table {
+        border: 2px solid #000000;
+    }
+
+    #table .cm-h-1 {
+        height: 1.2cm;
+    }
+
+    #table .cm-h-08 {
+        height: 0.8cm;
+        line-height: 0.8cm;
+    }
+
+    #table .cm-w-2 {
+        width: 2cm;
+    }
+
+    #table .cm-w-2 {
+        width: 2cm;
+    }
+
+    #table .cm-w-3 {
+        width: 3.2cm;
+    }
+
+    #table .com-h-22 {
+        height: 2.4cm;
+    }
+
+    #table .com-h-28 {
+        width: 2.8cm;
+    }
+
+    #table .com-h-16 {
+        height: 1.6cm;
+    }
+
+    #table .cm-h-38 {
+        height: 3.8cm;
+    }
+
+    #table .cm-h-3 {
+        height: 3.2cm;
+    }
+
+    .heade {
+        width: 794px;
+        margin: 0 auto;
+    }
+
+    .k {
+        border: 1px solid #000;
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+    }
+
+    .k-lg {
+        border: 1px solid #000;
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+    }
+
+    @media print {
+        #table {
+            width: 794px;
+            height: 24cm;
+            border: 2px solid #000000;
+        }
+
+        @page {
+            margin-top: 2.4cm;
+            margin-left: 1.6cm;
+            margin-right: 1.6cm;
+        }
+        footer,
+        .btn-group,
+        .submit{
+            display: none;
+        }
+    }
+
+</style>
 <body id="body">
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
@@ -55,435 +158,273 @@
     </div>
     </div>
 </nav>
-<!-- pc端: 表-->
-<form action="" class="pc" id="pc">
-    <h3 class="text-center">广州市技工院校国家免学费申请表</h3>
-    <p class="text-center">(<input type="text" class="input5" name="reduction_startTime" value="{$stuinfo['reduction_startTime']}">学年) (<input type="text" class="input5" name="reduction_endTime" value="{$stuinfo['reduction_endTime']}">学年)</p>
-    <div style="width: 794px; margin: 0 auto;" >
-        学校名称:<input type="text" placeholder="(规范全称)" name="reduction_school" value="{$stuinfo['reduction_school']}">
-        <span style="float: right;">( 此表入学生档案 )</span>
-    </div>
-    <table border="1" align="center" width="794">
-        <tr>
-            <td align="center">姓名</td>
-            <td><input type="text" class="input7" name="stu_name" value="{$stuinfo['stu_name']}"></td>
-            <td align="center">性别</td>
-            <td><input type="text" class="input7" name="stu_sex" value="{$stuinfo['stu_sex']}"></td>
-            <td align="center">出生年月</td>
-            <td style="width: 100px;"><input type="text" class="input7" name="stu_birthday" value="{$stuinfo['stu_birthday']}"></td>
-            <td rowspan="6" width="150" class="a1">+</td>
-        </tr>
-        <tr>
-            <td align="center">籍贯</td>
-            <td><input type="text" class="input7" name="reduction_jg" value="{$stuinfo['reduction_jg']}"></td>
 
-            <td align="center">民族</td>
-            <td><input type="text" class="input7" name="stu_nation" value="{$stuinfo['stu_nation']}"></td>
-            <td align="center">政治面目</td>
-            <td><input type="text" class="input7" name="stu_politicalstatus" value="{$stuinfo['stu_politicalstatus']}"></td>
-        </tr>
-        <tr>
-        <tr>
-            <td align="center">学号</td>
-            <td colspan="5"><input type="text"  placeholder="（全国技工院校电子注册管理系统编号）" class="widthinput input8" name="stu_number" value="{$stuinfo['stu_number']}"></td>
-        </tr>
-        <tr>
-            <td align="center">身份证号</td>
-            <td colspan="5">
-                <input type="text" class="widthinput" style="height: 50px;" name="stu_identity" value="{$stuinfo['stu_identity']}">
-            </td>
-        </tr>
-        <tr style="height: 50px;">
-            <td colspan="2" align="center">户口所在地</td>
-            <td colspan="4"><input type="text" class="widthinput" name="stu_hukouaddress" value="{$stuinfo['stu_hukouaddress']}"></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">中考准考证号</td>
-            <td colspan="1"><input type="text" class="input7" name="reduction_examination" value="{$stuinfo['reduction_examination']}"></td>
-            <td colspan="" align="center">何时毕业于何学校</td>
-            <td colspan="3"><input type="text" class="widthinput input9" name="reduction_graduateFromSchool" value="{$stuinfo['reduction_graduateFromSchool']}"></td>
-        </tr>
-        <tr>
-            <td rowspan="5" align="center">家庭主要成员情况</td>
-            <td align="center">姓名</td>
-            <td align="center">性别</td>
-            <td align="center">年龄</td>
-            <td align="center">与本人关系</td>
-            <td colspan="2" align="center">工作或学校单位</td>
-        </tr>
-        {if condition="$stuinfo['family_name1']"}
-        <tr>
-            <td><input type="text" placeholder="先写户主" class="input7" name="family_name1" value="{$stuinfo['family_name1']}"></td>
-            <td><input type="text" class="input7" name="family_sex1" value="{$stuinfo['family_sex1']}"></td>
-            <td><input type="text" class="input7" name="family_age1" value="{$stuinfo['family_age1']}"></td>
-            <td><input type="text" class="input7" name="family_relationship1" value="{$stuinfo['family_relationship1']}"></td>
-            <td colspan="2"><input type="text" class="widthinput input" name="family_work1" value="{$stuinfo['family_work1']}"></td>
-        </tr>
-        <tr>
-            <td><input type="text" class="input7" name="family_name2" value="{$stuinfo['family_name2']}"></td>
-            <td><input type="text" class="input7" name="family_sex2" value="{$stuinfo['family_sex2']}"></td>
-            <td><input type="text" class="input7" name="family_age2" value="{$stuinfo['family_age2']}"></td>
-            <td><input type="text" class="input7" name="family_relationship2" value="{$stuinfo['family_relationship2']}"></td>
-            <td colspan="2"><input type="text" class="widthinput input" name="family_work2" value="{$stuinfo['family_work2']}"></td>
-        </tr>
-        <tr>
-            <td><input type="text" class="input7" name="family_name3" value="{$stuinfo['family_name3']}"></td>
-            <td><input type="text" class="input7" name="family_sex3" value="{$stuinfo['family_sex3']}"></td>
-            <td><input type="text" class="input7" name="family_age3" value="{$stuinfo['family_age3']}"></td>
-            <td><input type="text" class="input7" name="family_relationship3" value="{$stuinfo['family_relationship3']}"></td>
-            <td colspan="2"><input type="text" class="widthinput input" name="family_work3" value="{$stuinfo['family_work3']}"></td>
-        </tr>
-        <tr>
-            <td><input type="text" class="input7" name="family_name4" value="{$stuinfo['family_name4']}"></td>
-            <td><input type="text" class="input7" name="family_sex4" value="{$stuinfo['family_sex4']}"></td>
-            <td><input type="text" class="input7" name="family_age4" value="{$stuinfo['family_age4']}"></td>
-            <td><input type="text" class="input7" name="family_relationship4" value="{$stuinfo['family_relationship4']}"></td>
-            <td colspan="2"><input type="text" class="widthinput input" name="family_work4" value="{$stuinfo['family_work4']}"></td>
-        </tr>
-        {else/}
-        <tr>
-            <td><input type="text" placeholder="先写户主" class="input7" name="family_name1"></td>
-            <td><input type="text" class="input7" name="family_sex1"></td>
-            <td><input type="text" class="input7" name="family_age1"></td>
-            <td><input type="text" class="input7" name="family_relationship1"></td>
-            <td colspan="2"><input type="text" class="input" name="family_work1"></td>
-        </tr>
-        <tr>
-            <td><input type="text" class="input7" name="family_name2"></td>
-            <td><input type="text" class="input7" name="family_sex2"></td>
-            <td><input type="text" class="input7" name="family_age2"></td>
-            <td><input type="text" class="input7" name="family_relationship2"></td>
-            <td colspan="2"><input type="text" class="input" name="family_work2"></td>
-        </tr>
-        <tr>
-            <td><input type="text" class="input7" name="family_name3"></td>
-            <td><input type="text" class="input7" name="family_sex3"></td>
-            <td><input type="text" class="input7" name="family_age3"></td>
-            <td><input type="text" class="input7" name="family_relationship3"></td>
-            <td colspan="2"><input type="text" class="input" name="family_work3"></td>
-        </tr>
-        <tr>
-            <td><input type="text" class="input7" name="family_name4"></td>
-            <td><input type="text" class="input7" name="family_sex4"></td>
-            <td><input type="text" class="input7" name="family_age4"></td>
-            <td><input type="text" class="input7" name="family_relationship4"></td>
-            <td colspan="2"><input type="text" class="input" name="family_work4"></td>
-        </tr>
-        {/if}
+<div>
+    {if condition="($stuinfo['reduction_flag'] == 2)"}
+    <button class="layui-btn layui-btn-danger print" style="position: absolute;right: 100px;">打印</button>
+    {elseif condition="($stuinfo['reduction_flag'] == 0)" /}
+    <button class="layui-btn layui-btn-disabled print" style="position: absolute;right: 100px;">未提交，不可以打印</button>
+    {elseif condition="($stuinfo['reduction_flag'] == 1)" /}
+    <button class="layui-btn layui-btn-disabled print" style="position: absolute;right: 100px;">还未审查，不可以打印</button>
+    {elseif condition="($stuinfo['reduction_flag'] == 3)" /}
+    <button class="layui-btn layui-btn-disabled print" style="position: absolute;right: 100px;">审查未通过，不可以打印</button>
+    {/if}
 
-        <tr>
-            <td colspan="2" align="center">家庭地址及固定电话</td>
-            <td colspan="3"><input type="text" class="widthinput input9" name="reduction_familyAddesPhone" value="{$stuinfo['reduction_familyAddesPhone']}"></td>
-            <td align="center">邮政编码</td>
-            <td><input type="text" class="widthinput input7" name="stu_postalcode" value="{$stuinfo['stu_postalcode']}"></td>
-            </td>
-        </tr>
-        <tr>
-            <td align="center">联系人</td>
-            <td colspan="2"><input type="text" class="widthinput input7" name="reduction_contacts" value="{$stuinfo['stu_name']}"></td>
-            <td align="center">联系手机(电话)</td>
-            <td colspan="3"><input type="text" class="widthinput input9" name="stu_phone" value="{$stuinfo['stu_phone']}"></td>
-        </tr>
-        <tr>
-            <td align="center">就读专业</td>
-            <td colspan="3"><input type="text" class="widthinput input9" name="stu_specialty" value="{$stuinfo['stu_specialty']}"></td>
-            <td align="center">年级</td>
-            <td colspan="2"><input type="text" placeholder="(20**级)" class="widthinput input7" name="reduction_grade" value="{$stuinfo['reduction_grade']}"></td>
-        </tr>
-        <tr>
-            <td rowspan="1" align="center">学生申请理由</td>
-            <td colspan="6" class="liyou">
-                <input type="checkbox" name="kn" class="inputradio">
-                <input type="checkbox" name="kn" class="inputradio"> 困难家庭（农村、城市低保或特困家庭子女；孤残学生、烈士子女或优抚家庭子女；本人或家庭成员因工伤残或患重大疾病；家庭遭受重大灾害或变故；父母双方或一方残疾<br/>
-                <input type="checkbox" name="kn" class="inputradio">
-                <input type="checkbox" name="kn" class="inputradio"> 涉农专业<br/>
-                <p class="p1">申请人签名:<input type="text" class="input7"></p><p class="p2">家长或法定监护人签名: <input type="text" 	class="input7"></p>
-                <p class="p3">申请人联系方式:<input type="text" class="input7"></p>
-                <ul class="ul1">
-                    <li><input type="text" class="input55">年</li>
-                    <li><input type="text" class="input55">月</li>
-                    <li><input type="text" class="input55">日</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="1" align="center">班级评审意见</td>
-            <td colspan="6">
-                <p class="p4">班主任(签名): <input type="text" class="input7"></p>
-                <ul class="ul2">
-                    <li><input type="text" class="input55">年</li>
-                    <li><input type="text" class="input55">月</li>
-                    <li><input type="text" class="input55">日</li>
-                </ul>
-                <p class="p5">班主任(签名): <input type="text" class="input7"></p>
-                <ul class="ul3">
-                    <li><input type="text" class="input55">年</li>
-                    <li><input type="text" class="input55">月</li>
-                    <li><input type="text" class="input55">日</li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td rowspan="1" align="center">学校认定意见</td>
-            <td colspan="6" class="liyou"><input type="checkbox" name="ty" class="inputradio">
-                <input type="checkbox" name="ty" class="inputradio">同意认定为免学费对象。 (<input type="checkbox" name="zz" class="inputradio"> 困难家庭、<input type="checkbox" name="zz" class="inputradio"> 涉农专业)<br/>
-                <input type="checkbox" name="ty" class="inputradio">
-                <input type="checkbox" name="ty" class="inputradio">不同意认定为免学费对象<br/>
-                <p class="p6">负责人(加盖机构公章): <input type="text" class="input7"></p>
-                <ul class="ul4">
-                    <li><input type="text" class="input55">年</li>
-                    <li><input type="text" class="input55">月</li>
-                    <li><input type="text" class="input55">日</li>
-                </ul>
-                <p class="p7">负责人(加盖机构公章): <input type="text" class="input7"></p>
-                <ul class="ul5">
-                    <li><input type="text" class="input55">年</li>
-                    <li><input type="text" class="input55">月</li>
-                    <li><input type="text" class="input55">日</li>
-                </ul>
-            </td>
-        </tr>
-    </table>
-</form>
-<!--移动端:表 -->
-<form action="" class="yidong" id="yidong">
-    <table class="table table-bordered">
-        <h4 class="text-center">广州市技工院校国家免学费申请表</h4>
-        <p class="text-center">(此表入学生档案)</p>
-        <tbody>
-        <tr>
-            <td>学校名称: <input type="text" placeholder="(规范全称)" name="reduction_school" value="{$stuinfo['reduction_school']}"></td>
-        </tr>
-        <tr>
-            <td>(<input type="text" class="input1" name="reduction_startTime" value="{$stuinfo['reduction_startTime']}">)学年 (<input type="text" class="input1" name="reduction_endTime" value="{$stuinfo['reduction_endTime']}">) 学年</td>
-        </tr>
-        <tr>
-            <td><div class="xiangpian"><a href="#">上传相片</a></div></td>
-        </tr>
-        <tr>
-            <td>姓名: <input type="text" name="stu_name" value="{$stuinfo['stu_name']}"></td>
-        </tr>
-        <tr>
-            <td>性别：<input type="text" class="input7" name="stu_sex" value="{$stuinfo['stu_sex']}"></td>
-        </tr>
-        <tr>
-            <td>出生年月: <input type="date" name="stu_birthday" value="{$stuinfo['stu_birthday']}"></td>
-        </tr>
-        <tr>
-            <td>籍贯: <input type="text" name="reduction_jg" value="{$stuinfo['reduction_jg']}"></td>
-        </tr>
-        <tr>
-            <td>民族: <input type="text" name="stu_nation" value="{$stuinfo['stu_nation']}"></td>
-        </tr>
-        <tr>
-            <td>政治面貌：<input type="text" class="input7" name="stu_politicalstatus" value="{$stuinfo['stu_politicalstatus']}"></td>
-        </tr>
-        <tr>
-            <td>学号: <input type="text" placeholder="全国技工院校电子注册管理系统编号" name="stu_number" value="{$stuinfo['stu_number']}"></td>
-        </tr>
-        <tr>
-            <td>身份证号码: <input type="text"  name="stu_identity" value="{$stuinfo['stu_identity']}"></td>
-        </tr>
-        <tr>
-            <td>户口所在地: <input type="text" name="" placeholder="X省X市X县(市、区)X镇(街道)X村(号)" name="stu_hukouaddress" value="{$stuinfo['stu_hukouaddress']}"></td>
-        </tr>
-        <tr>
-            <td>中考准考证号: <input type="text" name="reduction_examination" value="{$stuinfo['reduction_examination']}"></td>
-        </tr>
-        <tr>
-            <td>何时毕业于何学校: <input type="text" name="reduction_graduateFromSchool" value="{$stuinfo['reduction_graduateFromSchool']}"></td>
-        </tr>
-        <tr>
-            <td><p class="text-center">家庭主要人员及情况</p></td>
-        </tr>
-        {if condition="$stuinfo['family_name1']"}
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name1" value="{$stuinfo['family_name1']}"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex1" value="{$stuinfo['family_sex1']}"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age1" value="{$stuinfo['family_age1']}"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship1" value="{$stuinfo['family_relationship1']}"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work1" value="{$stuinfo['family_work1']}"></td>
-        </tr>
+    <form action="" class="pc" id="pc">
+        <h3 class="text-center">广州市技工院校国家免学费申请表</h3>
+        <div class="heade" style="text-align: center; font-size: 24px; margin-bottom: 1cm">
+        <span style="font-size: 24px; margin-left: 0.7cm">
 
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name2" value="{$stuinfo['family_name2']}"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex2" value="{$stuinfo['family_sex2']}"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age2" value="{$stuinfo['family_age2']}"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship2" value="{$stuinfo['family_relationship2']}"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work2" value="{$stuinfo['family_work2']}"></td>
-        </tr>
-
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name3" value="{$stuinfo['family_name3']}"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex3" value="{$stuinfo['family_sex3']}"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age3" value="{$stuinfo['family_age3']}"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship3" value="{$stuinfo['family_relationship3']}"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work3" value="{$stuinfo['family_work3']}"></td>
-        </tr>
-
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name4" value="{$stuinfo['family_name4']}"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex4" value="{$stuinfo['family_sex4']}"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age4" value="{$stuinfo['family_age4']}"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship4" value="{$stuinfo['family_relationship4']}"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work4" value="{$stuinfo['family_work4']}"></td>
-        </tr>
-        {else/}
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name1"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex1"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age1"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship1"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work1"></td>
-        </tr>
-
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name2" ></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex2"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age2"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship2"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work2"></td>
-        </tr>
-
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name3"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex3"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age3"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship3"></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work3"></td>
-        </tr>
-
-        <tr>
-            <td>姓名: <input type="text" placeholder="先写户主" name="family_name4"></td>
-        </tr>
-        <tr>
-            <td>性别: <input type="text" name="family_sex4"></td>
-        </tr>
-        <tr>
-            <td>年龄: <input type="text" name="family_age4"></td>
-        </tr>
-        <tr>
-            <td>与本人关系: <input type="text" name="family_relationship4" ></td>
-        </tr>
-        <tr>
-            <td>工作或学习单位: <input type="text" class="input2" name="family_work4" ></td>
-        </tr>
-        {/if}
+            (<span style="display: inline-block;width: 2cm;"></span>学年)
+        </span>
+            <span style="font-size: 24px; margin-left: 0.7cm">
+            (<span style="display: inline-block;width: 2cm"></span>学年)
+        </span>
+            <span style="font-size: 24px; margin-left: 0.7cm">
+            (<span style="display: inline-block;width: 2cm"></span>学年)
+        </span>
+        </div>
+        <div class="heade" style="font-size: 16px">
+            学校名称: <span style="width: 200px;display: inline-block;">广州城建技术学校</span>
+            <span style="float: right;margin-right: 2.7cm;font-size: 16px">( 此表入学生档案 )</span>
+        </div>
 
 
-        <tr>
-            <td>家庭地址及固定电话: <input type="text" class="input3" name="reduction_familyAddesPhone" value="{$stuinfo['reduction_familyAddesPhone']}"></td>
-        </tr>
-        <tr>
-            <td>邮政编码: <input type="text" name="stu_postalcode" value="{$stuinfo['stu_postalcode']}"></td>
-        </tr>
-        <tr>
-            <td>联系人: <input type="text" name="reduction_contacts" value="{$stuinfo['stu_name']}"></td>
-        </tr>
-        <tr>
-            <td>联系电话(手机): <input type="text" name="stu_phone" value="{$stuinfo['stu_phone']}"></td>
-        </tr>
-        <tr>
-            <td>就读专业: <input type="text" name="stu_specialty" value="{$stuinfo['stu_specialty']}"></td>
-        </tr>
-        <tr>
-            <td>年级: <input type="text" placeholder="20**级" name="reduction_grade" value="{$stuinfo['reduction_grade']}"></td>
-        </tr>
-        <tr>
-            <td><p class="text-center">学生申请理由</p></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox"> <input type="checkbox">困难家庭(农村、城市低保或特困难家庭子女;孤残学生、烈士子女或优抚家庭子女;本人或家庭成员因工伤残或患重大疾病;家庭遭重大灾害或变故;父母双方或一方残疾)<br/>
-                <input type="checkbox"> <input type="checkbox">涉农专业<br/>
-                申请人签名: <input type="text"><br>
-                申请人联系方式: <input type="text" class="input4"><br>
-                家长过法定监护人签名: <input type="text" class="input4">
-            </td>
-        </tr>
-        <tr>
-            <td><p class="text-center">班级评审意见</p></td>
-        </tr>
-        <tr>
-            <td>班主任签名: <input type="text"><input type="date"><br>
-                班主任签名: <input type="text"><input type="date">
-            </td>
-        </tr>
-        <tr>
-            <td><p class="text-center">学校认定意见</p></td>
-        </tr>
-        <tr>
-            <td><input type="checkbox"> <input type="checkbox">同意认定为免学费对象。(<input type="checkbox">困难家庭<input type="checkbox">涉农专业)<br/>
-                <input type="checkbox"> <input type="checkbox">不同意认定为免学费对象。<br/>
-                负责人(加盖机构公章): <br/><br/><input type="date"><br>
-                负责人(加盖机构公章): <br/><br/><input type="date">
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</form>
+        <table border="1" align="center" width="794" style="margin: 0 auto;" id="table">
+            <tr class="cm-h-1">
+                <td align="center" class="cm-w-2">姓名</td>
+                <td class="cm-w-2">{$stuinfo['stu_name']}</td>
+                <td align="center" class="cm-w-2">性别</td>
+                <td class="cm-w-2">{$stuinfo['stu_sex']}</td>
+                <td align="center" class="cm-w-2" style="width: 1cm">出生年月</td>
+                <td>{$stuinfo['stu_birthday']}</td>
+                <td rowspan="5" style="width: 4.2cm; font-size: 14px">相片</td>
+            </tr>
+            <tr class="cm-h-1">
+                <td align="center" class="cm-w-2">籍贯</td>
+                <td class="cm-w-2">{$stuinfo['stu_jg']}</td>
+                <td align="center" class="cm-w-2">民族</td>
+                <td class="cm-w-2">{$stuinfo['stu_nation']}</td>
+                <td align="center" class="cm-w-2">政治面目</td>
+                <td>{$stuinfo['stu_politicalstatus']}</td>
+            </tr>
+            <tr>
+            <tr class="cm-h-1">
+                <td align="center" colspan="2" class="com-h-28">学号</td>
+                <td colspan="4">{$stuinfo['stu_number']}</td>
+            </tr>
+            <tr class="cm-h-1">
+                <td align="center" colspan="2" class="com-h-28">身份证号</td>
+                <td colspan="4">
+                    {foreach $stuinfo['stu_identity'] as $vo}
+                    <span class="k-lg">{$vo}</span>
+                    {/foreach}
+                </td>
+            </tr>
+            <tr class="cm-h-1">
+                <td colspan="2" align="center" class="com-h-28">户口所在地</td>
+                <td colspan="5">
+                    {$stuinfo['stu_hukouaddress']}
+                </td>
+            </tr>
+
+            <tr class="cm-h-1">
+                <td colspan="2" align="center" class="com-h-28">中考准考证号</td>
+                <td colspan="2">{$stuinfo['stu_examination']}</td>
+                <td align="center" class="cm-w-3">何时毕业于何学校</td>
+                <td colspan="2">{$stuinfo['stu_graduateFromSchool']}</td>
+            </tr>
+
+            <tr class="cm-h-1">
+                <td rowspan="5" align="center" class="com-h-22" style="line-height: 15px">
+                    家庭<br>主要<br>成员<br>情况
+                </td>
+                <td align="center">姓名</td>
+                <td align="center">性别</td>
+                <td align="center">年龄</td>
+                <td align="center" style="width: 2cm">与本人关系</td>
+                <td colspan="2" align="center">工作或学校单位</td>
+            </tr>
+            <tr class="cm-h-08">
+                <td>{$stuinfo['family_name1']}</td>
+                <td>{$stuinfo['family_sex1']}</td>
+                <td>{$stuinfo['family_age1']}</td>
+                <td>{$stuinfo['family_relationship1']}</td>
+                <td colspan="2">{$stuinfo['family_work1']}</td>
+            </tr>
+            <tr class="cm-h-08">
+                <td>{$stuinfo['family_name2']}</td>
+                <td>{$stuinfo['family_sex2']}</td>
+                <td>{$stuinfo['family_age2']}</td>
+                <td>{$stuinfo['family_relationship2']}</td>
+                <td colspan="2">{$stuinfo['family_work2']}</td>
+            </tr>
+            <tr class="cm-h-08">
+                <td>{$stuinfo['family_name3']}</td>
+                <td>{$stuinfo['family_sex3']}</td>
+                <td>{$stuinfo['family_age3']}</td>
+                <td>{$stuinfo['family_relationship3']}</td>
+                <td colspan="2">{$stuinfo['family_work3']}</td>
+            </tr>
+            <tr class="cm-h-08">
+                <td>{$stuinfo['family_name4']}</td>
+                <td>{$stuinfo['family_sex4']}</td>
+                <td>{$stuinfo['family_age4']}</td>
+                <td>{$stuinfo['family_relationship4']}</td>
+                <td colspan="2">{$stuinfo['family_work4']}</td>
+            </tr>
+
+            <tr class="cm-h-1">
+                <td colspan="2" align="center">家庭地址及固定电话</td>
+                <td colspan="3">{$stuinfo['stu_familyAddesPhone']}</td>
+                <td align="center">邮政编码</td>
+                <td>{$stuinfo['stu_postalcode']}</td>
+                </td>
+            </tr>
+            <tr class="cm-h-1">
+                <td align="center" colspan="2">联系人</td>
+                <td colspan="2">{$stuinfo['stu_name']}</td>
+                <td align="center">联系手机(手机)</td>
+                <td colspan="2">{$stuinfo['stu_phone']}</td>
+            </tr>
+            <tr class="cm-h-1">
+                <td align="center" colspan="2">就读专业</td>
+                <td colspan="3">{$stuinfo['stu_specialty']}</td>
+                <td align="center">年级</td>
+                <td colspan="1" class="borderNone">{$stuinfo['stu_grade']}级</td>
+            </tr>
+
+            <tr class="cm-h-33">
+                <td rowspan="1" align="center" style="line-height: 15px">
+                    学生<br>申请<br>理由
+                </td>
+                <td colspan="6" class="liyou" style="text-align: inherit">
+                    <div>
+                        <span class="k"></span>
+                        <span class="k"></span>
+                        <span>
+                困难家庭（农村、城市低保或特困家庭子女；孤残学生、烈士子女或优抚家庭子女；本人或家<br>庭成员因工伤残或患重大疾病；家庭遭受重大灾害或变故；父母双方或一方残疾)
+                </span>
+                    </div>
+                    <div>
+                        <span class="k"></span>
+                        <span class="k"></span>
+                        <span>涉农专业</span>
+
+                    </div>
+
+                    <div style="margin-top: 1cm;">
+                        <div style="width: 120px;display: inline-block;">
+                            <div class="">申请人签名:</div>
+                            <div class="">申请人联系方式:</div>
+                        </div>
+                        <div style="display: inline-block;margin-left: 3.3cm;">
+                            <div>家长或法定监护人签名:</div>
+                            <div style="margin-left: 200px">
+                                <span style="margin-right: 1cm">年</span>
+                                <span style="margin-right: 1cm">月</span>
+                                <span>日</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="com-h-16">
+                <td rowspan="1" align="center" style="line-height: 15px">
+                    班级<br>评审<br>意见
+                </td>
+                <td colspan="6" style="text-align: inherit">
+                    <div style="display: inline-block;">
+                <span style="margin-left: 25px">
+                    班主任&nbsp;&nbsp;(&nbsp;签名&nbsp;)&nbsp;&nbsp;:
+                </span>
+                        <div style="margin-left: 46px">
+                            <span style="margin-right: 0.6cm">年</span>
+                            <span style="margin-right: 0.6cm">月</span>
+                            <span>日</span>
+                        </div>
+                    </div>
+                    <div style="display: inline-block;margin-left: 3.8cm">
+                <span style="margin-left: 25px">
+                    班主任&nbsp;&nbsp;(&nbsp;签名&nbsp;)&nbsp;&nbsp;:
+                </span>
+                        <div style="margin-left: 32px">
+                            <span style="margin-right: 0.6cm">年</span>
+                            <span style="margin-right: 0.6cm">月</span>
+                            <span>日</span>
+                        </div>
+                    </div>
+
+                </td>
+            </tr>
+            <tr class="cm-h-38">
+                <td rowspan="1" align="center" style="line-height: 15px">
+                    学校<br>认定<br>意见
+                </td>
+                <td colspan="6" style="text-align: left">
+                    <div style="margin-top: -24px; margin-left: 10px">
+                        <span class="k"></span>
+                        <span class="k"></span>
+                        <span class="k"></span>
+                        同意认定为助学金对象。 <span>(&nbsp;<span class="k"></span>农村县镇、&nbsp;<span
+                            class="k"></span>城市困难、&nbsp;<span
+                            class="k"></span>涉农专业、&nbsp;<span class="k"></span>扶持专业&nbsp;)</span>
+                    </div>
+                    <div style="margin-top: -46px; margin-left: 10px">
+                        <span class="k"></span>
+                        <span class="k"></span>
+                        <span class="k"></span>
+                        不同意认定为助学金对象。
+                    </div>
+                    <div style="position: relative; top: 50px">
+                        <div style="display: inline-block;margin-left: 10px">
+                    <span>
+                        负责人&nbsp;&nbsp;(&nbsp;加盖机构公章&nbsp;)&nbsp;&nbsp;:
+                    </span>
+                            <div style="margin-left: 46px">
+                                <span style="margin-right: 0.6cm">年</span>
+                                <span style="margin-right: 0.6cm">月</span>
+                                <span>日</span>
+                            </div>
+                        </div>
+                        <div style="display: inline-block;margin-left: 1.4cm">
+                    <span style="margin-left: 25px">
+                        负责人&nbsp;&nbsp;(&nbsp;加盖机构公章&nbsp;)&nbsp;&nbsp;:
+                    </span>
+                            <div style="margin-left: 46px">
+                                <span style="margin-right: 0.6cm">年</span>
+                                <span style="margin-right: 0.6cm">月</span>
+                                <span>日</span>
+                            </div>
+                        </div>
+                        <div style="display: inline-block;margin-left: 0.8cm">
+                    <span style="margin-left: 16px">
+                        负责人&nbsp;&nbsp;(&nbsp;加盖机构公章&nbsp;)&nbsp;&nbsp;:
+                    </span>
+                            <div style="margin-left: 36px">
+                                <span style="margin-right: 0.6cm">年</span>
+                                <span style="margin-right: 0.6cm">月</span>
+                                <span>日</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
 <input type="hidden" value="{$stuinfo['reduction_flag']}" id="reduction_flag">
 
 
 <!-- 按钮 -->
-<div class="btn-group btn-group-lg "  style="width: 160px;">
-    <button type="button" class="btn btn-default .btn-group-justified submit" id="leavefoKeep">保存</button>
-    <button type="button" class="btn btn-default .btn-group-justified submit" id="leavefoSubmit">提交</button>
+<div class="btn-group btn-group-lg" style="display: flex; justify-content:center;margin-top: 50px;">
+    <!-- <button type="button" class="btn btn-default .btn-group-justified submit" id="leavefoKeep">保存</button> -->
+    {if condition="($stuinfo['reduction_flag'] == 0 ) OR ($stuinfo['reduction_flag'] == 3 )"}
+    <button type="button" class="layui-btn submit" id="leavefoSubmit">提交</button>
+    {else /}
+    <button type="button" class="layui-btn layui-btn-disabled submit" id="leavefoSubmit">提交</button>
+    {/if}
 </div>
 
 <!-- 页脚 -->

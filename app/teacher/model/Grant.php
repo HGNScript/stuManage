@@ -19,6 +19,7 @@ class Grant extends BaseModel {
             ->join('class c','s.class_id = c.class_id')
             ->where('c.class_id', $class_id)
             ->where('g.grant_flag', $grant_flag)
+            ->order('g.create_time desc')
             ->select();
     }
 
@@ -29,6 +30,7 @@ class Grant extends BaseModel {
             ->where('g.stu_name','like', "%".$search."%")
             ->where('g.grant_flag', $grant_flag)
             ->where('c.class_id', $class_id)
+            ->order('g.create_time desc')
             ->select();
     }
 }

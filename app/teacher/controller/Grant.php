@@ -30,6 +30,7 @@ class Grant extends Controller {
 
         $grant = (new \app\teacher\model\Grant())->getClassGrant($class_id, $grant_flag);
 
+
         $this->assign('grant', $grant);
         $this->assign('grant_flag', $grant_flag);
         $this->assign('class_id', $class_id);
@@ -42,10 +43,43 @@ class Grant extends Controller {
         $search = input('post.search');
         $class_id = input('post.class_id');
         $grant_flag = input('post.grant_flag');
+        $month = input('post.month');
 
-        $data = (new \app\teacher\model\Grant())->search($search, $grant_flag, $class_id);
 
+        if ($search) {
+            $data = (new \app\teacher\model\Grant())->search($search, $grant_flag, $class_id);
+
+        }
+
+        if ($month) {
+
+            $data = (new \app\teacher\model\Grant())->getClassGrant($class_id, $grant_flag);
+            foreach ($data as $key => $value) {
+                $value = $value->toArray();
+                $monthNumber = $value['create_time'];
+                $monthNumber = substr($monthNumber,6,1);
+                if ($monthNumber != $month) {
+                    unset($data[$key]);
+                }
+            }
+
+        }
+
+        if ($search && $month) {
+            $data = (new \app\teacher\model\Grant())->search($search, $grant_flag, $class_id);
+            foreach ($data as $key => $value) {
+                $value = $value->toArray();
+                $monthNumber = $value['create_time'];
+                $monthNumber = substr($monthNumber,6,1);
+                if ($monthNumber != $month) {
+                    unset($data[$key]);
+                }
+            }
+        }
         return json($data);
+
+
+
     }
 
 
@@ -55,6 +89,8 @@ class Grant extends Controller {
 
         $grant = \app\teacher\model\Grant::get($grant_id);
         $class_id = (new student())->where('stu_id', $grant['stu_id'])->value('class_id');
+
+        $grant['stu_identity'] = str_split($grant['stu_identity']);
 
         $this->assign('grant', $grant);
         $this->assign('stuinfo', null);

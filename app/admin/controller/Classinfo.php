@@ -46,6 +46,7 @@ class Classinfo extends BaseController {
     public function addAndEditStu(){
         if (request()->isAjax()) {
             $data = input('post.');
+            $class_id = input('get.class_id');
             $stu_id = input('get.stu_id');
             $validate = (new AddClassstu())->goCheck();
             if ($validate) {
@@ -53,7 +54,7 @@ class Classinfo extends BaseController {
                     return json($validate);
                 }
             }
-            $res = (new ClasssinfoModel)->addAndEditClassStu($data, $stu_id);
+            $res = (new ClasssinfoModel)->addAndEditClassStu($data, $stu_id, $class_id);
             return json($res);
         }
     }
@@ -91,12 +92,22 @@ class Classinfo extends BaseController {
         $stu_id = input('get.stu_id');
         $stuInfo = (new ClasssinfoModel)->getStuInfo($stu_id);
         $stuInfo = $stuInfo->toArray();
-        foreach ($stuInfo as $key => $v) {
-            if (!$v) {
-                $stuInfo[$key] = '<span class="layui-badge">还未填写</span>';
-            }
+        $this->assign('stu_imgurl', $stuInfo['stu_imgurl']);
+
+        $stu_infoflag = (new ClasssinfoModel)->getStuInfoFlag($stu_id);
+
+        if (!$stu_infoflag) {
+            $this->assign('stuInfo', null);
+            $this->assign('stuHead', $stuInfo);
+            return $this->fetch();
+        } else {
+            // foreach ($stuInfo as $key => $v) {
+            //     if (!$v) {
+            //         $stuInfo[$key] = '<span class="layui-badge">还未填写</span>';
+            //     }
+            // }
+            $this->assign('stuInfo', $stuInfo);
+            return $this->fetch();
         }
-        $this->assign('stuInfo', $stuInfo);
-        return $this->fetch();
     }
 }

@@ -33,7 +33,23 @@
         color: #666;
     }
     td {
-        text-align: center;
+        position: relative;
+        
+    }
+    td span{
+        display: inline-block;
+        text-align: left;
+        position: absolute;
+        left: 200px;
+    }
+    td input{
+        display: inline-block;
+        text-align: left;
+        position: absolute;
+        left: 200px;
+    }
+    .layui-badge {
+        position: absolute;
     }
 </style>
 
@@ -47,126 +63,215 @@
         <i class="layui-icon">&#xe669;</i></a>
 </div>
 
-<fieldset class="layui-elem-field">
-    <legend>{$stuInfo['class_name']}&nbsp;{$stuInfo['stu_name']}</legend>
-    <div class="layui-field-box">
-        <div class="x-body">
-            <table class="layui-table">
-                <tbody>
-                <tr>
-                    <td colspan="2"><div class="xiangpian"><img style="width: 100%;height: 100%;max-width: none;" src="" alt=""></div></td>
-                </tr>
-                <tr>
-                    <td>学习形式: {$stuInfo['stu_studystyle']}</td>
-                    <td>姓名: {$stuInfo['stu_name']}</td>
-                </tr>
-                <tr>
-                </tr>
-                <tr>
-                    <td>学号: {$stuInfo['stu_number']}</td>
-                    <td>身份证号码: {$stuInfo['stu_identity']}</td>
+<div class="x-body">
+    <fieldset class="layui-elem-field">
+        {if condition="$stuInfo"}
+        <legend>{$stuInfo['class_name']}&nbsp;{$stuInfo['stu_name']}</legend>
+        {else/}
+        <legend>{$stuHead['class_name']}&nbsp;{$stuHead['stu_name']}</legend>
+        {/if}
+        {if condition="$stuInfo['stu_infoflag'] == 1"}
+       <!--  <button type="button" data-noticeFlag="infoBug" class="stuinfoNotice layui-btn layui-btn-danger x-right" style="margin:10px"><i class="layui-icon">信息有误，通知该学生</i></button> -->
+        {/if}
+        <div class="layui-field-box">
+            <div class="x-body">
+                {if condition="!$stuInfo"}
+                <div style="text-align: center; font-weight: bold; font-size: 18px;">该学生还未提交个人详细信息 <button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该学生</button></div>
+                {else/}
+                <table class="layui-table">
+                    <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="xiangpian">
+                                <img style="width: 100%;height: 100%;max-width: none;" src="{$stu_imgurl}" alt="">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>学习形式: <span class="dbclick" data-name="stu_studystyle">{$stuInfo['stu_studystyle']}</span></td>
+                        <td>姓名: <span class="dbclick" data-name="stu_name">{$stuInfo['stu_name']}</span></td>
+                    </tr>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td>学号: <span class="dbclick" data-name="stu_number">{$stuInfo['stu_number']}</span></td>
+                        <td>身份证号码: <span class="dbclick" data-name="stu_identity">{$stuInfo['stu_identity']}</span></td>
 
+                    </tr>
+                    <tr>
+                        <td>性别: <span class="dbclick" data-name="stu_sex">{$stuInfo['stu_sex']}</span></td>
+                        <td>出生日期: <span class="dbclick" data-name="stu_birthday">{$stuInfo['stu_birthday']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>民族: <span class="dbclick" data-name="stu_nation">{$stuInfo['stu_nation']}</span></td>
+                        <td>联系电话: <span class="dbclick" data-name="stu_phone">{$stuInfo['stu_phone']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>政治面貌: <span class="dbclick" data-name="stu_politicalstatus">{$stuInfo['stu_politicalstatus']}</span></td>
+                        <td>户口所在地: <span class="dbclick" data-name="stu_hukouaddress">{$stuInfo['stu_hukouaddress']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>户口性质: <span class="dbclick" data-name="stu_hokoustyle">{$stuInfo['stu_hokoustyle']}</span></td>
+                        <td>学习专业名称: <span class="dbclick" data-name="stu_specialty">{$stuInfo['stu_specialty']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>毕业学校: <span class="dbclick" data-name="stu_graduation">{$stuInfo['stu_graduation']}</span></td>
+                        <td>招生年份: <span class="dbclick" data-name="stu_enrolmentyear">{$stuInfo['stu_enrolmentyear']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>招生季度: <span class="dbclick" data-name="stu_enrollmentquarter">{$stuInfo['stu_enrollmentquarter']}</span></td>
+                        <td>班级: <span class="dbclick" data-name="class_name">{$stuInfo['class_name']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>专业级别: <span class="dbclick" data-name="stu_professionallevel">{$stuInfo['stu_professionallevel']}</span></td>
+                        <td>入学前文化程度: <span class="dbclick" data-name="stu_Preschooleducation">{$stuInfo['stu_Preschooleducation']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>学制: <span class="dbclick" data-name="stu_schoolsystem">{$stuInfo['stu_schoolsystem']}</span></td>
+                        <td>家庭联系人: <span class="dbclick" data-name="stu_familycontact">{$stuInfo['stu_familycontact']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>家庭联系电话: <span class="dbclick" data-name="stu_familyphone">{$stuInfo['stu_familyphone']}</span></td>
+                        <td>家庭年总收入: <span class="dbclick" data-name="stu_totalannualincomefamily">{$stuInfo['stu_totalannualincomefamily']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>家庭人均收入: <span class="dbclick" data-name="stu_percapitaincomefamily">{$stuInfo['stu_percapitaincomefamily']}</span></td>
+                        <td>是否10万以下民族: <span class="dbclick" data-name="stu_100thousand">{$stuInfo['stu_100thousand']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>是否家庭困难: <span class="dbclick" data-name="stu_familydifficulties">{$stuInfo['stu_familydifficulties']}</span></td>
+                        <td>是否低保: <span class="dbclick" data-name="stu_familylow">{$stuInfo['stu_familylow']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>收入来源: <span class="dbclick" data-name="stu_sourceincome">{$stuInfo['stu_sourceincome']}</span></td>
+                        <td>邮政编码: <span class="dbclick" data-name="stu_postalcode">{$stuInfo['stu_postalcode']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>国别: <span class="dbclick" data-name="stu_differentcountries">{$stuInfo['stu_differentcountries']}</span></td>
+                        <td>证件类型: <span class="dbclick" data-name="stu_certificatestyle">{$stuInfo['stu_certificatestyle']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>户口地址: <span class="dbclick" data-name="stu_hukouaddresstow">{$stuInfo['stu_hukouaddresstow']}</span></td>
+                        <td>是否退役士兵: <span class="dbclick" data-name="stu_retiredsoldier">{$stuInfo['stu_retiredsoldier']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>入学总分: <span class="dbclick" data-name="stu_totalentrancescore">{$stuInfo['stu_totalentrancescore']}</span></td>
+                        <td>宿舍号: <span class="dbclick" data-name="stu_dormnumber">{$stuInfo['stu_dormnumber']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>办学点名称: <span class="dbclick" data-name="stu_nameofschoolrunningpoint">{$stuInfo['stu_nameofschoolrunningpoint']}</span></td>
+                        <td>学生类别: <span class="dbclick" data-name="stu_classstudents">{$stuInfo['stu_classstudents']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>户口区域: <span class="dbclick" data-name="stu_hukouquyu">{$stuInfo['stu_hukouquyu']}</span></td>
+                        <td>户籍所在地: <span class="dbclick" data-name="stu_hukouaddressf">{$stuInfo['stu_hukouaddressf']}</span></td>
+                    </tr>
+                    <tr>
+                        <td>是否三侨: <span class="dbclick" data-name="stu_sanqiao">{$stuInfo['stu_sanqiao']}</span></td>
+                        <td>学生状态: <span class="dbclick" data-name="stu_state">{$stuInfo['stu_state']}</span></td>
+                    </tr>
+                    <tr>
+                    <td>原部队:
+                    {if condition="$stuInfo['stu_originaltroops']"}
+                        <span class="dbclick" data-name="stu_originaltroops">{$stuInfo['stu_originaltroops']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_originaltroops">还未填写</span>
+                    {/if} 
+                    </td>
+                    <td>原军衔:
+                        {if condition="$stuInfo['stu_originalmilitaryrank']"}
+                            <span class="dbclick" data-name="stu_originalmilitaryrank">{$stuInfo['stu_originalmilitaryrank']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_originalmilitaryrank">还未填写</span>
+                        {/if}  
+                    </td>
                 </tr>
                 <tr>
-                    <td>性别: {$stuInfo['stu_sex']}</td>
-                    <td>出生日期: {$stuInfo['stu_birthday']}</td>
+                    <td>入伍地: 
+                        {if condition="$stuInfo['stu_enlist']"}
+                            <span class="dbclick" data-name="stu_enlist">{$stuInfo['stu_enlist']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_enlist">还未填写</span>
+                        {/if}  
+                    </td>
+                    <td>入伍时间:
+                    {if condition="$stuInfo['stu_enlisttime']"}
+                        <span class="dbclick" data-name="stu_enlisttime">{$stuInfo['stu_enlisttime']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_enlisttime">还未填写</span>
+                    {/if}  
+                    </td>
                 </tr>
                 <tr>
-                    <td>民族: {$stuInfo['stu_nation']}</td>
-                    <td>联系电话: {$stuInfo['stu_phone']}</td>
+                    <td>退役时间:
+                    {if condition="$stuInfo['stu_demobilizedtime']"}
+                        <span class="dbclick" data-name="stu_demobilizedtime">{$stuInfo['stu_demobilizedtime']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_demobilizedtime">还未填写</span>
+                    {/if}  
+                    </td>
+                    <td>退役方式: 
+                        {if condition="$stuInfo['stu_demobilizedstyle']"}
+                            <span class="dbclick" data-name="stu_demobilizedstyle">{$stuInfo['stu_demobilizedstyle']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_demobilizedstyle">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 <tr>
-                    <td>政治面貌: {$stuInfo['stu_politicalstatus']}</td>
-                    <td>户口所在地: {$stuInfo['stu_hukouaddress']}</td>
+                    <td>健康状况: 
+                        {if condition="$stuInfo['stu_health']"}
+                            <span class="dbclick" data-name="stu_health">{$stuInfo['stu_health']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_health">还未填写</span>
+                        {/if} 
+                    </td>
+                    <td>广州市户口地区: 
+                        {if condition="$stuInfo['stu_guangzhouHukou']"}
+                        <span class="dbclick" data-name="stu_guangzhouHukou">{$stuInfo['stu_guangzhouHukou']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_guangzhouHukou">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 <tr>
-                    <td>户口性质: {$stuInfo['stu_hokoustyle']}</td>
-                    <td>学习专业名称: {$stuInfo['stu_specialty']}</td>
+                    <td>原毕业学校: 
+                        {if condition="$stuInfo['stu_guangzhouprimaryschool']"}
+                        <span class="dbclick" data-name="stu_guangzhouprimaryschool">{$stuInfo['stu_guangzhouprimaryschool']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_guangzhouprimaryschool">还未填写</span>
+                        {/if} 
+                    </td>
+                    <td>原毕业学校源省:
+                        {if condition="$stuInfo['stu_sourceprovince']"}
+                        <span class="dbclick" data-name="stu_sourceprovince">{$stuInfo['stu_sourceprovince']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_sourceprovince">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 <tr>
-                    <td>毕业学校: {$stuInfo['stu_graduation']}</td>
-                    <td>招生年份: {$stuInfo['stu_enrolmentyear']}</td>
+                    <td>原毕业学校源市: 
+                        {if condition="$stuInfo['stu_shengyuancity']"}
+                        <span class="dbclick" data-name="stu_shengyuancity">{$stuInfo['stu_shengyuancity']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_shengyuancity">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
-                <tr>
-                    <td>招生季度: {$stuInfo['stu_enrollmentquarter']}</td>
-                    <td>班级: {$stuInfo['class_name']}</td>
-                </tr>
-                <tr>
-                    <td>专业级别: {$stuInfo['stu_professionallevel']}</td>
-                    <td>入学前文化程度: {$stuInfo['stu_Preschooleducation']}</td>
-                </tr>
-                <tr>
-                    <td>学制: {$stuInfo['stu_schoolsystem']}</td>
-                    <td>家庭联系人: {$stuInfo['stu_familycontact']}</td>
-                </tr>
-                <tr>
-                    <td>家庭联系电话: {$stuInfo['stu_familyphone']}</td>
-                    <td>家庭年总收入: {$stuInfo['stu_totalannualincomefamily']}</td>
-                </tr>
-                <tr>
-                    <td>家庭人均收入: {$stuInfo['stu_percapitaincomefamily']}</td>
-                    <td>是否10万以下民族: {$stuInfo['stu_100thousand']}</td>
-                </tr>
-                <tr>
-                    <td>是否家庭困难: {$stuInfo['stu_familydifficulties']}</td>
-                    <td>是否低保: {$stuInfo['stu_familylow']}</td>
-                </tr>
-                <tr>
-                    <td>收入来源: {$stuInfo['stu_sourceincome']}</td>
-                    <td>邮政编码: {$stuInfo['stu_postalcode']}</td>
-                </tr>
-                <tr>
-                    <td>国别: {$stuInfo['stu_differentcountries']}</td>
-                    <td>证件类型: {$stuInfo['stu_certificatestyle']}</td>
-                </tr>
-                <tr>
-                    <td>户口地址: {$stuInfo['stu_hukouaddresstow']}</td>
-                    <td>是否退役士兵: {$stuInfo['stu_retiredsoldier']}</td>
-                </tr>
-                <tr>
-                    <td>入学总分: {$stuInfo['stu_totalentrancescore']}</td>
-                    <td>宿舍号: {$stuInfo['stu_dormnumber']}</td>
-                </tr>
-                <tr>
-                    <td>办学点名称: {$stuInfo['stu_nameofschoolrunningpoint']}</td>
-                    <td>学生类别: {$stuInfo['stu_classstudents']}</td>
-                </tr>
-                <tr>
-                    <td>户口区域: {$stuInfo['stu_hukouquyu']}</td>
-                    <td>户籍所在地: {$stuInfo['stu_hukouaddressf']}</td>
-                </tr>
-                <tr>
-                    <td>是否三侨: {$stuInfo['stu_sanqiao']}</td>
-                    <td>学生状态: {$stuInfo['stu_state']}</td>
-                </tr>
-                <tr>
-                    <td>原部队: {$stuInfo['stu_originaltroops']}</td>
-                    <td>原军衔: {$stuInfo['stu_originalmilitaryrank']}</td>
-                </tr>
-                <tr>
-                    <td>入伍地: {$stuInfo['stu_enlist']}</td>
-                    <td>入伍时间: {$stuInfo['stu_enlisttime']}</td>
-                </tr>
-                <tr>
-                    <td>退役时间: {$stuInfo['stu_demobilizedtime']}</td>
-                    <td>退役方式: {$stuInfo['stu_demobilizedstyle']}</td>
-                </tr>
-                <tr>
-                    <td>健康状况: {$stuInfo['stu_health']}</td>
-                    <td>广州市户口地区: {$stuInfo['stu_guangzhouHukou']}</td>
-                </tr>
-                <tr>
-                    <td>原毕业学校: {$stuInfo['stu_guangzhouprimaryschool']}</td>
-                    <td>原毕业学校源省: {$stuInfo['stu_sourceprovince']}</td>
-                </tr>
-                <tr>
-                    <td>原毕业学校源市: {$stuInfo['stu_shengyuancity']}</td>
-                </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+                {/if}
+
+            </div>
         </div>
-    </div>
-</fieldset>
+    </fieldset>
+    {if condition="$stuInfo"}
+    <input type="hidden" value="{$stuInfo['stu_id']}" id="stu_id">
+    {else/}
+    <input type="hidden" value="{$stuHead['stu_id']}" id="stu_id">
+    {/if}
+</div>
 
 
 </body>

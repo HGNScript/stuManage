@@ -14,7 +14,6 @@
     <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
     <script type="text/javascript" src="__STATIC__/admin/js/basejs.js"></script>
-    <script type="text/javascript" src="__STATIC__/admin/js/classlist.js"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -51,7 +50,7 @@
             </div>
             <div class="layui-form-item">
                 <label for="" class="layui-form-label">
-                    辅导员
+                    班主任
                 </label>
                 <div class="layui-input-inline">
                     <select name="classtch_id" lay-verify="">
@@ -85,5 +84,10 @@
         </form>
     </div>
 </body>
+<script>
+    var addAndEditurl = '/admin/Classlist/addAndEditClasslist?class_id=';
+    var hrefUrl = '/admin/Classlist/index?staffRoom='
+    addAndEdit(addAndEditurl, hrefUrl)
+</script>
 
 </html>

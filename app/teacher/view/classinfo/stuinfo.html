@@ -34,7 +34,22 @@
         color: #666;
     }
     td {
-        text-align: center;
+        position: relative;
+    }
+    td span{
+        display: inline-block;
+        text-align: left;
+        position: absolute;
+        left: 200px;
+    }
+    td input{
+        display: inline-block;
+        text-align: left;
+        position: absolute;
+        left: 200px;
+    }
+    .layui-badge {
+        position: absolute;
     }
 </style>
 
@@ -60,7 +75,7 @@
     <div class="layui-field-box">
         <div class="x-body">
             {if condition="!$stuInfo"}
-            <div style="text-align: center; font-weight: bold; font-size: 18px;">该生还未提交个人详细信息 <button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该生</button></div>
+            <div style="text-align: center; font-weight: bold; font-size: 18px;">该学生还未提交个人详细信息 <button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该学生</button></div>
             {else/}
             <table class="layui-table">
                 <tbody>
@@ -155,27 +170,93 @@
                     <td>学生状态: <span class="dbclick" data-name="stu_state">{$stuInfo['stu_state']}</span></td>
                 </tr>
                 <tr>
-                    <td>原部队: <span class="dbclick" data-name="stu_originaltroops">{$stuInfo['stu_originaltroops']}</span></td>
-                    <td>原军衔: <span class="dbclick" data-name="stu_originalmilitaryrank">{$stuInfo['stu_originalmilitaryrank']}</span></td>
+                    <td>原部队:
+                    {if condition="$stuInfo['stu_originaltroops']"}
+                        <span class="dbclick" data-name="stu_originaltroops">{$stuInfo['stu_originaltroops']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_originaltroops">还未填写</span>
+                    {/if} 
+                    </td>
+                    <td>原军衔:
+                        {if condition="$stuInfo['stu_originalmilitaryrank']"}
+                            <span class="dbclick" data-name="stu_originalmilitaryrank">{$stuInfo['stu_originalmilitaryrank']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_originalmilitaryrank">还未填写</span>
+                        {/if}  
+                    </td>
                 </tr>
                 <tr>
-                    <td>入伍地: <span class="dbclick" data-name="stu_enlist">{$stuInfo['stu_enlist']}</span></td>
-                    <td>入伍时间: <span class="dbclick" data-name="stu_enlisttime">{$stuInfo['stu_enlisttime']}</span></td>
+                    <td>入伍地: 
+                        {if condition="$stuInfo['stu_enlist']"}
+                            <span class="dbclick" data-name="stu_enlist">{$stuInfo['stu_enlist']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_enlist">还未填写</span>
+                        {/if}  
+                    </td>
+                    <td>入伍时间:
+                    {if condition="$stuInfo['stu_enlisttime']"}
+                        <span class="dbclick" data-name="stu_enlisttime">{$stuInfo['stu_enlisttime']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_enlisttime">还未填写</span>
+                    {/if}  
+                    </td>
                 </tr>
                 <tr>
-                    <td>退役时间: <span class="dbclick" data-name="stu_demobilizedtime">{$stuInfo['stu_demobilizedtime']}</span></td>
-                    <td>退役方式: <span class="dbclick" data-name="stu_demobilizedstyle">{$stuInfo['stu_demobilizedstyle']}</span></td>
+                    <td>退役时间:
+                    {if condition="$stuInfo['stu_demobilizedtime']"}
+                        <span class="dbclick" data-name="stu_demobilizedtime">{$stuInfo['stu_demobilizedtime']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_demobilizedtime">还未填写</span>
+                    {/if}  
+                    </td>
+                    <td>退役方式: 
+                        {if condition="$stuInfo['stu_demobilizedstyle']"}
+                            <span class="dbclick" data-name="stu_demobilizedstyle">{$stuInfo['stu_demobilizedstyle']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_demobilizedstyle">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 <tr>
-                    <td>健康状况: <span class="dbclick" data-name="stu_health">{$stuInfo['stu_health']}</span></td>
-                    <td>广州市户口地区: <span class="dbclick" data-name="stu_guangzhouHukou">{$stuInfo['stu_guangzhouHukou']}</span></td>
+                    <td>健康状况: 
+                        {if condition="$stuInfo['stu_health']"}
+                            <span class="dbclick" data-name="stu_health">{$stuInfo['stu_health']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_health">还未填写</span>
+                        {/if} 
+                    </td>
+                    <td>广州市户口地区: 
+                        {if condition="$stuInfo['stu_guangzhouHukou']"}
+                        <span class="dbclick" data-name="stu_guangzhouHukou">{$stuInfo['stu_guangzhouHukou']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_guangzhouHukou">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 <tr>
-                    <td>原毕业学校: <span class="dbclick" data-name="stu_guangzhouprimaryschool">{$stuInfo['stu_guangzhouprimaryschool']}</span></td>
-                    <td>原毕业学校源省: <span class="dbclick" data-name="stu_sourceprovince">{$stuInfo['stu_sourceprovince']}</span></td>
+                    <td>原毕业学校: 
+                        {if condition="$stuInfo['stu_guangzhouprimaryschool']"}
+                        <span class="dbclick" data-name="stu_guangzhouprimaryschool">{$stuInfo['stu_guangzhouprimaryschool']}</span>
+                            {else/}
+                            <span class="dbclick layui-badge" data-name="stu_guangzhouprimaryschool">还未填写</span>
+                        {/if} 
+                    </td>
+                    <td>原毕业学校源省:
+                        {if condition="$stuInfo['stu_sourceprovince']"}
+                        <span class="dbclick" data-name="stu_sourceprovince">{$stuInfo['stu_sourceprovince']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_sourceprovince">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 <tr>
-                    <td>原毕业学校源市: <span class="dbclick" data-name="stu_shengyuancity">{$stuInfo['stu_shengyuancity']}</span></td>
+                    <td>原毕业学校源市: 
+                        {if condition="$stuInfo['stu_shengyuancity']"}
+                        <span class="dbclick" data-name="stu_shengyuancity">{$stuInfo['stu_shengyuancity']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_shengyuancity">还未填写</span>
+                        {/if} 
+                    </td>
                 </tr>
                 </tbody>
             </table>

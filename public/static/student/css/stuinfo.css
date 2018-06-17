@@ -1,0 +1,59 @@
+h3 {
+	margin-bottom: 50px;
+}
+input {
+	text-align: left;
+}
+.content{
+	margin: 0 auto;
+	margin-bottom: 100px;
+}
+.correct {
+	border-color: #5FB878;
+}
+.error {
+	border-color: #FF0000;
+}
+.stuPhoto {
+/*	float: right;
+	position: relative;
+	right: -215px;*/
+	margin-bottom: 40px;
+}
+.layui-form-item {
+	/*width: 40%;*/
+    /*display: inline-block*/
+}
+.layui-form-label {
+	padding-right: 0px;
+	padding-left: 0px;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.rightAlert {
+	display: inline-block;
+	position: fixed;
+	right: 10px;
+	top: 50%;
+	transform:translate(0,-50%); 
+
+}
+.rightAlert button {
+	display: block;
+	margin-top: 20px;
+}
+.layui-btn+.layui-btn {
+	margin-left: 0;
+
+}
+@media screen and (max-width: 300px) {
+  
+}
+
+/*.top{
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+}
+*/

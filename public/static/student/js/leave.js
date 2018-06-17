@@ -1,12 +1,45 @@
 $(function(){
 
     submit()
-    var leave_flag  = $('#leave_flag').val()
-    if (leave_flag != 0) {
-        $('input').attr('disabled','disabled')
-        $('.submit').attr('disabled','disabled')
-    }
-})
+    $('.definite').blur(function(){
+        var _this = $(this)
+        showBorder(_this);
+    })
+    $('.layui-input').blur(function(){
+        var _this = $(this)
+        showBorder(_this);
+    })
+
+
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+          //执行一个laydate实例
+        laydate.render({
+          elem: '#time'
+          ,done: function(value, date, endDate){ //监听日期被切换
+             if (!value) {
+                $('#time').css({"border-color": "#FF0000"})
+            } else {
+                $('#time').css({"border-color": "#5FB878"})
+            }
+          }
+        })
+    })
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
+          //执行一个laydate实例
+        laydate.render({
+          elem: '#time2',
+          done: function(value, date, endDate){ //监听日期被切换
+            if (!value) {
+                $('#time2').css({"border-color": "#FF0000"})
+            } else {
+                $('#time2').css({"border-color": "#5FB878"})
+            }
+          }
+        })
+    })
+ })
 
 
 function submit(){
@@ -72,4 +105,13 @@ function submit(){
         });
 
     })
+}
+
+function showBorder(_this) {
+    var value = _this.val();
+    if (!value) {
+        _this.css({"border-color": "#FF0000"})
+    } else {
+        _this.css({"border-color": "#5FB878"})
+    }
 }

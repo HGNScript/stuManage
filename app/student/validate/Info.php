@@ -25,8 +25,8 @@ class Info extends BaseValidate {
         'stu_hokoustyle' => 'require',
         'stu_specialty' => 'require|chs',
         'stu_graduation' => 'require|chs',
-        'stu_enrolmentyear' => 'require|number',
         'stu_enrollmentquarter' => 'require',
+        'stu_grade' => 'require|number',
         'class_name' => 'require',
         'stu_professionallevel' => 'require|chs',
         'stu_Preschooleducation' => 'require|chs',
@@ -49,16 +49,49 @@ class Info extends BaseValidate {
         'stu_hukouquyu' => 'require|chs',
         'stu_hukouaddressf' => 'require|chs',
         'stu_state' => 'require|chs',
-        'stu_originaltroops' => 'chs',
-        'stu_originalmilitaryrank' => 'chs',
-        'stu_enlist' => 'chs',
-        'stu_demobilizedstyle' => 'chs',
+
+
+
         'stu_health' => 'require|chs',
+
         'stu_guangzhouHukou' => 'chs',
         'stu_guangzhouprimaryschool' => 'chs',
         'stu_sourceprovince' => 'chs',
         'stu_shengyuancity' => 'chs',
+
+
+        'family_name1' => 'require|chs',
+        'family_sex1' => 'require|chs',
+        'family_age1' => 'require|number',
+        'family_relationship1' => 'require|chs',
+        'family_work1' => 'require|chsAlphaNum',
+
+        'family_name2' => 'chs',
+        'family_sex2' => 'chs',
+        'family_age2' => 'number',
+        'family_relationship2' => 'chs',
+        'family_work2' => 'chsAlphaNum',
+
+        'family_name3' => 'chs',
+        'family_sex3' => 'chs',
+        'family_age3' => 'number',
+        'family_relationship3' => 'chs',
+        'family_work3' => 'chsAlphaNum',
+
+        'family_name4' => 'chs',
+        'family_sex4' => 'chs',
+        'family_age4' => 'number',
+        'family_relationship4' => 'chs',
+        'family_work4' => 'chsAlphaNum',
+
+
+        'stu_graduateFromSchool' => 'require|chsAlphaNum',
+        
+
     ];
+
+
+
     protected  $message = [
         'stu_imgurl.require' => '"图片"不能为空',
 
@@ -75,7 +108,6 @@ class Info extends BaseValidate {
         'stu_hokoustyle.require' => '"户口性质"不能为空',
         'stu_specialty.require' => '"学习专业名称"不能为空',
         'stu_graduation.require' => '"毕业学校"不能为空',
-        'stu_enrolmentyear.require' => '"招生年份"不能为空',
         'stu_enrollmentquarter.require' => '"招生季度"不能为空',
         'class_name.require' => '"班级"不能为空',
         'stu_professionallevel.require' => '"专业级别"不能为空',
@@ -114,7 +146,6 @@ class Info extends BaseValidate {
         'stu_hukouaddress.chsAlpha' => '"户口所在地"不能为数字',
         'stu_specialty.chs' => '"专业名称"只能为中文',
         'stu_graduation.chs' => '"毕业学校"只能为中文',
-        'stu_enrolmentyear.number' => '"招生年份"只能为数字',
 
         'stu_professionallevel.chs' => '"专业级别"只能为中文',
         'stu_Preschooleducation.chs' => '"入学前文化程度"只能为中文',
@@ -143,14 +174,77 @@ class Info extends BaseValidate {
         'stu_hukouaddressf.chs' => '"户籍所在地"只能为中文',
         'stu_state.chs' => '"学生状态"只能为中文',
 
-        'stu_originaltroops.chs' => '原部队只能为中文',
-        'stu_originalmilitaryrank.chs' => '原军衔只能为中文',
-        'stu_enlist.chs' => '入伍地只能为中文',
-        'stu_demobilizedstyle.chs' => '退役方式只能为中文',
+
+
+        
         'stu_health.chs' => '健康状况只能为中文',
         'stu_guangzhouHukou.chs' => '广州市户口地区只能为中文',
         'stu_guangzhouprimaryschool.chs' => '原毕业学校只能为中文',
         'stu_sourceprovince.chs' => '原毕业学校只能为中文',
+
+        'stu_grade.number' => '"招生年份"只能为数字',
+        'stu_grade.require' => '"招生年份"不能为空',
+
+
+        'family_name1.require' => '家庭成员至少需填写户主信息',
+        'family_name1.chs' => '家庭成员名称只能为中文',
+
+        'family_sex1.require' => '家庭成员性别不能为空',
+        'family_sex1.chs' => '家庭成员性别只能为中文',
+
+        'family_age1.require' => '家庭成员年龄不能为空',
+        'family_age1.number' => '年龄只能为数字',
+
+        'family_relationship1.require' => '家庭成员与本人关系不能为空',
+        'family_relationship1.chs' => '家庭成员与本人关系只能为中文',
+
+        'family_work1.require' => '家庭成员工作或学校单位不能为空',
+        'family_work1.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+
+
+        'family_name2.chs' => '家庭成员名称只能为中文',
+
+        'family_sex2.chs' => '家庭成员性别只能为中文',
+
+        'family_age2.number' => '年龄只能为数字',
+
+        'family_relationship2.chs' => '家庭成员与本人关系只能为中文',
+
+        'family_work2.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+
+
+        'family_name3.chs' => '家庭成员名称只能为中文',
+
+        'family_sex3.chs' => '家庭成员性别只能为中文',
+
+        'family_age3.number' => '年龄只能为数字',
+
+        'family_relationship3.chs' => '家庭成员与本人关系只能为中文',
+
+        'family_work3.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+
+
+
+        'family_name4.chs' => '家庭成员名称只能为中文',
+
+        'family_sex4.chs' => '家庭成员性别只能为中文',
+
+        'family_age4.number' => '年龄只能为数字',
+
+        'family_relationship4.chs' => '家庭成员与本人关系只能为中文',
+
+        'family_work4.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+
+
+
+        'stu_graduateFromSchool.chsAlphaNum' => '"何时毕业于何学校"只能是汉字、字母和数字',
+        'stu_graduateFromSchool.require' => '"何时毕业于何学校"不能为空',
+
+
+
+
+
+
 
 
 

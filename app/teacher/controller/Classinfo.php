@@ -45,7 +45,7 @@ class Classinfo extends BaseController {
         } else {
             foreach ($stuInfo as $key => $v) {
                 if (!$v) {
-                    $stuInfo[$key] = '<span class="layui-badge">还未填写</span>';
+                    // $stuInfo[$key] = '<span class="layui-badge">还未填写</span>';
                 }
             }
             $this->assign('stuInfo', $stuInfo);

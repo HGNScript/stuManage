@@ -35,8 +35,38 @@ class Leave extends BaseController {
         $search = input('post.search');
         $class_id = input('post.class_id');
         $leave_flag = input('post.leave_flag');
+        $month = input('post.month');
 
-        $data = (new \app\teacher\model\Leave())->search($search, $leave_flag, $class_id);
+        if ($search) {
+            $data = (new \app\teacher\model\Leave())->search($search, $leave_flag, $class_id);
+
+        }
+
+        if ($month) {
+
+            $data = (new \app\teacher\model\Leave())->getClassLeave($class_id, $leave_flag);
+            foreach ($data as $key => $value) {
+                $value = $value->toArray();
+                $monthNumber = $value['create_time'];
+                $monthNumber = substr($monthNumber,6,1);
+                if ($monthNumber != $month) {
+                    unset($data[$key]);
+                }
+            }
+
+        }
+
+        if ($search && $month) {
+            $data = (new \app\teacher\model\Leave())->search($search, $leave_flag, $class_id);
+            foreach ($data as $key => $value) {
+                $value = $value->toArray();
+                $monthNumber = $value['create_time'];
+                $monthNumber = substr($monthNumber,6,1);
+                if ($monthNumber != $month) {
+                    unset($data[$key]);
+                }
+            }
+        }
 
         return json($data);
     }

@@ -42,8 +42,36 @@ class Reduction extends Controller {
         $search = input('post.search');
         $class_id = input('post.class_id');
         $reduction_flag = input('post.reduction_flag');
+        $month = input('post.month');
 
-        $data = (new \app\teacher\model\reduction())->search($search, $reduction_flag, $class_id);
+        if ($search) {
+            $data = (new \app\teacher\model\reduction())->search($search, $reduction_flag, $class_id);
+        }
+
+        if ($month) {
+            $data = (new \app\teacher\model\reduction())->getClassReduction($class_id, $reduction_flag);
+            foreach ($data as $key => $value) {
+                $value = $value->toArray();
+                $monthNumber = $value['create_time'];
+                $monthNumber = substr($monthNumber,6,1);
+                if ($monthNumber != $month) {
+                    unset($data[$key]);
+                }
+            }
+
+        }
+
+        if ($search && $month) {
+            $data = (new \app\teacher\model\reduction())->search($search, $reduction_flag, $class_id);
+            foreach ($data as $key => $value) {
+                $value = $value->toArray();
+                $monthNumber = $value['create_time'];
+                $monthNumber = substr($monthNumber,6,1);
+                if ($monthNumber != $month) {
+                    unset($data[$key]);
+                }
+            }
+        }
 
         return json($data);
     }
@@ -55,6 +83,7 @@ class Reduction extends Controller {
         $reduction = \app\teacher\model\reduction::get($reduction_id);
         $class_id = (new student())->where('stu_id', $reduction['stu_id'])->value('class_id');
 
+        $reduction['stu_identity'] = str_split($reduction['stu_identity']);
 
         $this->assign('reduction', $reduction);
         $this->assign('class_id', $class_id);

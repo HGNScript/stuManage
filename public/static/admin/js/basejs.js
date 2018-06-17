@@ -85,7 +85,9 @@ function addAndEdit(url, hrefUrl) {
                             javascript:history.back(-1)
                         });
                     } else {
-                        layer.msg(data['msg']);
+                        layer.msg(data['msg'],{
+                            time: 1000,
+                        });
                     }
                 }
             });

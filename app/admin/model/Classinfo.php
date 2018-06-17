@@ -34,17 +34,12 @@ class Classinfo extends BaseModel {
         foreach ($classstu as $key => $value) {
             $classstu[$key]['stu_phone']?$classstu[$key]['stu_phone'] = '<span class="layui-badge layui-bg-green">'. $classstu[$key]['stu_phone'] .'</span>':$classstu[$key]['stu_phone'] = '<span class="layui-badge">未填写联系电话</span>';
         }
-
-        if ($data['curr']) {
-            $star = ($data['curr'] - 1) * $data['limit'];
-            $classstu = array_slice($classstu, $star, $data['limit']);
-            return $classstu;
-        } else {
-            return sizeof($classstu);
-        }
+        return $classstu;
     }
 
     public function excelAddStu($info, $class_id) {
+        $class_grade = (new Classlist)->where('class_id', $class_id)->find();
+
         if($info){
             $exclePath = $info->getSaveName();  //获取文件名
             $file_name = ROOT_PATH . 'public' . DS . 'excel' . DS . $exclePath;   //上传文件的地址
@@ -54,6 +49,7 @@ class Classinfo extends BaseModel {
             array_shift($excel_array);  //删除第一个数组(标题);
             $data = [];
             $i = 0;
+
             foreach($excel_array as $k=>$v) {
                 $n = $this->where('stu_number', $v[1])->find();
                 if (!$n) {
@@ -64,6 +60,15 @@ class Classinfo extends BaseModel {
                     $data[$k]['stu_dormnumber'] = $v[4];
                     $data[$k]['class_id'] = $class_id;
                     $data[$k]['stu_password'] = md5('gzcj');
+                    $data[$k]['stu_grade'] = $class_grade['class_grade'];
+
+                    $card = $data[$k]['stu_identity'];
+
+                    $stu_birthday = strlen($card)==15 ? ('19' . substr($card, 6, 6)) : substr($card, 6, 8);
+
+                    $data[$k]['stu_birthday'] = $stu_birthday;
+
+
                 }
                 $i++;
             }
@@ -84,7 +89,11 @@ class Classinfo extends BaseModel {
         }
     }
 
-    public function addAndEditClassStu($data, $stu_id) {
+    public function addAndEditClassStu($data, $stu_id, $class_id) {
+        $class_grade = (new Classlist)->where('class_id', $class_id)->find();
+
+        $data['stu_grade'] = $class_grade['class_grade'];
+
         if ($stu_id) {
             $n = $this->where('stu_id', '<>', $stu_id)->where('stu_number', $data['stu_number'])->find();
             if ($n) {
@@ -114,7 +123,7 @@ class Classinfo extends BaseModel {
     }
 
     public function getOldClassStu($stu_id) {
-        return $this->where('stu_id', $stu_id)->field('stu_id, stu_number, stu_name, class_id')->find();
+        return $this->where('stu_id', $stu_id)->field('stu_id, stu_number, stu_sex, stu_identity, stu_dormnumber, stu_name, class_id')->find();
     }
 
     public function getStuInfo($stu_id) {

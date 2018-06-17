@@ -18,7 +18,8 @@ class Stugrant extends BaseController {
         $stuinfo = student::get($stu_id);
         $grantdata = grant::where('stu_id', $stu_id)->find();
 
-        $grantdata =  (new grant)->getGrant($stu_id);
+        $grantdata['stu_identity'] = str_split($grantdata['stu_identity']);
+
         if ($grantdata) {
             $this->assign('stuinfo', $grantdata);
         } else {
@@ -53,9 +54,9 @@ class Stugrant extends BaseController {
             $res = (new grant())->submitGrant($data);
 
             if ($res) {
-                return json($res = ['valid' => 1, 'msg' => '保存成功']);
+                return json($res = ['valid' => 1, 'msg' => '提交成功']);
             } else {
-                return json($res = ['valid' => 0, 'msg' => '保存失败']);
+                return json($res = ['valid' => 0, 'msg' => '提交失败']);
             }
         }
     }

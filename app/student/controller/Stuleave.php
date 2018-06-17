@@ -53,5 +53,15 @@ class Stuleave extends BaseController {
         }
     }
 
+    public function LeaveRecord(){
+        $stu_id = input('get.stu_id');
+        $leave = (new Leave())->getLeave($stu_id);
+
+        $this->assign('leave', $leave);
+        $this->assign('leaveAll', sizeof($leave));
+        return $this->fetch();
+
+    }
+
 
 }

@@ -51,7 +51,7 @@
 <div class="x-body">
     <fieldset class="layui-elem-field">
         <legend>
-            {$class['class_grade']}&nbsp;{$class['class_staffRoom']}&nbsp;{$class['class_name']}&nbsp;&nbsp;&nbsp;
+            {$class['class_grade']}&nbsp;{$class['class_staffRoom']}&nbsp;{$class['class_name']}&nbsp;&nbsp;&nbsp;免学费文件
 
             {if condition="$reduction_flag == 1"}
             <span class="layui-badge-rim layui-bg-orange">待审查</span>
@@ -61,9 +61,27 @@
             <span class="layui-badge">申请未通过</span>
             {/if}
         </legend>
-        <div class="layui-row">
-            <div class="layui-form layui-col-md12 x-so" id="searchForm">
-                <input id="input" type="text" name="search" placeholder="请输入学生名称"  class="layui-input" style="width: initial;" >
+        <div class="layui-row" style="margin-top: 20px;">
+            <div class="layui-form layui-col-md2 layui-col-sm2 layui-col-xs2 layui-col-md-offset1 layui-col-sm-offset1 layui-col-xs-offset1">
+                <select name="month" id="month" lay-filter="test">
+                    <option value="">请选择一个月份</option>
+                    <option value="1">一月</option>
+                    <option value="2">二月</option>
+                    <option value="3">三月</option>
+                    <option value="4">四月</option>
+                    <option value="5">五月</option>
+                    <option value="6">六月</option>
+                    <option value="7">七月</option>
+                    <option value="8">八月</option>
+                    <option value="9">九月</option>
+                    <option value="10">十月</option>
+                    <option value="11">十一月</option>
+                    <option value="12">十二月</option>
+                </select>
+            </div>
+
+            <div class="layui-form layui-col-md8 layui-col-sm8 layui-col-xs8 x-so" id="searchForm">
+                <input id="input" type="text" name="search" placeholder="请输入学生名称"  class="layui-input" style="width: initial; margin-top: 0;">
                 <button type="button" id="search" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
             </div>
         </div>

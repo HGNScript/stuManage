@@ -11,11 +11,19 @@ namespace app\student\controller;
 
 use app\student\model\student;
 use app\student\validate\Info;
+use app\student\validate\Retiredsoldier;
 
 class Stuinfo extends BaseController {
     public function index(){
         $stu_id = session('student.stu_id');
         $stuinfo = (new student())->getStuInfo($stu_id);
+
+        $card = $stuinfo['stu_identity'];
+
+        $stu_birthday = strlen($card)==15 ? ('19' . substr($card, 6, 6)) : substr($card, 6, 8);
+
+        $stuinfo['stu_birthday'] = $stu_birthday;
+
         $this->assign('stuinfo', $stuinfo);
         return $this->fetch();
     }
@@ -39,16 +47,24 @@ class Stuinfo extends BaseController {
     public function stuInfoKeep(){
         $info = input('post.');
 
+
         $Info = (new Info())->goCheck();
         if (is_object($Info)) {
             return json($Info);
+        }
+
+        if ($info['stu_retiredsoldier'] == '是') {
+            $Info = (new Retiredsoldier())->goCheck();
+            if (is_object($Info)) {
+                return json($Info);
+            }
         }
 
         $stu_infoflag = input('get.stu_infoflag');
         $stu_id = session('student.stu_id');
 
         $res = (new student())->upDataInfo($info, $stu_id, $stu_infoflag);
-        if ($res) {
+        if ($res || $res == 0) {
             if ($stu_infoflag) {
                 return json($res = ['valid' => 1, 'msg' => '提交成功']);
             } else {

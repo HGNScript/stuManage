@@ -22,8 +22,9 @@ class student extends Model {
 
     public function getStuInfo($stu_id) {
         return $this->alias('s')
-                    ->join('class c','s.class_id= c.class_id')
-                    ->where('stu_id', $stu_id)->find();
+                    ->join('class c','s.class_id = c.class_id')
+                    ->join('reduction r','s.stu_id = r.stu_id', 'RIGHT')
+                    ->where('s.stu_id', $stu_id)->find();
     }
 
     public function editPsd($data, $stu_id) {
@@ -43,12 +44,37 @@ class student extends Model {
     public function upDataInfo($info, $stu_id, $stu_infoflag){
         if ($stu_infoflag) {
             $info['stu_infoflag'] = $stu_infoflag;
+
+            if ($info['stu_retiredsoldier'] == '否') {
+                $info['stu_originaltroops'] = null;
+                $info['stu_originalmilitaryrank'] = null;
+                $info['stu_enlist'] = null;
+                $info['stu_enlisttime'] = null;
+                $info['stu_demobilizedtime'] = null;
+                $info['stu_demobilizedstyle'] = null;
+            }
+
             $class_id = (new classModel())->stuGetClass($info['class_name']);
             $info['class_id'] = $class_id;
+
+            (new grant())->allowField(true)->save($info,['stu_id' => $stu_id]);
+            (new Reduction())->allowField(true)->save($info,['stu_id' => $stu_id]);
             return $this->allowField(true)->save($info,['stu_id' => $stu_id]);
         } else {
             $class_id = (new classModel())->stuGetClass($info['class_name']);
             $info['class_id'] = $class_id;
+
+             if ($info['stu_retiredsoldier'] == '否') {
+                $info['stu_originaltroops'] = null;
+                $info['stu_originalmilitaryrank'] = null;
+                $info['stu_enlist'] = null;
+                $info['stu_enlisttime'] = null;
+                $info['stu_demobilizedtime'] = null;
+                $info['stu_demobilizedstyle'] = null;
+            }
+
+            (new grant())->allowField(true)->save($info,['stu_id' => $stu_id]);
+            (new Reduction())->allowField(true)->save($info,['stu_id' => $stu_id]);
             return $this->allowField(true)->save($info,['stu_id' => $stu_id]);
         }
     }

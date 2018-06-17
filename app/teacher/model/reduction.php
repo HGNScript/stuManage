@@ -16,9 +16,10 @@ class reduction extends BaseModel {
     public function getClassReduction($class_id, $reduction_flag) {
         return $this->alias('r')
             ->join('student s','r.stu_id = s.stu_id')
-            ->join('class c','s.class_id = s.class_id')
+            ->join('class c','c.class_id = s.class_id')
             ->where('c.class_id', $class_id)
             ->where('r.reduction_flag', $reduction_flag)
+            ->order('r.create_time desc')
             ->select();
     }
 
@@ -29,6 +30,7 @@ class reduction extends BaseModel {
             ->where('r.stu_name','like', "%".$search."%")
             ->where('r.reduction_flag', $reduction_flag)
             ->where('s.class_id', $class_id)
+            ->order('r.create_time desc')
             ->select();
     }
 }

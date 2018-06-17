@@ -2,9 +2,6 @@ body{
 	margin-bottom: 60px;
 }
 /*移动端样式*/
-.yidong{
-	display: none;
-}
 .input1{
 	width: 50px;
 	padding-left:10px; 
@@ -67,12 +64,6 @@ footer p{
 @media (max-width:450px) {
 	.xiangpian{
 		margin: 0 auto;
-	}
-	.yidong{
-		display: block;
-	}
-	.pc{
-		display: none;
 	}
 	.navbar-nav{
 	margin-top: 0px;

@@ -47,13 +47,8 @@ class Classlist extends BaseModel {
             }
         }
 
-        if ($data['curr']) {
-            $star = ($data['curr'] - 1) * $data['limit'];
-            $classlist = array_slice($classlist, $star, $data['limit']);
+
             return $classlist;
-        } else {
-            return sizeof($classlist);
-        }
     }
 
     public function excelAddClasslist($file, $info, $staffRoom, $grade) {

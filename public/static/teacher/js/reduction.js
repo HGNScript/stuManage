@@ -1,10 +1,10 @@
 $(function () {
     examine()
-    $('.print').click(function(){
+    $('.print').click(function () {
         doPrint()
     })
 
-    $('#search').click(function(){
+    $('#search').click(function () {
         search()
     })
     $('#input').keypress(function (event) {
@@ -13,33 +13,40 @@ $(function () {
             search()
         }
     });
+
+    layui.use('form', function () {
+        var form = layui.form;
+        form.on('select(test)', function (data) {
+            search()
+        });
+    });
 })
 
-var notice = function (){
+var notice = function () {
     var class_id = $('#class_id').val()
     console.log(class_id)
     $.ajax({
         type: "get",
-        url: '/teacher/Index/classNotice?class_id='+class_id,
+        url: '/teacher/Index/classNotice?class_id=' + class_id,
         traditional: true,
         dataType: "json",
-        beforeSend:function(XMLHttpRequest){
+        beforeSend: function (XMLHttpRequest) {
             layer.close(layer.index);
             layer.load()
         },
-        success: function(data) {
+        success: function (data) {
 
-            parent.$(".reduction").each(function(i){
+            parent.$(".reduction").each(function (i) {
                 var _this = $(this)
                 var class_name = $(this).parents("ul").prev().children('cite').html()
 
                 if (data['class_name'] == class_name) {
                     if (data['reduction']) {
 
-                        parent.$('.layui-this').find("span").replaceWith(`<span class="layui-badge">`+data['reduction']+`</span>`)
+                        parent.$('.layui-this').find("span").replaceWith(`<span class="layui-badge">` + data['reduction'] + `</span>`)
 
                         _this.html('')
-                        _this.html('免学费申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">'+data['reduction']+'</span>')
+                        _this.html('免学费申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">' + data['reduction'] + '</span>')
 
                     } else {
 
@@ -76,7 +83,7 @@ var examine = function () {
                 traditional: true,
                 dataType: "json",
                 data: {'reduction_flag': reduction_flag, 'reduction_id': reduction_id},
-                beforeSend:function(XMLHttpRequest){
+                beforeSend: function (XMLHttpRequest) {
                     layer.close(layer.index);
                     layer.load()
                 },
@@ -87,25 +94,25 @@ var examine = function () {
                         if (res['msg'].result == 0) {
                             if (reduction_flag == 2) {
                                 if (res['msg'].detail[0]['result'] != 0) {
-                                    layer.alert("已通过请假申请,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
+                                    layer.alert("已通过请假申请,但" + res['msg'].detail[0]['errmsg'] + ",通知发送不成功", function (index) {
                                         layer.close(index);
                                         notice()
                                     });
                                 } else {
-                                    layer.alert("已通过请假申请，已将通知发送至学生", function(index){
+                                    layer.alert("已通过请假申请，已将通知发送至学生", function (index) {
                                         layer.close(index);
                                         notice()
                                     });
                                 }
                             } else {
                                 if (res['msg'].detail[0]['result'] != 0) {
-                                    layer.alert("未通过请假申请,"+res['msg'].detail[0]['errmsg']+"通知发送不成功", function(index){
+                                    layer.alert("未通过请假申请," + res['msg'].detail[0]['errmsg'] + "通知发送不成功", function (index) {
                                         layer.close(index);
                                         notice()
                                     });
 
                                 } else {
-                                    layer.alert("未通过请假申请，已将通知发送至学生", function(index){
+                                    layer.alert("未通过请假申请，已将通知发送至学生", function (index) {
                                         layer.close(index);
                                         notice()
                                     });
@@ -127,7 +134,7 @@ var examine = function () {
 }
 
 
-function doPrint(){
+function doPrint() {
     var head_str = "<html><head><title></title></head><body>"; //先生成头部
     var foot_str = "</body></html>"; //生成尾部
     var older = document.body.innerHTML;
@@ -136,7 +143,7 @@ function doPrint(){
     document.body.innerHTML = head_str + new_str + foot_str; //构建新网页
     window.print(); //打印刚才新建的网页
     document.body.innerHTML = old_str; //将网页还原
-    $('.print').click(function(){
+    $('.print').click(function () {
         doPrint()
     })
     return false;
@@ -146,16 +153,38 @@ function search() {
     var search = $('#input').val()
     var class_id = $('#class_id').val()
     var reduction_flag = $('#reduction_flag').val()
+    var month = $('#month').val();
+
+    if (!search && !month) {
+        layer.msg('输入你要查询的数据或月份', {
+            time: 1000,
+            end: function (){
+                location.reload()
+            }
+
+        })
+        return 0
+    }
     $.ajax({
         type: "post",
         url: '/teacher/Reduction/search',
         traditional: true,
         dataType: "json",
-        data: {'reduction_flag': reduction_flag, 'search': search, 'class_id': class_id},
+        data: {'reduction_flag': reduction_flag, 'search': search, 'class_id': class_id, 'month': month},
+        beforeSend: function () {
+            layer.load()
+        },
         success: function (data) {
+            layer.close(layer.index);
+            if (!data.length > 0) {
+                layer.msg('没有您查找的数据', {
+                    time: 1000,
+                })
+            }
+
             $("#ul").empty()
             var data_html = ""
-            $.each(data, function(index, array) {
+            $.each(data, function (index, array) {
                 data_html += `<li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                     <div class="layui-timeline-content layui-text">

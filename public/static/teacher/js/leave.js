@@ -5,11 +5,17 @@ $(function () {
     })
 
     $('#input').keypress(function (event) {
-        console.log(1)
         var keynum = (event.keyCode ? event.keyCode : event.which);
         if (keynum == '13') {
             search()
         }
+    });
+
+    layui.use('form', function(){
+        var form = layui.form;
+        form.on('select(test)', function(data){
+            search()
+        });
     });
 
 })
@@ -61,6 +67,7 @@ var examine = function () {
         var leave_flag = $(this).attr('data-leave_flag')
         var leave_id = $('#leave_id').val()
         var msg = ''
+
 
         if (leave_flag == 2) {
             msg = '确定该文件审查通过，并通知学生吗'
@@ -125,13 +132,34 @@ function search() {
     var search = $('#input').val()
     var class_id = $('#class_id').val()
     var leave_flag = $('#leave_flag').val()
+    var month = $('#month').val();
+
+    if (!search && !month) {
+        layer.msg('输入你要查询的数据或月份', {
+            time: 1000,
+            end: function(){
+                location.reload()
+            }
+        })
+        return 0
+    }
     $.ajax({
         type: "post",
         url: '/teacher/Leave/search',
         traditional: true,
         dataType: "json",
-        data: {'leave_flag': leave_flag, 'search': search, 'class_id': class_id},
+        data: {'leave_flag': leave_flag, 'search': search, 'class_id': class_id, 'month': month},
+        beforeSend: function (){
+            layer.load()
+        },
         success: function (data) {
+            layer.close(layer.index);
+            if (!data.length > 0) {
+                layer.msg('没有您查找的数据', {
+                    time: 1000,
+                })
+            }
+
             $("#ul").empty()
             var data_html = ""
             $.each(data, function(index, array) {

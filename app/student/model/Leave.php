@@ -40,4 +40,9 @@ class Leave extends Model {
         }
 
     }
+
+    public function getLeave($id) {
+        return $this->where('stu_id', $id)->select();
+    }
+
 }

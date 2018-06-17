@@ -19,6 +19,8 @@ class Stureduction extends BaseController {
         $stuinfo = student::get($stu_id);
         $reductionData = Reduction::where('stu_id', $stu_id)->find();
 
+        $reductionData['stu_identity'] = str_split($reductionData['stu_identity']);
+
         if ($reductionData) {
             $this->assign('stuinfo', $reductionData);
         } else {

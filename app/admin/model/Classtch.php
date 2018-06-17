@@ -36,13 +36,9 @@ class Classtch extends BaseModel {
             $classtch = $this->where('classtch_staffRoom', $data['staffRoom'])->select();
         }
 
-        if ($data['curr']) {
-            $star = ($data['curr'] - 1) * $data['limit'];
-            $classtch = array_slice($classtch, $star, $data['limit']);
-            return $classtch;
-        } else {
-            return sizeof($classtch);
-        }
+
+        return $classtch;
+
     }
 
     public function excelAddClasstch($info, $staffRoom) {

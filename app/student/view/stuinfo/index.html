@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
     <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
     <link rel="stylesheet" href="__STATIC__/student/css/base.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/student/css/stuinfo.css">
 
     <title>个人信息</title>
     <script src="__STATIC__/student/v/lib/jquery.js"></script>
@@ -53,7 +54,7 @@
                         <li role="separator" class="divider"></li>
                         <li><a href="/student/Index/out">退出</a></li>
                     </ul>
-                </li>
+                </li>   
 
             </ul>
         </div>
@@ -61,13 +62,12 @@
     </div>
 </nav>
 <!-- 个人信息表 -->
-<form action="" method="" class="form1" id="stuInfoForm">
-    <table class="table table-bordered">
-        <h3 class="text-center">个人信息表</h3>
-        <tbody>
-        <tr>
-            <td>
-                <div class="xiangpian">
+<div class="content layui-row">
+    <form action="" method="" class="form layui-form layui-col-xs12 layui-col-sm6 layui-col-md6 layui-col-md-offset3 layui-col-sm-offset3 " id="stuInfoForm">
+        
+            <h3 class="text-center">个人信息表</h3>
+                
+                <div class="xiangpian stuPhoto">
                     <a href="javascript:;" id="upload" style="display: inline-block;width: 100%;height: 100%;">
                         {if condition="$stuinfo['stu_imgurl']"}
                         <img src="{$stuinfo['stu_imgurl']}" alt="点击上传头像" style="display: inline-block;width: 100%;height: 100%;" id="img">
@@ -76,257 +76,829 @@
                         {/if}
                     </a>
                 </div>
-            </td>
-        </tr>
-        <tr>
-            <td>学习形式: <input type="text" value="全日制" name="stu_studystyle"></td>
-        </tr>
-        <tr>
-            <td>姓名: <input type="text" name="stu_name" value="{$stuinfo['stu_name']}"></td>
-        </tr>
-        <tr>
-            <td>学号: <input type="text"name="stu_number" value="{$stuinfo['stu_number']}"></td>
-        </tr>
-        <tr>
-            <td>身份证号码: <input type="text" name="stu_identity" value="{$stuinfo['stu_identity']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_sex'] == '女'"}
-            <td>性别: <input type="radio" name="stu_sex" value="男"> 男 <input type="radio" name="stu_sex"  checked="checked"  value="女"> 女</td>
-            {else/}
-            <td>性别: <input type="radio" name="stu_sex" checked="checked" value="男"> 男 <input type="radio" name="stu_sex" value="女"> 女</td>
-            {/if}
-        </tr>
-        <tr>
-            <td>出生日期: <input type="text" name="stu_birthday" value="{$stuinfo['stu_birthday']}" placeholder="点击选择时间" id="birthday"></td>
-        </tr>
-        <tr>
-            <td>民族: <input type="text" name="stu_nation" value="{$stuinfo['stu_nation']}"></td>
-        </tr>
-        <tr>
-            <td>联系电话: <input type="text" name="stu_phone" value="{$stuinfo['stu_phone']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_politicalstatus'] == '党员'"}
-            <td>政治面貌: <input type="radio" name="stu_politicalstatus"  value="群众"> 群众 <input type="radio" name="stu_politicalstatus" value="团员">
-                团员 <input type="radio" name="stu_politicalstatus" value="党员" checked="checked"> 党员
-            </td>
-            {elseif condition="$stuinfo['stu_politicalstatus'] == '团员'" /}
-            <td>政治面貌: <input type="radio" name="stu_politicalstatus" value="群众"> 群众 <input type="radio" name="stu_politicalstatus"  checked="checked" value="团员">
-                团员 <input type="radio" name="stu_politicalstatus" value="党员"> 党员
-            </td>
-            {else/}
-            <td>政治面貌: <input type="radio" name="stu_politicalstatus" value="群众" checked="checked"> 群众 <input type="radio" name="stu_politicalstatus" value="团员">团员 <input type="radio" name="stu_politicalstatus"   value="党员"> 党员
-            </td>
-            {/if}
-        </tr>
-        <tr>
-            <td>户口所在地: <input type="text" name="stu_hukouaddress" placeholder="X省X市X县(市、区)X镇(街道)X村(号)" value="{$stuinfo['stu_hukouaddress']}"></td>
-        </tr>
-        <tr>
-            <td>户口性质:
-                <select name="stu_hokoustyle" style="width: 200px;height: 30px;">
-                    <option value="">请选择一种户口性质</option>
-                    {if condition="$stuinfo['stu_hokoustyle'] == '农村户口'"}
-                    <option value="农村户口" selected = "selected">农村户口</option>
-                    <option value="非农户口">非农户口</option>
-                    {elseif condition="$stuinfo['stu_hokoustyle'] == '非农户口'" /}
-                    <option value="农村户口">农村户口</option>
-                    <option value="非农户口"  selected = "selected">非农户口</option>
-                    {else/}
-                    <option value="农村户口">农村户口</option>
-                    <option value="非农户口">非农户口</option>
-                    {/if}
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td>学习专业名称: <input type="text" name="stu_specialty" value="{$stuinfo['stu_specialty']}"></td>
-        </tr>
-        <tr>
-            <td>毕业学校: <input type="text" name="stu_graduation" value="{$stuinfo['stu_graduation']}"></td>
-        </tr>
-        <tr>
-            <td>招生年份: <input type="text" name="stu_enrolmentyear" value="{$stuinfo['stu_enrolmentyear']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_enrollmentquarter'] == '秋季'"}
-            <td>招生季度: <input type="radio" name="stu_enrollmentquarter" checked="checked" value="秋季">秋季 <input type="radio" name="stu_enrollmentquarter" value="春季">春季</td>
-            {else/}
-            <td>招生季度: <input type="radio" name="stu_enrollmentquarter" value="秋季">秋季 <input type="radio" name="stu_enrollmentquarter"  checked="checked"  value="春季">春季</td>
-            {/if}
-        </tr>
-        <tr>
-            <td>班级: <input type="text" name="class_name" value="{$stuinfo['class_name']}"></td>
-        </tr>
-        <tr>
-            <td>专业级别: <input type="text" value="高级" name="stu_professionallevel" value="{$stuinfo['stu_professionallevel']}"></td>
-        </tr>
-        <tr>
-            <td>入学前文化程度: <input type="text" value="高中" name="stu_Preschooleducation" value="{$stuinfo['stu_Preschooleducation']}"></td>
-        </tr>
-        <tr>
-            <td>学制: <input type="text" value="三年" name="stu_schoolsystem" value="{$stuinfo['stu_schoolsystem']}"></td>
-        </tr>
-        <tr>
-            <td>家庭联系人: <input type="text" name="stu_familycontact" value="{$stuinfo['stu_familycontact']}"></td>
-        </tr>
-        <tr>
-            <td>家庭联系电话: <input type="text" name="stu_familyphone" value="{$stuinfo['stu_familyphone']}"></td>
-        </tr>
-        <tr>
-            <td>家庭年总收入: <input type="text" name="stu_totalannualincomefamily" value="{$stuinfo['stu_totalannualincomefamily']}"></td>
-        </tr>
-        <tr>
-            <td>家庭人均收入: <input type="text" name="stu_percapitaincomefamily" value="{$stuinfo['stu_percapitaincomefamily']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_100thousand'] == '否'"}
-            <td>是否10万以下民族: <input type="radio" name="stu_100thousand" checked="checked" value="否"> 否 <input type="radio" name="stu_100thousand" value="是"> 是
-            </td>
-            {else/}
-            <td>是否10万以下民族: <input type="radio" name="stu_100thousand" value="否"> 否 <input type="radio" name="stu_100thousand" checked="checked" value="是"> 是
-            </td>
-            {/if}
-
-        </tr>
-        <tr>
-            <td>是否家庭困难: <input type="text" value="都申请" name="stu_familydifficulties" value="{$stuinfo['stu_familydifficulties']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_familylow'] == '否'"}
-            <td>是否低保: <input type="radio" name="stu_familylow" checked="checked" value="否"> 否 <input type="radio" name="stu_familylow" value="是"> 是</td>
-            {else/}
-            <td>是否低保: <input type="radio" name="stu_familylow" value="否"> 否 <input type="radio" name="stu_familylow" checked="checked" value="是"> 是</td>
-            {/if}
-        </tr>
-        <tr>
-            <td>收入来源: <input type="text" name="stu_sourceincome" value="{$stuinfo['stu_sourceincome']}"></td>
-        </tr>
-        <tr>
-            <td>邮政编码: <input type="text" name="stu_postalcode" value="{$stuinfo['stu_postalcode']}"></td>
-        </tr>
-        <tr>
-            <td>国别: <input type="text" value="中国大陆" name="stu_differentcountries" value="{$stuinfo['stu_differentcountries']}"></td>
-        </tr>
-        <tr>
-            <td>证件类型: <input type="text" value="身份证" name="stu_certificatestyle" value="{$stuinfo['stu_certificatestyle']}"></td>
-        </tr>
-        <tr>
-            <td>户口地址: <input type="text" name="stu_hukouaddresstow" value="{$stuinfo['stu_hukouaddresstow']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_retiredsoldier'] == '是'"}
-            <td>是否退役士兵: <input type="radio" name="stu_retiredsoldier" value="否"> 否 <input type="radio" name="stu_retiredsoldier" value="是"  checked="checked"> 是
+                
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学习形式:</label> 
+                    <div class="layui-input-block">
+                {if condition="$stuinfo['stu_studystyle'] == '非全日制'"}
+                        <input type="radio" name="stu_studystyle" value="全日制" title="全日制">
+                        <input type="radio" name="stu_studystyle" checked value="非全日制" title="非全日制">
                 {else/}
-            <td>是否退役士兵: <input type="radio" name="stu_retiredsoldier" value="否" checked="checked"> 否 <input type="radio" name="stu_retiredsoldier"  value="是"> 是
-
+                        <input type="radio" name="stu_studystyle" checked value="全日制" title="全日制">
+                        <input type="radio" name="stu_studystyle" value="非全日制" title="非全日制">
                 {/if}
-            </td>
-        </tr>
-        <tr>
-            <td>入学总分: <input type="text" name="stu_totalentrancescore" value="{$stuinfo['stu_totalentrancescore']}"></td>
-        </tr>
-        <tr>
-            <td>宿舍号: <input type="text" placeholder="X-XXX-X" name="stu_dormnumber" value="{$stuinfo['stu_dormnumber']}"></td>
-        </tr>
-        <tr>
-            <td>办学点名称: <input type="text" value="校本部" name="stu_nameofschoolrunningpoint" value="{$stuinfo['stu_nameofschoolrunningpoint']}"></td>
-        </tr>
-        <tr>
-            <td>学生类别: <input type="text" value="应届毕业" name="stu_classstudents" value="{$stuinfo['stu_classstudents']}"></td>
-        </tr>
-        <tr>
-            <td>户口区域: <input type="text" name="stu_hukouquyu" value="{$stuinfo['stu_hukouquyu']}"></td>
-        </tr>
-        <tr>
-            <td>户籍所在地: <input type="text" name="stu_hukouaddressf" value="{$stuinfo['stu_hukouaddressf']}"></td>
-        </tr>
-        <tr>
-            {if condition="$stuinfo['stu_retiredsoldier'] == '是'"}
-            <td>是否三侨: <input type="radio" name="stu_sanqiao"  value="否"> 否 <input type="radio" name="stu_sanqiao" value="是" checked="checked"> 是</td>
-            {else/}
-            <td>是否三侨: <input type="radio" name="stu_sanqiao" checked="checked" value="否"> 否 <input type="radio" name="stu_sanqiao" value="是"> 是</td>
+                    </div>
+                </div>
 
-            {/if}
-        </tr>
-        <tr>
-            <td>学生状态: <input type="text" value="在校" name="stu_state" value="{$stuinfo['stu_state']}"></td>
-        </tr>
-        <tr>
-            <td>原部队: <input type="text" name="stu_originaltroops" value="{$stuinfo['stu_originaltroops']}"></td>
-        </tr>
-        <tr>
-            <td>原军衔: <input type="text" name="stu_originalmilitaryrank" value="{$stuinfo['stu_originalmilitaryrank']}"></td>
-        </tr>
-        <tr>
-            <td>入伍地: <input type="text" name="stu_enlist" value="{$stuinfo['stu_enlist']}"></td>
-        </tr>
-        <tr>
-            <td>入伍时间: <input placeholder="点击选择时间" type="text" name="stu_enlisttime" value="{$stuinfo['stu_enlisttime']}" id="enlisttime"></td>
-        </tr>
-        <tr>
-            <td>退役时间: <input type="text" placeholder="点击选择时间" name="stu_demobilizedtime" value="{$stuinfo['stu_demobilizedtime']}" id="demobilizedtime"></td>
-        </tr>
-        <tr>
-            <td>退役方式: <input type="text" name="stu_demobilizedstyle" value="{$stuinfo['stu_demobilizedstyle']}"></td>
-        </tr>
-        <tr>
-            <td>健康状况: <input type="text" placeholder="健康或良好" name="stu_health" value="{$stuinfo['stu_health']}"></td>
-        </tr>
-        <tr>
-            <td>广州市户口地区: <input type="text" name="stu_guangzhouHukou" value="{$stuinfo['stu_guangzhouHukou']}"></td>
-        </tr>
-        <tr>
-            <td>原毕业学校: <input type="text" placeholder="广州市就填写" name="stu_guangzhouprimaryschool" value="{$stuinfo['stu_guangzhouprimaryschool']}"></td>
-        </tr>
-        <tr>
-            <td>原毕业学校源省: <input type="text" name="stu_sourceprovince" value="{$stuinfo['stu_sourceprovince']}"></td>
-        </tr>
-        <tr>
-            <td>原毕业学校源市: <input type="text" name="stu_shengyuancity" value="{$stuinfo['stu_shengyuancity']}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <input type="hidden" value="{$stuinfo['stu_imgurl']}" id="img_url" name="stu_imgurl">
-    <input type="hidden" value="{$stuinfo['stu_infoflag']}" id="stu_infoflag">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">姓名:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_name" value="{$stuinfo['stu_name']}" class="layui-input definite">
+                    </div>
+                </div>
 
-    <div class="btn-group btn-group-lg" style="margin:93px auto;width: 160px;">
-        <button type="button" class="btn btn-default .btn-group-justified submit" id="stuInfoKeep">保存</button>
-        <button type="button" class="btn btn-default .btn-group-justified submit" id="stuInfoSubmit">提交</button>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学号:</label>
+                    <div class="layui-input-block">
+                        <input type="text"name="stu_number" value="{$stuinfo['stu_number']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">籍贯:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_jg" value="{$stuinfo['stu_jg']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_identity" value="{$stuinfo['stu_identity']}" class="layui-input definite" id="stu_identity">
+                    </div>
+                </div>      
+                
+
+                {if condition="$stuinfo['stu_sex'] == '女'"}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别:</label> 
+                    <div class="layui-input-block">
+                        <input type="radio" name="stu_sex" value="男" title="男" >
+                        <input type="radio" name="stu_sex" value="女" title="女" checked >
+                    </div>
+                </div>
+                    
+                {else/}
+                <div class="layui-form-item">
+                    <label class="layui-form-label">性别:</label> 
+                    <div class="layui-input-block">
+                        <input type="radio" name="stu_sex" value="男" title="男" checked >
+                        <input type="radio" name="stu_sex" value="女" title="女" >
+                    </div>
+                </div>
+                {/if}
+
+                <div class="layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">出生日期:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_birthday" value="{$stuinfo['stu_birthday']}" placeholder="点击选择时间"  class="layui-input" id="stu_birthday" readonly="readonly">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">民族:</label>
+                    <div class="layui-input-block">
+                        {if condition="$stuinfo['stu_nation']"}
+                        <input type="text" name="stu_nation" value="{$stuinfo['stu_nation']}" class="layui-input definite">
+                        {else/}
+                        <input type="text" name="stu_nation" value="汉族" class="layui-input definite">
+                        {/if}
+                    </div>
+                </div>  
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系电话:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_phone" value="{$stuinfo['stu_phone']}" class="layui-input definite">
+                    </div>
+                </div> 
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">政治面貌:</label> 
+                    <div class="layui-input-block">
+                        {if condition="$stuinfo['stu_politicalstatus'] == '党员'"}
+                        <input type="radio" name="stu_politicalstatus"  value="群众" title="群众">
+                        <input type="radio" name="stu_politicalstatus" value="团员" title="团员">
+                        <input type="radio" name="stu_politicalstatus" value="党员" checked title="党员">
+
+                
+                        {elseif condition="$stuinfo['stu_politicalstatus'] == '团员'" /}
+                        <input type="radio" name="stu_politicalstatus" value="群众" title="群众"> 
+                        <input type="radio" name="stu_politicalstatus"  checked value="团员" title="团员">
+                        <input type="radio" name="stu_politicalstatus" value="党员" title="党员">
+                
+                        {else/}
+                        <input type="radio" name="stu_politicalstatus" value="群众" checked title="群众">
+                        <input type="radio" name="stu_politicalstatus" value="团员" title="团员">
+                        <input type="radio" name="stu_politicalstatus"   value="党员" title="党员">
+                
+                        {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">户口所在地:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_hukouaddress" value="{$stuinfo['stu_hukouaddress']}" class="layui-input definite">
+                    </div>
+                </div> 
+
+
+               <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">户口性质</label>
+                    <div class="layui-input-block">
+                    <select name="stu_hokoustyle">
+                        <option value="">请选择一种户口性质</option>
+                        {if condition="$stuinfo['stu_hokoustyle'] == '农村'"}
+                        <option value="农村" selected = "selected">农村</option>
+                        <option value="县镇">县镇</option>
+                        <option value="城市">城市</option>
+                        {elseif condition="$stuinfo['stu_hokoustyle'] == '县镇'" /}
+                        <option value="农村" >农村</option>
+                        <option value="县镇" selected = "selected">县镇</option>
+                        <option value="城市">城市</option>
+                        {else/}
+                        <option value="农村">农村</option>
+                        <option value="县镇">县镇</option>
+                        <option value="城市" selected = "selected">城市</option>
+                        {/if}
+                    </select>
+                    </div>
+               </div>     
+                
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学习专业名称:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_specialty" value="{$stuinfo['stu_specialty']}" class="layui-input definite">
+                    </div>
+                </div> 
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">毕业学校:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_graduation" value="{$stuinfo['stu_graduation']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">招生年份:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_grade" value="{$stuinfo['stu_grade']}" class="layui-input definite">
+                    </div>
+                </div> 
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">招生季度:</label> 
+                    <div class="layui-input-block">
+                        {if condition="$stuinfo['stu_enrollmentquarter'] == '秋季'"}
+                        <input type="radio" name="stu_enrollmentquarter" checked value="秋季" title="秋季"> 
+                        <input type="radio" name="stu_enrollmentquarter" value="春季" title="春季">
+                        {else/}
+                        <input type="radio" name="stu_enrollmentquarter" value="秋季" title="秋季"> 
+                        <input type="radio" name="stu_enrollmentquarter"  checked  value="春季" title="春季">
+                        {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">班级:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="class_name" value="{$stuinfo['class_name']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">专业级别</label>
+                    <div class="layui-input-block">
+                        <select name="stu_professionallevel">请选择一种专业级别
+                        {if condition="$stuinfo['stu_professionallevel'] == '初级'"}
+                            <option value="初级" selected = "selected">初级</option>
+                            <option value="中级">中级</option>
+                            <option value="高级">高级</option>
+                            <option value="预备技师">预备技师</option>
+                            <option value="技师">技师</option>
+                        {elseif condition="$stuinfo['stu_professionallevel'] == '中级'" /}
+                            <option value="初级">初级</option>
+                            <option value="中级" selected = "selected">中级</option>
+                            <option value="高级">高级</option>
+                            <option value="预备技师">预备技师</option>
+                            <option value="技师">技师</option>
+                        {elseif condition="$stuinfo['stu_professionallevel'] == '预备技师'" /}
+                            <option value="初级">初级</option>
+                            <option value="中级">中级</option>
+                            <option value="高级">高级</option>
+                            <option value="预备技师"  selected = "selected">预备技师</option>
+                            <option value="技师">技师</option>
+                         {elseif condition="$stuinfo['stu_professionallevel'] == '技师'" /}
+                            <option value="初级">初级</option>
+                            <option value="中级">中级</option>
+                            <option value="高级">高级</option>
+                            <option value="预备技师">预备技师</option>
+                            <option value="技师" selected = "selected">技师</option>
+                        {else/}
+                            <option value="初级">初级</option>
+                            <option value="中级">中级</option>
+                            <option value="高级"  selected = "selected">高级</option>
+                            <option value="预备技师">预备技师</option>
+                            <option value="技师">技师</option>
+                        {/if}
+                        </select>
+                    </div>
+               </div>
+
+
+               <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">入学前文化程度</label>
+                    <div class="layui-input-block">
+                        <select name="stu_Preschooleducation">请选择一种文化程度
+                        {if condition="$stuinfo['stu_Preschooleducation'] == '本科'"}
+                            <option value="本科" selected = "selected">本科</option>
+                            <option value="大专">大专</option>
+                            <option value="中专">中专</option>
+                            <option value="技校">技校</option>
+                            <option value="高中">高中</option>
+                            <option value="职高">职高</option>
+                            <option value="初中">初中</option>
+                        {elseif condition="$stuinfo['stu_Preschooleducation'] == '大专'" /}
+                            <option value="本科">本科</option>
+                            <option value="大专"  selected = "selected">大专</option>
+                            <option value="中专">中专</option>
+                            <option value="技校">技校</option>
+                            <option value="高中">高中</option>
+                            <option value="职高">职高</option>
+                            <option value="初中">初中</option>
+                        {elseif condition="$stuinfo['stu_Preschooleducation'] == '中专'" /}
+                            <option value="本科">本科</option>
+                            <option value="大专">大专</option>
+                            <option value="中专"  selected = "selected">中专</option>
+                            <option value="技校">技校</option>
+                            <option value="高中">高中</option>
+                            <option value="职高">职高</option>
+                            <option value="初中">初中</option>
+                         {elseif condition="$stuinfo['stu_Preschooleducation'] == '技校'" /}
+                            <option value="本科">本科</option>
+                            <option value="大专">大专</option>
+                            <option value="中专">中专</option>
+                            <option value="技校" selected = "selected">技校</option>
+                            <option value="高中">高中</option>
+                            <option value="职高">职高</option>
+                            <option value="初中">初中</option>
+                        {elseif condition="$stuinfo['stu_Preschooleducation'] == '初中'" /}
+                            <option value="本科">本科</option>
+                            <option value="大专">大专</option>
+                            <option value="中专">中专</option>
+                            <option value="技校">技校</option>
+                            <option value="高中">高中</option>
+                            <option value="职高">职高</option>
+                            <option value="初中" selected = "selected">初中</option>
+                        {elseif condition="$stuinfo['stu_Preschooleducation'] == '职高'" /}
+                            <option value="本科">本科</option>
+                            <option value="大专">大专</option>
+                            <option value="中专">中专</option>
+                            <option value="技校">技校</option>
+                            <option value="高中">高中</option>
+                            <option value="职高" selected = "selected">职高</option>
+                            <option value="初中">初中</option>
+                        {else/}
+                            <option value="本科">本科</option>
+                            <option value="大专">大专</option>
+                            <option value="中专">中专</option>
+                            <option value="技校">技校</option>
+                            <option value="高中" selected = "selected">高中</option>
+                            <option value="职高">职高</option>
+                            <option value="初中">初中</option>
+                        {/if}
+                        </select>
+                    </div>
+               </div>  
+
+               <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">学制</label>
+                    <div class="layui-input-block">
+                        <select name="stu_schoolsystem">请选择一种学制
+                        {if condition="$stuinfo['stu_schoolsystem'] == '二年'"}
+                            <option value="二年" selected = "selected">二年</option>
+                            <option value="三年">三年</option>
+                            <option value="四年">四年</option>
+                            <option value="五年">五年</option>
+                            <option value="六年">六年</option>
+                        {elseif condition="$stuinfo['stu_schoolsystem'] == '四年'" /}
+                            <option value="二年">二年</option>
+                            <option value="三年">三年</option>
+                            <option value="四年"  selected = "selected">四年</option>
+                            <option value="五年">五年</option>
+                            <option value="六年">六年</option>
+                        {elseif condition="$stuinfo['stu_schoolsystem'] == '五年'" /}
+                            <option value="二年">二年</option>
+                            <option value="三年">三年</option>
+                            <option value="四年">四年</option>
+                            <option value="五年"  selected = "selected">五年</option>
+                            <option value="六年">六年</option>
+                         {elseif condition="$stuinfo['stu_schoolsystem'] == '六年'" /}
+                            <option value="二年">二年</option>
+                            <option value="三年">三年</option>
+                            <option value="四年">四年</option>
+                            <option value="五年">五年</option>
+                            <option value="六年"  selected = "selected">六年</option>
+                        {else/}
+                            <option value="二年">三年</option>
+                            <option value="三年"  selected = "selected">三年</option>
+                            <option value="四年">四年</option>
+                            <option value="五年">五年</option>
+                            <option value="六年">六年</option>
+                        {/if}
+                        </select>
+                    </div>
+               </div> 
+
+               <div class="layui-form-item">
+                    <label class="layui-form-label">家庭联系人:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_familycontact" value="{$stuinfo['stu_familycontact']}" class="layui-input definite">
+                    </div>
+                </div> 
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家庭联系电话:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_familyphone" value="{$stuinfo['stu_familyphone']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家庭年总收入:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_totalannualincomefamily" value="{$stuinfo['stu_totalannualincomefamily']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家庭人均收入:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_percapitaincomefamily" value="{$stuinfo['stu_percapitaincomefamily']}" class="layui-input definite">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否10万以下民族:</label> 
+                    <div class="layui-input-block">
+                    {if condition="$stuinfo['stu_100thousand'] == '否'"}
+                        <input type="radio" name="stu_100thousand" value="是" title="是">
+                        <input type="radio" name="stu_100thousand" checked value="否" title="否">
+                    {else/}
+                        <input type="radio" name="stu_100thousand" value="是"  checked title="是">
+                        <input type="radio" name="stu_100thousand" value="否" title="否">
+                    {/if}   
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">是否家庭困难:</label> 
+                    <div class="layui-input-block">
+                        <select name="stu_familydifficulties">是否家庭困难
+                        {if condition="$stuinfo['stu_familydifficulties'] == '都申请'"}
+                            <option selected value="都申请">都申请</option>
+                            <option value="都不申请">都不申请</option>
+                            <option value="只申请助学金">只申请助学金</option>
+                            <option value="只申请免学费">只申请免学费</option>
+                        {elseif condition="$stuinfo['stu_familydifficulties'] == '都不申请'" /}
+                            <option value="都申请">都申请</option>
+                            <option selected value="都不申请">都不申请</option>
+                            <option value="只申请助学金">只申请助学金</option>
+                            <option value="只申请免学费">只申请免学费</option>
+                        {elseif condition="$stuinfo['stu_familydifficulties'] == '只申请助学金'" /}
+                            <option value="都申请">都申请</option>
+                            <option value="都不申请">都不申请</option>
+                            <option selected value="只申请助学金">只申请助学金</option>
+                            <option value="只申请免学费">只申请免学费</option>
+                        {elseif condition="$stuinfo['stu_familydifficulties'] == '只申请免学费'" /}
+                            <option value="都申请">都申请</option>
+                            <option value="都不申请">都不申请</option>
+                            <option value="只申请助学金">只申请助学金</option>
+                            <option selected value="只申请免学费">只申请免学费</option>
+                        {/if} 
+                        </select>  
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否低保:</label> 
+                    <div class="layui-input-block">
+                {if condition="$stuinfo['stu_familylow'] == '否'"}
+                        <input type="radio" name="stu_familylow" value="是" title="是">
+                        <input type="radio" name="stu_familylow" checked value="否" title="否">
+                {else/}
+                        <input type="radio" name="stu_familylow" checked value="是" title="是">
+                        <input type="radio" name="stu_familylow" value="否" title="否">
+                {/if}
+                    </div>
+                </div>
+                
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">收入来源:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_sourceincome" value="{$stuinfo['stu_sourceincome']}" class="layui-input definite" placeholder="如填写务农、经商等">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">邮政编码:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_postalcode" value="{$stuinfo['stu_postalcode']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">国别:</label> 
+                    <div class="layui-input-block">
+                        <select name="stu_differentcountries">请选择国别
+                        {if condition="$stuinfo['stu_differentcountries'] == '港澳'"}
+                            <option value="中国大陆">中国大陆</option>
+                            <option value="港澳" selected >港澳</option>
+                            <option value="台湾">台湾</option>
+                            <option value="国外">国外</option>
+                        {elseif condition="$stuinfo['stu_differentcountries'] == '台湾'" /}
+                            <option value="中国大陆">中国大陆</option>
+                            <option value="港澳">港澳</option>
+                            <option value="台湾" selected >台湾</option>
+                            <option value="国外">国外</option>
+                        {elseif condition="$stuinfo['stu_differentcountries'] == '国外'" /}
+                            <option value="中国大陆">中国大陆</option>
+                            <option value="港澳">港澳</option>
+                            <option value="台湾">台湾</option>
+                            <option value="国外"  selected >国外</option>
+                        {else/}
+                            <option selected value="中国大陆">中国大陆</option>
+                            <option value="港澳">港澳</option>
+                            <option value="台湾">台湾</option>
+                            <option value="国外">国外</option>
+                        {/if} 
+                        </select>  
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">证件类型:</label> 
+                    <div class="layui-input-block">
+                        <select name="stu_certificatestyle">请选择一种证件类型
+                        {if condition="$stuinfo['stu_certificatestyle'] == '港澳通行证'"}
+                            <option value="身份证">身份证</option>
+                            <option value="港澳通行证" selected >港澳通行证</option>
+                            <option value="台胞证">台胞证</option>
+                            <option value="护照">护照</option>
+                        {elseif condition="$stuinfo['stu_certificatestyle'] == '台胞证'" /}
+                            <option value="身份证">身份证</option>
+                            <option value="港澳通行证">港澳通行证</option>
+                            <option value="台胞证"  selected >台胞证</option>
+                            <option value="护照">护照</option>
+                        {elseif condition="$stuinfo['stu_certificatestyle'] == '护照'" /}
+                            <option value="身份证">身份证</option>
+                            <option value="港澳通行证">港澳通行证</option>
+                            <option value="台胞证">台胞证</option>
+                            <option value="护照" selected >护照</option>
+                        {else/}
+                            <option value="身份证" selected>身份证</option>
+                            <option value="港澳通行证">港澳通行证</option>
+                            <option value="台胞证">台胞证</option>
+                            <option value="护照">护照</option>
+                        {/if} 
+                        </select>  
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">户口地址:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_hukouaddresstow" value="{$stuinfo['stu_hukouaddresstow']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">家庭地址及固定电话:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_familyAddesPhone" value="{$stuinfo['stu_familyAddesPhone']}" class="layui-input definite">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联合办学:</label> 
+                    <div class="layui-input-block">
+                {if condition="$stuinfo['stu_lhbx'] == '否'"}
+                        <input type="radio" name="stu_lhbx" value="是" title="是">
+                        <input type="radio" name="stu_lhbx" checked value="否" title="否">
+                {else/}
+                        <input type="radio" name="stu_lhbx" checked value="是" title="是">
+                        <input type="radio" name="stu_lhbx" value="否" title="否">
+                {/if}
+                    </div>
+                </div>
+
+                
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">入学总分:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_totalentrancescore" value="{$stuinfo['stu_totalentrancescore']}" class="layui-input definite">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">是否住宿:</label> 
+                    <div class="layui-input-block">
+                {if condition="$stuinfo['stu_dormFlag'] == '否'"}
+                        <input type="radio" name="stu_dormFlag" value="是" title="是" lay-filter="stu_dormFlag">
+                        <input type="radio" name="stu_dormFlag" checked value="否" title="否" lay-filter="stu_dormFlag">
+                {else/}
+                        <input type="radio" name="stu_dormFlag" checked value="是" title="是" lay-filter="stu_dormFlag">
+                        <input type="radio" name="stu_dormFlag" value="否" title="否" lay-filter="stu_dormFlag">
+                {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">宿舍号:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_dormnumber" value="{$stuinfo['stu_dormnumber']}" class="layui-input stu_dormnumber definite"  placeholder="X-XXX-X" >
+                    </div>
+                </div>
+
+
+                
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">办学点名称:</label>
+                    <div class="layui-input-block">
+                         {if condition="$stuinfo['stu_nation']"}
+                        <input type="text" name="stu_nameofschoolrunningpoint" value="{$stuinfo['stu_nameofschoolrunningpoint']}" class="layui-input definite">
+                        {else/}
+                        <input type="text" name="stu_nameofschoolrunningpoint" value="校本部" class="layui-input definite">
+                        {/if}
+                        
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学生类别:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_classstudents" value="应届毕业" class="layui-input definite">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">户口区域:</label> 
+                    <div class="layui-input-block">
+                        <select name="stu_hukouquyu">请选择户口区域
+                        {if condition="$stuinfo['stu_hukouquyu'] == '本市'"}
+                            <option value="本市" selected>本市</option>
+                            <option value="非本市">非本市</option>
+                            <option value="省外">省外</option>
+                        {elseif condition="$stuinfo['stu_hukouquyu'] == '省外'" /}
+                            <option value="本市">本市</option>
+                            <option value="非本市" >非本市</option>
+                            <option value="省外" selected>省外</option>
+                        {else/}
+                            <option value="本市" >本市</option>
+                            <option value="非本市" selected>非本市</option>
+                            <option value="省外" >省外</option>
+                        {/if} 
+                        </select>  
+                    </div>
+                </div>
+
+             <!--    <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">户口区域:</label> 
+                    <div class="layui-input-block">
+                        <select name="stu_hukouquyu">请选择户口区域
+                        {if condition="$stuinfo['stu_hukouquyu'] == '本市'"}
+                            <option value="本市" selected>本市</option>
+                            <option value="非本市">非本市</option>
+                            <option value="省外">省外</option>
+                        {elseif condition="$stuinfo['stu_hukouquyu'] == '省外'" /}
+                            <option value="本市">本市</option>
+                            <option value="非本市" >非本市</option>
+                            <option value="省外" selected>省外</option>
+                        {else/}
+                            <option value="本市" >本市</option>
+                            <option value="非本市" selected>非本市</option>
+                            <option value="省外" >省外</option>
+                        {/if} 
+                        </select>  
+                    </div>
+                </div> -->
+
+
+                <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+                    <label class="layui-form-label">户籍所在:</label>
+                    <div class="layui-input-block">
+                        <select name="stu_hukouaddressf" lay-verify="required">
+                            <option value=""></option>
+                            <option value="北京" selected="">北京</option>
+                            <option value="北京">上海</option>
+                            <option value="北京">广州</option>
+                            <option value="北京">深圳</option>
+                            <option value="北京">杭州</option>
+                        </select>
+                    </div>
+               </div>
+
+
+               <div class="layui-form-item">
+                    <label class="layui-form-label">是否三侨:</label> 
+                    <div class="layui-input-block">
+                {if condition="$stuinfo['stu_sanqiao'] == '否'"}
+                        <input type="radio" name="stu_sanqiao" value="是" title="是">
+                        <input type="radio" name="stu_sanqiao" checked value="否" title="否">
+                {else/}
+                        <input type="radio" name="stu_sanqiao" checked value="是" title="是">
+                        <input type="radio" name="stu_sanqiao" value="否" title="否">
+                {/if}
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">学生状态:</label>
+                    <div class="layui-input-block">
+                        {if condition="$stuinfo['stu_state']"}
+                        <input type="text" name="stu_state" value="{$stuinfo['stu_state']}" class="layui-input definite">
+                        {else/}
+                        <input type="text" name="stu_state" value="在校" class="layui-input definite">
+                        {/if}
+                    </div>
+               </div>
+
+                <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">健康状况:</label>
+                    <div class="layui-input-block">
+                        {if condition="$stuinfo['stu_health']"}
+                        <input type="text" name="stu_health" value="{$stuinfo['stu_health']}" class="layui-input definite">
+                        {else/}
+                        <input type="text" name="stu_health" value="健康或良好" class="layui-input definite">
+                        {/if}
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">何时毕业于何学校:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_graduateFromSchool" value="{$stuinfo['stu_graduateFromSchool']}" class="layui-input definite">
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">家庭成员(户主):</label>
+                    <div class="layui-input-block">
+                        姓名：<input type="text" name="family_name1" value="{$stuinfo['family_name1']}" class="layui-input definite">
+                        性别：<input type="text" name="family_sex1" value="{$stuinfo['family_sex1']}" class="layui-input definite">
+                        年龄：<input type="text" name="family_age1" value="{$stuinfo['family_age1']}" class="layui-input definite">
+                    </div>
+                    <div class="layui-input-block" style="margin-top: 10px;">
+                        与本人关系：<input type="text" name="family_relationship1" value="{$stuinfo['family_relationship1']}" class="layui-input definite" >
+                        工作或学校单位：<input type="text" name="family_work1" value="{$stuinfo['family_work1']}" class="layui-input definite" >
+                    </div>
+               </div>
+
+               <div class="layui-form-item">
+                    <label class="layui-form-label">是否退役士兵:</label> 
+                    <div class="layui-input-block">
+                {if condition="$stuinfo['stu_retiredsoldier'] == '否'"}
+                        <input type="radio" name="stu_retiredsoldier" value="是" title="是" lay-filter="stu_retiredsoldier">
+                        <input type="radio" name="stu_retiredsoldier" checked value="否" title="否" lay-filter="stu_retiredsoldier">
+                {else/}
+                        <input type="radio" name="stu_retiredsoldier" checked value="是" title="是" lay-filter="stu_retiredsoldier">
+                        <input type="radio" name="stu_retiredsoldier" value="否" title="否" lay-filter="stu_retiredsoldier">
+                {/if}
+                    </div>
+                </div>
+
+
+            <hr class="layui-bg-orange">
+               <div class="layui-form-item">
+                    <label class="layui-form-label">原部队:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_originaltroops" value="{$stuinfo['stu_originaltroops']}" class="layui-input stu_retiredsoldier" >
+                    </div>
+               </div>
+
+               <div class="layui-form-item">
+                    <label class="layui-form-label">原军衔:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_originalmilitaryrank" value="{$stuinfo['stu_originalmilitaryrank']}" class="layui-input stu_retiredsoldier" id="test">
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">入伍地:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_enlist" value="{$stuinfo['stu_enlist']}" class="layui-input stu_retiredsoldier">
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md4">
+                    <label class="layui-form-label">入伍时间:</label>
+                    <div class="layui-input-block">
+                        <input placeholder="点击选择时间" type="text" name="stu_enlisttime" value="{$stuinfo['stu_enlisttime']}" id="enlisttime" class="layui-input retiredsoldierTime">
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md4">
+                    <label class="layui-form-label">退伍时间:</label>
+                    <div class="layui-input-block">
+                        <input placeholder="点击选择时间" type="text" name="stu_demobilizedtime" value="{$stuinfo['stu_demobilizedtime']}" id="demobilizedtime" class="layui-input retiredsoldierTime">
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">退伍方式:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_demobilizedstyle" value="{$stuinfo['stu_demobilizedstyle']}" class="layui-input stu_retiredsoldier">
+                    </div>
+               </div>
+
+               
+
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">地区:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_area" value="{$stuinfo['stu_area']}" class="layui-input">
+                    </div>
+               </div>
+
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">中考准考证号:</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="stu_examination" value="{$stuinfo['stu_examination']}" class="layui-input">
+                    </div>
+               </div>
+
+                
+
+
+            <hr class="layui-bg-orange">
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">家庭成员:</label>
+                    <div class="layui-input-block">
+                        姓名：<input type="text" name="family_name2" value="{$stuinfo['family_name2']}" class="layui-input">
+                        性别：<input type="text" name="family_sex2" value="{$stuinfo['family_sex2']}" class="layui-input">
+                        年龄：<input type="text" name="family_age2" value="{$stuinfo['family_age2']}" class="layui-input">
+                    </div>
+                    <div class="layui-input-block" style="margin-top: 10px;">
+                        与本人关系：<input type="text" name="family_relationship2" value="{$stuinfo['family_relationship2']}" class="layui-input" >
+                        工作或学校单位：<input type="text" name="family_work2" value="{$stuinfo['family_work2']}" class="layui-input" >
+                    </div>
+               </div>
+
+               <hr class="layui-bg-orange">
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">家庭成员:</label>
+                    <div class="layui-input-block">
+                        姓名：<input type="text" name="family_name3" value="{$stuinfo['family_name3']}" class="layui-input">
+                        性别：<input type="text" name="family_sex3" value="{$stuinfo['family_sex3']}" class="layui-input">
+                        年龄：<input type="text" name="family_age3" value="{$stuinfo['family_age3']}" class="layui-input">
+                    </div>
+                    <div class="layui-input-block" style="margin-top: 10px;">
+                        与本人关系：<input type="text" name="family_relationship3" value="{$stuinfo['family_relationship3']}" class="layui-input" >
+                        工作或学校单位：<input type="text" name="family_work3" value="{$stuinfo['family_work3']}" class="layui-input" >
+                    </div>
+               </div>
+               <hr class="layui-bg-orange">
+               <div class="layui-form-item layui-for">
+                    <label class="layui-form-label">家庭成员:</label>
+                    <div class="layui-input-block">
+                        姓名：<input type="text" name="family_name4" value="{$stuinfo['family_name4']}" class="layui-input">
+                        性别：<input type="text" name="family_sex4" value="{$stuinfo['family_sex4']}" class="layui-input">
+                        年龄：<input type="text" name="family_age4" value="{$stuinfo['family_age4']}" class="layui-input">
+                    </div>
+                    <div class="layui-input-block" style="margin-top: 10px;">
+                        与本人关系：<input type="text" name="family_relationship4" value="{$stuinfo['family_relationship4']}" class="layui-input" >
+                        工作或学校单位：<input type="text" name="family_work4" value="{$stuinfo['family_work4']}" class="layui-input" >
+                    </div>
+               </div>
+               <hr class="layui-bg-orange">
+
+
+              
+            
+        <input type="hidden" value="{$stuinfo['stu_imgurl']}" id="img_url" name="stu_imgurl">
+        <input type="hidden" value="{$stuinfo['stu_infoflag']}" id="stu_infoflag">
+
+        
+        <input type="hidden" value="{$stuinfo['stu_retiredsoldier']}" id="stu_retiredsoldier">
+
+        
+    </form>
+    <div class="rightAlert">
+            <button type="button" class="layui-btn submit" id="stuInfoKeep">保存</button>
+            <button type="button" class="layui-btn layui-btn-warm submit" id="stuInfoSubmit">提交</button>
     </div>
-</form>
+
+    <span id="top" class="top">
+        <i class="layui-icon layui-icon-up" style="font-size: 30px; color: #1E9FFF;cursor: pointer;" ></i>  
+    </span>
+</div>
 <!-- 按钮 -->
 
 <!-- 页脚 -->
 <footer>
     <p>@CopyRight 2013 Bootply | ALL rights reserved</p>
 </footer>
-<script>
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
 
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#birthday' //指定元素
-        });
-    });
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#enlisttime' //指定元素
-        });
-    });
-    layui.use('laydate', function(){
-        var laydate = layui.laydate;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#demobilizedtime' //指定元素
-        });
-    });
-</script>
 </body>
 </html>
