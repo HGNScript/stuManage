@@ -60,7 +60,15 @@
                 <li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                     <div class="layui-timeline-content layui-text">
-                        <h3 class="layui-timeline-title">{$vo['create_time']}</h3>
+                        <h3 class="layui-timeline-title">{$vo['create_time']}
+                             {if condition="$vo['leave_flag'] == 1"}
+                            <span class="layui-badge layui-bg-orange">待审查</span>
+                            {elseif condition="$vo['leave_flag'] == 2"/}
+                                <span class="layui-badge layui-bg-green">审查通过</span>
+                            {elseif condition="$vo['leave_flag'] == 3"/}
+                                <span class="layui-badge">审查未通过</span>
+                            {/if}
+                        </h3>
                         <!--<a href="javascript:;">-->
                             <p style="border: 1px solid #c0ced3; display: inline-block;padding: 10px;width:100%; border-radius: 5px">
                                 请假类别： {$vo['leave_category']}

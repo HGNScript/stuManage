@@ -7,19 +7,37 @@ $(function () {
     noBlur()
     identity()
 
+    var stu_infoflag = $('#stu_infoflag').val()
+
+    if (stu_infoflag == 1) {
+        $('#stuInfoKeep').addClass('layui-btn-disabled')
+        $('#stuInfoSubmit').addClass('layui-btn-disabled')
+
+        $('input').attr({disabled: 'disabled'})
+        $('input').addClass('layui-btn-disabled')
+        $('select').addClass('layui-btn-disabled')
+        $('select').attr({disabled: 'disabled'})
+
+
+    } else {
+        // $('input').attr({disabled: 'disabled'})
+        // $('input').addClass('layui-btn-disabled')
+    }
+
+
+
+
     $('#birthday').css({"borderColor": "#5FB878"})
 
 
     $('#stuInfoKeep').click(function () {
-        stuInfoKeep()
+        var stu_infoflag = $('#stu_infoflag').val()
+        if (stu_infoflag != 1) {
+            stuInfoKeep()
+        }
     })
 
-    function noBlur(){
-        $('.definite').blur(function(){
-            var _this = $(this)
-            showBorder(_this);
-        })
-    }
+    
     
 
     layui.use('laydate', function(){
@@ -87,7 +105,7 @@ $(function () {
         var flag = $('#stu_retiredsoldier').val()
         var obj = $('.stu_retiredsoldier')
 
-        if (flag == '否') {
+        if (flag != '是') {
             obj.attr({disabled: 'disabled'})
             obj.val('请选择是否退役士兵后在填写')
 
@@ -111,9 +129,6 @@ $(function () {
     }
 
 
-    
-
-    var stu_infoflag = $('#stu_infoflag').val()
 
     layui.use('upload', function () {
         var upload = layui.upload;
@@ -180,7 +195,11 @@ function stuInfoKeep() {
         traditional: true,
         dataType: "json",
         data: info,
+        beforeSend:function(XMLHttpRequest){
+            layer.load()
+        },
         success: function (data) {
+            layer.close(layer.index);
             if (data['valid']) {
                 // location.href='/index';
                 layer.msg(data['msg'], {
@@ -203,34 +222,44 @@ function stuInfoKeep() {
 
 function stuInfoSubmit() {
     $('#stuInfoSubmit').click(function () {
-        var info = $("#stuInfoForm").serialize();
 
-        layer.confirm('确定要提交吗，提交后将不可更改', function (index) {
-            $.ajax({
-                type: "post",
-                url: '/student/Stuinfo/stuInfoKeep?stu_infoflag=1',
-                traditional: true,
-                dataType: "json",
-                data: info,
-                success: function (data) {
-                    if (data['valid']) {
-                        // location.href='/index';
-                        layer.msg(data['msg'], {
-                            icon: 1, //提示的样式
-                            time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-                            end: function () {
-                                location.reload();
-                            }
-                        });
-                    } else {
-                        layer.msg(data['msg'], {
-                            icon: 2, //提示的样式
-                            time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
-                        });
+        var stu_infoflag = $('#stu_infoflag').val()
+        if (stu_infoflag != 1) {
+
+            var info = $("#stuInfoForm").serialize();
+
+            layer.confirm('确定要提交吗，提交后将不可更改', function (index) {
+                $.ajax({
+                    type: "post",
+                    url: '/student/Stuinfo/stuInfoKeep?stu_infoflag=1',
+                    traditional: true,
+                    dataType: "json",
+                    data: info,
+                    beforeSend:function(XMLHttpRequest){
+                        layer.load()
+                    },
+                    success: function (data) {
+                        layer.close(layer.index);
+                        if (data['valid']) {
+                            // location.href='/index';
+                            layer.msg(data['msg'], {
+                                icon: 1, //提示的样式
+                                time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                                end: function () {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            layer.msg(data['msg'], {
+                                icon: 2, //提示的样式
+                                time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                            });
+                        }
                     }
-                }
+                });
             });
-        });
+        }
+
 
     })
 }
@@ -254,13 +283,20 @@ function eachShow(){
     })
 }
 
+function noBlur(){
+        $('.definite').blur(function(){
+            var _this = $(this)
+            showBorder(_this);
+        })
+    }
+
 
 function selectStyle(obj, data){
     if (data.value == '否') {
         obj.attr({disabled: 'disabled'})
         obj.removeAttr("style")
         obj.attr({borderColor: '1px solid #ccc'})
-        obj.val('请选择是否住宿后在填写')
+        obj.val('请选择是否住宿后再填写宿舍号')
 
     } else {
 
@@ -268,6 +304,7 @@ function selectStyle(obj, data){
         obj.removeAttr("disabled")
         obj.val(v)
         eachShow()
+        noBlur()
 
     }
 }
@@ -302,27 +339,105 @@ function time() {
 
 function identity (){
 
-    var UUserCard = $('#stu_identity').val() 
-    //获取出生日期 
+    var UUserCard = $('#stu_identity').val()
+
     var stu_birthday= UUserCard.substring(6, 10) + "." + UUserCard.substring(10, 12) + "." + UUserCard.substring(12, 14)
 
     $('#stu_birthday').val(stu_birthday)
 
-    $('#stu_identity').keydown(function(){
-        var UUserCard = $(this).val() 
+    $('#stu_identity').keyup(function(){
+
+        var UUserCard = $(this).val()
+
+        var stu_birthday = $('#stu_identity').val()
+
+        var flag = isCardNo(stu_birthday)
+
+        if (!flag) {
+            $('#stu_birthday').val('身份证号码填写错误')
+            $('#stu_hukouaddress').val('身份证号码填写错误')
+
+            return 0
+        }
+
         //获取出生日期 
         var stu_birthday= UUserCard.substring(6, 10) + "." + UUserCard.substring(10, 12) + "." + UUserCard.substring(12, 14)
 
         $('#stu_birthday').val(stu_birthday)
+
+        getHK()
+
     })
 
     $('#stu_identity').blur(function(){
+
+        var stu_birthday = $('#stu_identity').val()
+
+        var flag = isCardNo(stu_birthday)
+
+        if (!flag) {
+            $('#stu_birthday').val('身份证号码填写错误')
+            $('#stu_hukouaddress').val('身份证号码填写错误')
+
+            return 0
+        }
+
         var UUserCard = $(this).val() 
-        //获取出生日期 
         var stu_birthday= UUserCard.substring(6, 10) + "." + UUserCard.substring(10, 12) + "." + UUserCard.substring(12, 14)
 
         $('#stu_birthday').val(stu_birthday)
+
+        getHK()
+
+
     })
 }
+
+/**
+ * 获取户口所在地
+ */
+function getHK() {
+    var stu_birthday = $('#stu_identity').val()
+    var code = stu_birthday.substring(0, 6)
+
+    $.ajax({
+        type: "post",
+        url: '/student/Stuinfo/getHK',
+        traditional: true,
+        dataType: "json",
+        data: {'code' : code},
+        success: function (data) {
+            if (data['valid']) {
+                $('#stu_hukouaddress').val(data['HK'])
+            }
+        }
+    });
+}
+
+
+function isCardNo(card)
+{
+    // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
+    var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+    if(reg.test(card) === false)
+    {
+        $('#prompt').css({
+            'display' : 'inline-block',
+            'border-color' : '#FF0000',
+        }).html('身份证号码不合法')
+        return false;
+
+    } else{
+        $('#prompt').css({
+            'display' : 'none',
+            'border-color' : '#ccc',
+        }).html('')
+
+        return true;
+
+    }
+
+}
+
 
 

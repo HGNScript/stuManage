@@ -9,6 +9,7 @@
 namespace app\student\model;
 
 
+use app\admin\model\Hk;
 use think\Model;
 
 class student extends Model {
@@ -23,7 +24,7 @@ class student extends Model {
     public function getStuInfo($stu_id) {
         return $this->alias('s')
                     ->join('class c','s.class_id = c.class_id')
-                    ->join('reduction r','s.stu_id = r.stu_id', 'RIGHT')
+                    ->join('grant g','s.stu_id = g.stu_id', 'left')
                     ->where('s.stu_id', $stu_id)->find();
     }
 
@@ -42,42 +43,38 @@ class student extends Model {
     }
 
     public function upDataInfo($info, $stu_id, $stu_infoflag){
-        if ($stu_infoflag) {
-            $info['stu_infoflag'] = $stu_infoflag;
 
-            if ($info['stu_retiredsoldier'] == '否') {
-                $info['stu_originaltroops'] = null;
-                $info['stu_originalmilitaryrank'] = null;
-                $info['stu_enlist'] = null;
-                $info['stu_enlisttime'] = null;
-                $info['stu_demobilizedtime'] = null;
-                $info['stu_demobilizedstyle'] = null;
-            }
+        $grant = grant::where('stu_id', $stu_id)->find();
+        $reduction = Reduction::where('stu_id', $stu_id)->find();
 
-            $class_id = (new classModel())->stuGetClass($info['class_name']);
-            $info['class_id'] = $class_id;
+        $info['stu_id'] = $stu_id;
 
+        $info['stu_infoflag'] = $stu_infoflag;
+
+
+        $class_id = (new classModel())->stuGetClass($info['class_name']);
+        $info['class_id'] = $class_id;
+
+       
+        if ($grant) {
             (new grant())->allowField(true)->save($info,['stu_id' => $stu_id]);
-            (new Reduction())->allowField(true)->save($info,['stu_id' => $stu_id]);
-            return $this->allowField(true)->save($info,['stu_id' => $stu_id]);
         } else {
-            $class_id = (new classModel())->stuGetClass($info['class_name']);
-            $info['class_id'] = $class_id;
-
-             if ($info['stu_retiredsoldier'] == '否') {
-                $info['stu_originaltroops'] = null;
-                $info['stu_originalmilitaryrank'] = null;
-                $info['stu_enlist'] = null;
-                $info['stu_enlisttime'] = null;
-                $info['stu_demobilizedtime'] = null;
-                $info['stu_demobilizedstyle'] = null;
-            }
-
-            (new grant())->allowField(true)->save($info,['stu_id' => $stu_id]);
-            (new Reduction())->allowField(true)->save($info,['stu_id' => $stu_id]);
-            return $this->allowField(true)->save($info,['stu_id' => $stu_id]);
+            (new grant())->allowField(true)->save($info);   
         }
+
+        if ($reduction) {
+            (new Reduction())->allowField(true)->save($info,['stu_id' => $stu_id]);
+        } else {
+            (new Reduction())->allowField(true)->save($info);
+        }
+
+        return $this->allowField(true)->save($info,['stu_id' => $stu_id]);
+
     }
+
+
+
+
 
     public function dbClickEdit($stu_id, $name, $val) {
         if (!$val) {
@@ -93,6 +90,10 @@ class student extends Model {
 
     public function validatePhone($stu_numBer, $stu_phone) {
         return $this->where('stu_number',$stu_numBer)->where('stu_phone',$stu_phone)->find();
+    }
+
+    public function getHK_address($code){
+        return Hk::where('hk_code', $code)->value('hk_address');
     }
 
 }

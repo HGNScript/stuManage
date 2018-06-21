@@ -24,9 +24,10 @@ class BaseModel extends Model {
         try {
             $sender = new SmsMultiSender($appid, $appkey);
             $params = $paramsArr;
-            // 假设模板内容为：测试短信，{1}，{2}，{3}，上学。
+
             $result = $sender->sendWithParam("86", $phone, $templId,
                 $params, "", "", "");
+
             $rsp = json_decode($result);
             return json($res = ['valid' => 1, 'msg' => $rsp]);
 

@@ -95,25 +95,25 @@ var examine = function () {
                         if (res['msg'].result == 0) {
                             if (grant_flag == 2) {
                                 if (res['msg'].detail[0]['result'] != 0) {
-                                    layer.alert("已通过请假申请,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
+                                    layer.alert("已通过助学金申请,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
                                         layer.close(index);
                                         notice()
                                     });
                                 } else {
-                                    layer.alert("已通过请假申请，已将通知发送至学生", function(index){
+                                    layer.alert("已通过助学金申请，已将通知发送至学生", function(index){
                                         layer.close(index);
                                         notice()
                                     });
                                 }
                             } else {
                                 if (res['msg'].detail[0]['result'] != 0) {
-                                    layer.alert("未通过请假申请,"+res['msg'].detail[0]['errmsg']+"通知发送不成功", function(index){
+                                    layer.alert("未通过助学金申请,"+res['msg'].detail[0]['errmsg']+"通知发送不成功", function(index){
                                         layer.close(index);
                                         notice()
                                     });
 
                                 } else {
-                                    layer.alert("未通过请假申请，已将通知发送至学生", function(index){
+                                    layer.alert("未通过助学金申请，已将通知发送至学生", function(index){
                                         layer.close(index);
                                         notice()
 

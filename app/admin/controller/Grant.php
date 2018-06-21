@@ -51,7 +51,8 @@ class Grant extends Controller {
     {
         $grant_id = input('get.grant_id');
 
-        $grant = \app\teacher\model\Grant::get($grant_id);
+        $grant = (new \app\teacher\model\Grant)->getGrant($grant_id);
+        $grant['stu_identity'] = str_split($grant['stu_identity']);
 
         $this->assign('grant', $grant);
         $this->assign('stuinfo', null);

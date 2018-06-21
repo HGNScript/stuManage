@@ -51,7 +51,8 @@ class Reduction extends Controller {
     {
         $reduction_id = input('get.reduction_id');
 
-        $reduction = \app\teacher\model\reduction::get($reduction_id);
+        $reduction = (new \app\teacher\model\reduction)->getReduction($reduction_id);
+        $reduction['stu_identity'] = str_split($reduction['stu_identity']);
 
         $this->assign('reduction', $reduction);
         return $this->fetch();

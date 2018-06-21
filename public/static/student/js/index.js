@@ -1,4 +1,5 @@
 $(function(){
+    de()
 
     var editPsd = function() {
         layui.use(['form', 'layer', 'element'], function() {
@@ -35,6 +36,17 @@ $(function(){
             });
 
         });
+    }
+
+
+    function de(){
+        $('a.test').on('click', function(event) {  
+        var info_falg = $('#stu_infoflag').val()
+            if (info_falg == 0) {
+                layer.alert('请先提交个人信息后才可进行下一步的操作', {icon: 2});  
+                event.preventDefault();     
+            }
+        });    
     }
 
 

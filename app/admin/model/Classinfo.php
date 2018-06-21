@@ -61,6 +61,7 @@ class Classinfo extends BaseModel {
                     $data[$k]['class_id'] = $class_id;
                     $data[$k]['stu_password'] = md5('gzcj');
                     $data[$k]['stu_grade'] = $class_grade['class_grade'];
+                    $data[$k]['stu_specialty'] = $class_grade['class_specialty'];
 
                     $card = $data[$k]['stu_identity'];
 
@@ -68,11 +69,20 @@ class Classinfo extends BaseModel {
 
                     $data[$k]['stu_birthday'] = $stu_birthday;
 
+                    $code = substr($card, 0, 6);
+
+                    $data[$k]['stu_hukouaddress'] = self::getHK_address($code);
+                    $data[$k]['stu_hukouaddressf'] = $code;
+
 
                 }
                 $i++;
             }
+
             $data = $this->arrOnly($data, 'stu_number');
+
+            // (new \app\student\model\grant())->allowField(true)->saveAll($data);
+            // (new \app\student\model\Reduction())->allowField(true)->saveAll($data);
 
             $success=$this->saveAll($data); //批量插入数据
             $success = sizeof($success);
@@ -93,12 +103,19 @@ class Classinfo extends BaseModel {
         $class_grade = (new Classlist)->where('class_id', $class_id)->find();
 
         $data['stu_grade'] = $class_grade['class_grade'];
+        $data['stu_specialty'] = $class_grade['class_specialty'];
 
         if ($stu_id) {
             $n = $this->where('stu_id', '<>', $stu_id)->where('stu_number', $data['stu_number'])->find();
             if ($n) {
                 return $res = ['valid' => 0, 'msg' => '学号不能重复'];
             } else {
+
+                $code = substr($data['stu_identity'], 0, 6);
+
+                $data['stu_hukouaddress'] = self::getHK_address($code);
+                $data['stu_hukouaddressf'] = $code;
+
                 $res = $this->save($data, ['stu_id' => $stu_id]);
                 if ($res) {
                     return $res = ['valid' => 1, 'msg' => '编辑成功'];
@@ -112,7 +129,15 @@ class Classinfo extends BaseModel {
                 return $res = ['valid' => 0, 'msg' => '学号不能重复'];
             } else {
                 $data['stu_password'] = md5('gzcj');
+
+                $code = substr($data['stu_identity'], 0, 6);
+
+                $data['stu_hukouaddress'] = self::getHK_address($code);
+                $data['stu_hukouaddressf'] = $code;
+
+
                 $res = $this->save($data);
+
                 if ($res) {
                     return $res = ['valid' => 1, 'msg' => '添加成功'];
                 } else {
@@ -144,6 +169,10 @@ class Classinfo extends BaseModel {
 
     public function getStuInfoFlag($stu_id) {
         return $this->where('stu_id', $stu_id)->value('stu_infoflag');
+    }
+
+    protected function getHK_address($code){
+        return Hk::where('hk_code', $code)->value('hk_address');
     }
 
 }

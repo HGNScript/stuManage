@@ -22,11 +22,17 @@ class Reduction extends Model {
 
         if ($grant) {
 
-            return $this->allowField(true)->save($data, ['stu_number' => $data['stu_number']]);
+            return $this->allowField(true)->save($data, ['stu_id' => $data['stu_id']]);
 
         } else{
 
             return $this->allowField(true)->save($data);
         }
+    }
+
+    public function getReduction($stu_id) {
+        return $this->alias('r')
+                    ->join('student s','r.stu_id = s.stu_id', 'left')
+                    ->where('s.stu_id', $stu_id)->find();
     }
 }

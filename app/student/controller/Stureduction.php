@@ -16,26 +16,10 @@ class Stureduction extends BaseController {
 
     public function index(){
         $stu_id = session('student.stu_id');
-        $stuinfo = student::get($stu_id);
-        $reductionData = Reduction::where('stu_id', $stu_id)->find();
+        $reduction = (new Reduction)->getReduction($stu_id);
+        $reduction['stu_identity'] = str_split($reduction['stu_identity']);
 
-        $reductionData['stu_identity'] = str_split($reductionData['stu_identity']);
-
-        if ($reductionData) {
-            $this->assign('stuinfo', $reductionData);
-        } else {
-            $stuinfo['reduction_startTime'] = null;
-            $stuinfo['reduction_endTime'] = null;
-            $stuinfo['reduction_jg'] = null;
-            $stuinfo['family_name1'] = null;
-            $stuinfo['reduction_school'] = null;
-            $stuinfo['reduction_examination'] = null;
-            $stuinfo['reduction_graduateFromSchool'] = null;
-            $stuinfo['reduction_familyAddesPhone'] = null;
-            $stuinfo['reduction_grade'] = null;
-            $stuinfo['reduction_flag'] = null;
-            $this->assign('stuinfo', $stuinfo);
-        }
+        $this->assign('stuinfo', $reduction);
         return $this->fetch();
     }
 
@@ -43,10 +27,10 @@ class Stureduction extends BaseController {
         if (request()->isAjax()) {
             $data = input('post.');
 
-            $validate = (new \app\student\validate\Reduction())->goCheck();
-                if (is_object($validate)) {
-                    return json($validate);
-            }
+            // $validate = (new \app\student\validate\Reduction())->goCheck();
+            //     if (is_object($validate)) {
+            //         return json($validate);
+            // }
 
             $reduction_flag = input('get.reduction_flag');
             $stu_id = session('student.stu_id');
@@ -56,9 +40,9 @@ class Stureduction extends BaseController {
             $res = (new Reduction())->submitReduction($data);
 
             if ($res) {
-                return json($res = ['valid' => 1, 'msg' => '保存成功']);
+                return json($res = ['valid' => 1, 'msg' => '提交成功']);
             } else {
-                return json($res = ['valid' => 0, 'msg' => '保存失败']);
+                return json($res = ['valid' => 0, 'msg' => '提交成功']);
             }
         }
     }

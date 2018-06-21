@@ -156,7 +156,7 @@ function showData(pageData) {
                                                 </tr>`;
             });
         } else {
-            $.each(data, function (index, array) {
+            $.each(pageData, function (index, array) {
                 data_html += `<tr>
                                                 <td>
                                                 <div class="checkbox layui-unselect layui-form-checkbox" lay-skin="primary" data-id="` + array['class_id'] + `"><i class="layui-icon">&#xe605;</i></div>

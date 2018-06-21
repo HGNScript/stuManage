@@ -33,4 +33,10 @@ class Grant extends BaseModel {
             ->order('g.create_time desc')
             ->select();
     }
+
+    public function getGrant($grant_id) {
+        return $this->alias('g')
+                    ->join('student s','g.stu_id = s.stu_id')
+                    ->where('g.grant_id', $grant_id)->find();
+    }
 }

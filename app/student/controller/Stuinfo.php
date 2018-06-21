@@ -12,6 +12,7 @@ namespace app\student\controller;
 use app\student\model\student;
 use app\student\validate\Info;
 use app\student\validate\Retiredsoldier;
+use app\student\validate\DormFlag;
 
 class Stuinfo extends BaseController {
     public function index(){
@@ -60,6 +61,16 @@ class Stuinfo extends BaseController {
             }
         }
 
+        if ($info['stu_dormFlag'] == '是') {
+            $Info = (new DormFlag())->goCheck();
+            if (is_object($Info)) {
+                return json($Info);
+            }
+        } else {
+            $info['stu_dormnumber'] = '';
+        }
+
+
         $stu_infoflag = input('get.stu_infoflag');
         $stu_id = session('student.stu_id');
 
@@ -79,4 +90,20 @@ class Stuinfo extends BaseController {
 
         }
     }
+
+    public function getHK(){
+        $code = input('post.code');
+        $HK = (new student())->getHK_address($code);
+
+        if ($HK) {
+            return json(['HK' => $HK, 'valid' => 1]);
+        } else {
+            return json(['msg' => '获取户口所在地出现异常，请检查身份证号码是否填写正确', 'valid' => 0]);
+        }
+
+
+    }
+
+
+
 }

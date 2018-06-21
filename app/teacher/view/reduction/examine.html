@@ -141,17 +141,17 @@
                 <div class="heade" style="text-align: center; font-size: 24px; margin-bottom: 1cm">
                     <span style="font-size: 24px; margin-left: 0.7cm"> 
 
-                        (<span style="display: inline-block;width: 2cm;">{$reduction['reduction_startTime']}</span>学年)
+                        (<span style="display: inline-block;width: 2cm;"></span>学年)
                     </span>
                     <span style="font-size: 24px; margin-left: 0.7cm">
-                        (<span style="display: inline-block;width: 2cm">{$reduction['reduction_startTime']}</span>学年)
+                        (<span style="display: inline-block;width: 2cm"></span>学年)
                     </span>
                     <span style="font-size: 24px; margin-left: 0.7cm">
-                        (<span style="display: inline-block;width: 2cm">{$reduction['reduction_startTime']}</span>学年)
+                        (<span style="display: inline-block;width: 2cm"></span>学年)
                     </span>
                 </div>
                 <div class="heade" style="font-size: 16px">
-                    学校名称: <span style="width: 200px;display: inline-block;position: relative;top: -3px;">{$reduction['reduction_school']}</span>
+                    学校名称: <span style="width: 200px;display: inline-block;position: relative;top: -3px;">广州城建技术学校</span>
                     <span style="float: right;margin-right: 2.7cm;font-size: 16px">( 此表入学生档案 )</span>
                 </div>
 
@@ -168,7 +168,7 @@
                     </tr>
                     <tr class="cm-h-1">
                         <td align="center" class="cm-w-2">籍贯</td>
-                        <td class="cm-w-2">{$reduction['reduction_jg']}</td>
+                        <td class="cm-w-2">{$reduction['stu_jg']}</td>
                         <td align="center" class="cm-w-2">民族</td>
                         <td class="cm-w-2">{$reduction['stu_nation']}</td>
                         <td align="center" class="cm-w-2">政治面目</td>
@@ -190,15 +190,15 @@
                     <tr class="cm-h-1">
                         <td colspan="2" align="center" class="com-h-28">户口所在地</td>
                         <td colspan="5">
-                            {$reduction['stu_hukouaddress']}
+                            {$reduction['stu_hukouaddresstow']}
                         </td>
                     </tr>
 
                     <tr class="cm-h-1">
                         <td colspan="2" align="center" class="com-h-28">中考准考证号</td>
-                        <td colspan="2" >{$reduction['reduction_examination']}</td>
+                        <td colspan="2" >{$reduction['stu_examination']}</td>
                         <td align="center" class="cm-w-3">何时毕业于何学校</td>
-                        <td colspan="2">{$reduction['reduction_graduateFromSchool']}</td>
+                        <td colspan="2">{$reduction['stu_graduateFromSchool']}</td>
                     </tr>   
                     <tbody>
                          <tr class="cm-h-1">
@@ -242,7 +242,7 @@
 
                         <tr class="cm-h-1">
                             <td colspan="2" align="center">家庭地址及固定电话</td>
-                            <td colspan="3">{$reduction['reduction_familyAddesPhone']}</td>
+                            <td colspan="3">{$reduction['stu_familyAddesPhone']}</td>
                             <td align="center">邮政编码</td>
                             <td>{$reduction['stu_postalcode']}</td>
                             </td>
@@ -257,7 +257,7 @@
                             <td align="center" colspan="2">就读专业</td>
                             <td colspan="3"">{$reduction['stu_specialty']}</td>
                             <td align="center">年级</td>
-                            <td colspan="1" class="borderNone">{$reduction['reduction_grade']}</td>
+                            <td colspan="1" class="borderNone">{$reduction['stu_grade']}级</td>
                         </tr>
                     </tbody>
                    

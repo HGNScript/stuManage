@@ -48,8 +48,8 @@
                     <i class="layui-icon">&#xe67c;</i>批量添加
                 </button>
 
-                 <a class="layui-btn" href="/admin/Grant/index?class_id={$class_id}&grant_flag=1">助学金申请文件</a>
-            <a class="layui-btn" href="/admin/Reduction/index?class_id={$class_id}&reduction_flag=1">免学费申请文件</a>
+                 <a class="layui-btn" href="javascript:;" onclick="x_admin_show('助学金申请文件','/admin/Grant/index?class_id={$class_id}&grant_flag=1')">助学金申请文件</a>
+            <a class="layui-btn" href="javascript:;" onclick="x_admin_show('免学费申请文件','/admin/Reduction/index?class_id={$class_id}&reduction_flag=1')">免学费申请文件</a>
 
             {elseif condition="(session('admin.admin_authority') == 2) " /}
             <button class="layui-btn layui-btn-danger" id="delAll"><i class="layui-icon"></i>批量删除</button>
@@ -58,8 +58,8 @@
                     <i class="layui-icon">&#xe67c;</i>批量添加
                 </button>
             {elseif condition="(session('admin.admin_authority') == 3) " /}
-             <a class="layui-btn" href="/admin/Grant/index?class_id={$class_id}&grant_flag=1">助学金申请文件</a>
-            <a class="layui-btn" href="/admin/Reduction/index?class_id={$class_id}&reduction_flag=1">免学费申请文件</a>
+             <a class="layui-btn" href="javascript:;" onclick="x_admin_show('助学金申请文件','/admin/Grant/index?class_id={$class_id}&grant_flag=1')">助学金申请文件</a>
+            <a class="layui-btn" href="javascript:;" onclick="x_admin_show('免学费申请文件','/admin/Reduction/index?class_id={$class_id}&reduction_flag=1')">免学费申请文件</a>
             {/if}
 
 

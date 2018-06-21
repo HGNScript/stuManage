@@ -17,6 +17,10 @@ use think\Session;
 class Index extends BaseController {
 
     public function index() {
+        $stu_id = session('student.stu_id');
+        $stuinfo = (new student())->getStuInfo($stu_id);
+
+        $this->assign('info_falg', $stuinfo['stu_infoflag']);
         return $this->fetch();
     }
 
@@ -33,7 +37,7 @@ class Index extends BaseController {
             }
 
             $res =  (new student())->editPsd($data, $stu_id);
-            if ($res['valid'] === 0) {
+            if ($res['valid'] == 0 ) {
                 return new ParameterException([
                     'msg' => $res['msg']
                 ]);

@@ -30,7 +30,7 @@ class Classtch extends BaseModel {
     public function getClasstch($data) {
         if ($data['search']) {
             $classtch = $this->where('classtch_staffRoom','=',$data['staffRoom'])
-                            ->where('classtch_number|classtch_name','like',"%".$data["search"]."%")
+                            ->where('classtch_number|classtch_name','like',"%".$data['search']."%")
                             ->select();
         } else {
             $classtch = $this->where('classtch_staffRoom', $data['staffRoom'])->select();

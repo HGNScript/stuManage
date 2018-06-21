@@ -13,6 +13,8 @@
     <script type="text/javascript" src="__STATIC__/xadmin/node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <script type="text/javascript" src="__STATIC__/teacher/js/stuinfo.js"></script>
+
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -76,7 +78,9 @@
         <div class="layui-field-box">
             <div class="x-body">
                 {if condition="!$stuInfo"}
-                <div style="text-align: center; font-weight: bold; font-size: 18px;">该学生还未提交个人详细信息 <button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该学生</button></div>
+                <div style="text-align: center; font-weight: bold; font-size: 18px;">该学生还未提交个人详细信息
+                    <!--<button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该学生</button>-->
+                </div>
                 {else/}
                 <table class="layui-table">
                     <tbody>

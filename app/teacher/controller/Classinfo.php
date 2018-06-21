@@ -32,8 +32,8 @@ class Classinfo extends BaseController {
 
     public function stuInfo() {
         $stu_id = input('get.stu_id');
-        $stuInfo = (new ClasssinfoModel)->getStuInfo($stu_id);
-        $stuInfo = $stuInfo->toArray();
+        $stuInfo = (new \app\student\model\grant)->getGrant($stu_id);
+        // $stuInfo = $stuInfo->toArray();
         $this->assign('stu_imgurl', $stuInfo['stu_imgurl']);
 
         $stu_infoflag = (new ClasssinfoModel)->getStuInfoFlag($stu_id);
@@ -69,13 +69,13 @@ class Classinfo extends BaseController {
         if ($res || $res == 0) {
 
             if ($noticeFlag == 'infoBug') {
-                $paramsArr = ["已驳回"];
-                $res = (new \app\teacher\model\BaseModel())->sms($stuinfo['stu_phone'], $paramsArr, 131681);
+                $paramsArr = [];
+                $res = (new \app\teacher\model\BaseModel())->sms($stuinfo['stu_phone'], $paramsArr, 140118);
                 return $res;
 
             } else {
-                $paramsArr = ["未填写"];
-                $res = (new \app\teacher\model\BaseModel())->sms($stuinfo['stu_phone'], $paramsArr, 127661);
+                $paramsArr = [];
+                $res = (new \app\teacher\model\BaseModel())->sms($stuinfo['stu_phone'], $paramsArr, 140123);
                 return $res;
             }
            

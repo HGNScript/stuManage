@@ -33,4 +33,10 @@ class reduction extends BaseModel {
             ->order('r.create_time desc')
             ->select();
     }
+
+    public function getReduction($grant_id) {
+        return $this->alias('r')
+                    ->join('student s','r.stu_id = s.stu_id')
+                    ->where('r.reduction_id', $grant_id)->find();
+    }
 }

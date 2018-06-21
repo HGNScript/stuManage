@@ -151,8 +151,14 @@ class Classlist extends BaseModel {
             '国别',
             '证件类型',
             '户口地址',
+            '是否住宿',
+            '国家编号',
+            '省编号',
+            '联合办学',
             '是否退役士兵',
             '入学总分',
+            '是否应届',
+            '扶贫',
             '宿舍号',
             '办学点名称',
             '学生类别',
@@ -167,10 +173,7 @@ class Classlist extends BaseModel {
             '退伍时间',
             '退役方式',
             '健康状况',
-            '广州市户口地区',
-            '原毕业学校（广州市就填写）',
-            '原毕业学校生源省',
-            '原毕业学校生源市',
+            '地区',
         ];
         $test = [];
         $charactors = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -178,8 +181,16 @@ class Classlist extends BaseModel {
         foreach ($header as $key => $v) {
             if ($key >= sizeof($charactors)) {
                 $headermin = array_slice($header,26);
-                foreach ($headermin as $key => $value) {
-                    $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$charactors[$key].'1', $value);
+                foreach ($headermin as $k => $value) {
+                    if ($k >= sizeof($charactors)) {
+                        $headermin = array_slice($headermin,26);
+                        foreach ($headermin as $ke => $va) {
+                            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$charactors[$ke].'1', $va);
+                        }
+                    } else {
+                        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$charactors[$k].'1', $value);
+                    }
+
                 }
             } else {
                 $objPHPExcel->setActiveSheetIndex(0)->setCellValue($charactors[$key].'1', $v);
@@ -196,7 +207,12 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_name']);
             array_push($arr, '\''.$rows['stu_identity']);
             array_push($arr, $rows['stu_sex']);
-            array_push($arr, $rows['stu_birthday']);
+
+
+            $card = $rows['stu_identity'];
+
+            $stu_birthday = strlen($card)==15 ? ('19' . substr($card, 6, 6)) : substr($card, 6, 8);
+            array_push($arr, '\''.$stu_birthday);
             array_push($arr, $rows['stu_nation']);
             array_push($arr, '\''.$rows['stu_phone']);
             array_push($arr, $rows['stu_politicalstatus']);
@@ -204,14 +220,14 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_hokoustyle']);
             array_push($arr, $rows['stu_specialty']);
             array_push($arr, $rows['stu_graduation']);
-            array_push($arr, $rows['stu_enrolmentyear']);
+            array_push($arr, $rows['class_grade']);
             array_push($arr, $rows['stu_enrollmentquarter']);
             array_push($arr, $rows['class_name']);
             array_push($arr, $rows['stu_professionallevel']);
             array_push($arr, $rows['stu_Preschooleducation']);
             array_push($arr, $rows['stu_schoolsystem']);
             array_push($arr, $rows['stu_familycontact']);
-            array_push($arr, $rows['stu_familyphone']);
+            array_push($arr, '\''.$rows['stu_familyphone']);
             array_push($arr, $rows['stu_totalannualincomefamily']);
             array_push($arr, $rows['stu_percapitaincomefamily']);
             array_push($arr, $rows['stu_100thousand']);
@@ -223,8 +239,15 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_differentcountries']);
             array_push($arr, $rows['stu_certificatestyle']);
             array_push($arr, $rows['stu_hukouaddresstow']);
+            array_push($arr, $rows['stu_dormFlag']);
+            array_push($arr, 1);
+            array_push($arr, 1);
+            array_push($arr, $rows['stu_lhbx']);
+
             array_push($arr, $rows['stu_retiredsoldier']);
             array_push($arr, $rows['stu_totalentrancescore']);
+            array_push($arr, $rows['stu_yj']);
+            array_push($arr, $rows['stu_fp']);
             array_push($arr, $rows['stu_dormnumber']);
             array_push($arr, $rows['stu_nameofschoolrunningpoint']);
             array_push($arr, $rows['stu_classstudents']);
@@ -239,17 +262,24 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_demobilizedtime']);
             array_push($arr, $rows['stu_demobilizedstyle']);
             array_push($arr, $rows['stu_health']);
-            array_push($arr, $rows['stu_guangzhouHukou']);
-            array_push($arr, $rows['stu_guangzhouprimaryschool']);
-            array_push($arr, $rows['stu_sourceprovince']);
-            array_push($arr, $rows['stu_shengyuancity']);
+            array_push($arr, $rows['stu_area']);
+  
 
             foreach ($arr as $key => $value) { // 列写入
                 if ($key >= sizeof($charactors)) {
                     $headermin = array_slice($header,26);
                     $arrmin = array_slice($arr,26);
                     foreach ($headermin as $k => $v) {
-                        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$charactors[$k].$col, $arrmin[$k]);
+
+                        if ($k >= sizeof($charactors)) {
+                            $headermin = array_slice($headermin,26);
+                            $arrmin = array_slice($arrmin,26);
+                            foreach ($headermin as $ke => $va) {
+                                $objPHPExcel->setActiveSheetIndex(0)->setCellValue('B'.$charactors[$ke].$col, $arrmin[$ke]);
+                            }
+                        } else {
+                            $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.$charactors[$k].$col, $arrmin[$k]);
+                        }
                     }
                 } else {
                     $objActSheet->setCellValue($charactors[$key].$col, $value);

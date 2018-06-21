@@ -75,7 +75,9 @@
     <div class="layui-field-box">
         <div class="x-body">
             {if condition="!$stuInfo"}
-            <div style="text-align: center; font-weight: bold; font-size: 18px;">该学生还未提交个人详细信息 <button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该学生</button></div>
+            <div style="text-align: center; font-weight: bold; font-size: 18px;">该学生还未提交个人详细信息
+                <!--<button id="" data-noticeFlag="infoNull" class="stuinfoNotice layui-btn">立即通知该学生</button>-->
+            </div>
             {else/}
             <table class="layui-table">
                 <tbody>
@@ -115,7 +117,7 @@
                 </tr>
                 <tr>
                     <td>毕业学校: <span class="dbclick" data-name="stu_graduation">{$stuInfo['stu_graduation']}</span></td>
-                    <td>招生年份: <span class="dbclick" data-name="stu_enrolmentyear">{$stuInfo['stu_enrolmentyear']}</span></td>
+                    <td>招生年份: <span class="dbclick" data-name="stu_enrolmentyear">{$stuInfo['class_grade']}</span></td>
                 </tr>
                 <tr>
                     <td>招生季度: <span class="dbclick" data-name="stu_enrollmentquarter">{$stuInfo['stu_enrollmentquarter']}</span></td>

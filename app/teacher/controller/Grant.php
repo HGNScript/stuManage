@@ -87,7 +87,8 @@ class Grant extends Controller {
     {
         $grant_id = input('get.grant_id');
 
-        $grant = \app\teacher\model\Grant::get($grant_id);
+        // $grant = \app\teacher\model\Grant::get($grant_id);
+        $grant =  (new \app\teacher\model\Grant)->getGrant($grant_id);
         $class_id = (new student())->where('stu_id', $grant['stu_id'])->value('class_id');
 
         $grant['stu_identity'] = str_split($grant['stu_identity']);
@@ -103,7 +104,7 @@ class Grant extends Controller {
         $grant_flag = input('post.grant_flag');
         $grant_id = input('post.grant_id');
 
-        $grant = \app\teacher\model\Grant::get($grant_id);
+        $grant = (new \app\teacher\model\Grant)->getGrant($grant_id);
 
         $res = (new \app\teacher\model\Grant())->save(['grant_flag' => $grant_flag], ['grant_id' => $grant_id]);
 

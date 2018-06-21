@@ -80,7 +80,7 @@ class Reduction extends Controller {
     {
         $reduction_id = input('get.reduction_id');
 
-        $reduction = \app\teacher\model\reduction::get($reduction_id);
+        $reduction = (new \app\teacher\model\reduction)->getReduction($reduction_id);
         $class_id = (new student())->where('stu_id', $reduction['stu_id'])->value('class_id');
 
         $reduction['stu_identity'] = str_split($reduction['stu_identity']);
@@ -95,7 +95,7 @@ class Reduction extends Controller {
         $reduction_flag = input('post.reduction_flag');
         $reduction_id = input('post.reduction_id');
 
-        $reduction = \app\teacher\model\reduction::get($reduction_id);
+        $reduction = (new \app\teacher\model\reduction)->getReduction($reduction_id);
 
         $res = (new \app\teacher\model\reduction())->save(['reduction_flag' => $reduction_flag], ['reduction_id' => $reduction_id]);
 

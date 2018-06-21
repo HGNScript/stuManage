@@ -121,4 +121,9 @@ class Index  extends BaseController {
         session('admin.admin_authority', null);
         $this->redirect('Login');
     }
+
+
+    public function show() {
+        return $this->fetch();
+    }
 }

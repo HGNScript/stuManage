@@ -101,6 +101,10 @@ class Index extends BaseController {
         return json($notice);
     }
 
+    public function show() {
+        return $this->fetch();
+    }
+
 
 
 }

@@ -42,7 +42,7 @@ class Leave extends Model {
     }
 
     public function getLeave($id) {
-        return $this->where('stu_id', $id)->select();
+        return $this->where('stu_id', $id)->where('leave_flag', '<>', 0)->select();
     }
 
 }

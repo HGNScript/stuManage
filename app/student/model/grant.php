@@ -21,9 +21,10 @@ class grant extends Model {
 
         $grant = $this->where('stu_id', $data['stu_id'])->find();
 
+
         if ($grant) {
 
-            return $this->allowField(true)->save($data, ['stu_number' => $data['stu_number']]);
+            return $this->allowField(true)->save($data, ['stu_id' => $data['stu_id']]);
 
         } else{
 
@@ -32,6 +33,9 @@ class grant extends Model {
     }
 
     public function getGrant($stu_id) {
-        return $this->where('stu_id', $stu_id)->find();
+        return $this->alias('g')
+                    ->join('student s','g.stu_id = s.stu_id', 'left')
+                    ->join('class c','s.class_id = c.class_id')
+                    ->where('s.stu_id', $stu_id)->find();
     }
 }

@@ -41,13 +41,13 @@ class Info extends BaseValidate {
         'stu_postalcode' => 'require|number',
         'stu_differentcountries' => 'require|chs',
         'stu_certificatestyle' => 'require|chs',
-        'stu_hukouaddresstow' => 'require|chs',
+        'stu_hukouaddresstow' => 'require',
         'stu_totalentrancescore' => 'require',
-        'stu_dormnumber' => 'require|alphaDash',
+
         'stu_nameofschoolrunningpoint' => 'require|chs',
         'stu_classstudents' => 'require|chs',
         'stu_hukouquyu' => 'require|chs',
-        'stu_hukouaddressf' => 'require|chs',
+//        'stu_hukouaddressf' => 'require|chs',
         'stu_state' => 'require|chs',
 
 
@@ -127,11 +127,11 @@ class Info extends BaseValidate {
         'stu_hukouaddresstow.require' => '"户口地址"不能为空',
         'stu_retiredsoldier.require' => '"是否退役士兵"不能为空',
         'stu_totalentrancescore.require' => '"入学总分"不能为空',
-        'stu_dormnumber.require' => '"宿舍号"不能为空',
+
         'stu_nameofschoolrunningpoint.require' => '"办学点名称"不能为空',
         'stu_classstudents.require' => '"学生类别"不能为空',
         'stu_hukouquyu.require' => '"户口区域"不能为空',
-        'stu_hukouaddressf.require' => '"户籍所在地"不能为空',
+//        'stu_hukouaddressf.require' => '"户籍所在地"不能为空',
         'stu_state.require' => '"学生状态"不能为空',
 
         'stu_health.require' => '"健康状况"不能为空',
@@ -164,14 +164,12 @@ class Info extends BaseValidate {
         'stu_postalcode.number' => '"邮政编码"只能为数字',
         'stu_differentcountries.chs' => '"国别"只能为中文',
         'stu_certificatestyle.chs' => '"证件类型"只能为中文',
-        'stu_hukouaddresstow.chs' => '"户口地址"只能为中文',
         'stu_retiredsoldier.chs' => '"是否退役士兵"只能为中文',
         'stu_totalentrancescore.number' => '"入学总分"只能为数字',
-        'stu_dormnumber.alphaDash' => '"宿舍号"不能为中文',
         'stu_nameofschoolrunningpoint.chs' => '"办学点名称"只能为中文',
         'stu_classstudents.chs' => '"学生类别"只能为中文',
         'stu_hukouquyu.chs' => '"户口区域"只能为中文',
-        'stu_hukouaddressf.chs' => '"户籍所在地"只能为中文',
+//        'stu_hukouaddressf.chs' => '"户籍所在地"只能为中文',
         'stu_state.chs' => '"学生状态"只能为中文',
 
 

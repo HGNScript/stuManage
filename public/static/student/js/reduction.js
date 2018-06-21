@@ -82,7 +82,7 @@ function submit(){
     $('#leavefoSubmit').click(function(){
         var data= null
 
-        if ($('#grant_flag').val() == 0 || $('#grant_flag').val() == 3) {
+        if ($('#reduction_flag').val() == 0 || $('#reduction_flag').val() == 3) {
             if( $("#pc").css("display")=='none') {
                 data = $("#yidong").serialize()
             } else {

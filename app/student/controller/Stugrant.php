@@ -15,26 +15,10 @@ use app\student\model\student;
 class Stugrant extends BaseController {
     public function index(){
         $stu_id = session('student.stu_id');
-        $stuinfo = student::get($stu_id);
-        $grantdata = grant::where('stu_id', $stu_id)->find();
-
+        $grantdata = (new grant)->getGrant($stu_id);
         $grantdata['stu_identity'] = str_split($grantdata['stu_identity']);
 
-        if ($grantdata) {
-            $this->assign('stuinfo', $grantdata);
-        } else {
-            $stuinfo['grant_startTime'] = null;
-            $stuinfo['grant_endTime'] = null;
-            $stuinfo['grant_jg'] = null;
-            $stuinfo['family_name1'] = null;
-            $stuinfo['grant_school'] = null;
-            $stuinfo['grant_examination'] = null;
-            $stuinfo['grant_graduateFromSchool'] = null;
-            $stuinfo['grant_familyAddesPhone'] = null;
-            $stuinfo['grant_grade'] = null;
-            $stuinfo['grant_flag'] = null;
-            $this->assign('stuinfo', $stuinfo);
-        }
+        $this->assign('stuinfo', $grantdata);
         return $this->fetch();
     }
 
@@ -42,10 +26,6 @@ class Stugrant extends BaseController {
         if (request()->isAjax()) {
             $data = input('post.');
 
-            $validate = (new \app\student\validate\Grant())->goCheck();
-                if (is_object($validate)) {
-                    return json($validate);
-            }
             $grant_flag = input('get.grant_flag');
             $stu_id = session('student.stu_id');
             $data['stu_id'] = $stu_id;
