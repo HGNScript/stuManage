@@ -20,8 +20,10 @@ function page(search) {
             dataType: "json",
             data: data,
             // beforeSend: function (){
+            //     layer.load()
             // },
             success: function (data) {
+                // layer.close(layer.index);
                 var len = data.length
                 pageData = data
 

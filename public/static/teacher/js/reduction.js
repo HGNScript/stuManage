@@ -188,10 +188,11 @@ function search() {
                 data_html += `<li class="layui-timeline-item">
                     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                     <div class="layui-timeline-content layui-text">
-                        <h3 class="layui-timeline-title">` + array['create_time'] + `</h3>
+                        <h3 class="layui-timeline-title">` + array['update_time'] + `</h3>
                         <a href="/teacher/Reduction/examine?reduction_id=` + array['reduction_id'] + `">
                             <p style="border: 1px solid #c0ced3; display: inline-block;padding: 10px;width:40%; border-radius: 5px">
                                 申请人： ` + array['stu_name'] + `
+                                <br>申请人学号： ` + array['stu_number'] + `
                                 <br>申请人联系电话： ` + array['stu_phone'] + `
                                 <br>所属班级： ` + array['class_name'] + `
                             </p>
