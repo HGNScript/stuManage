@@ -151,14 +151,14 @@ class Classlist extends BaseModel {
             '国别',
             '证件类型',
             '户口地址',
-            '是否住宿',
-            '国家编号',
-            '省编号',
-            '联合办学',
+            // '是否住宿',
+            // '国家编号',
+            // '省编号',
+            // '联合办学',
             '是否退役士兵',
             '入学总分',
-            '是否应届',
-            '扶贫',
+            // '是否应届',
+            // '扶贫',
             '宿舍号',
             '办学点名称',
             '学生类别',
@@ -173,7 +173,11 @@ class Classlist extends BaseModel {
             '退伍时间',
             '退役方式',
             '健康状况',
-            '地区',
+            // '地区',
+            '广州市户口地区',
+            '原毕业学校（广州市就填写）',
+            '原毕业学校生源省',
+            '原毕业学校生源市',
         ];
         $test = [];
         $charactors = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -239,15 +243,15 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_differentcountries']);
             array_push($arr, $rows['stu_certificatestyle']);
             array_push($arr, $rows['stu_hukouaddresstow']);
-            array_push($arr, $rows['stu_dormFlag']);
-            array_push($arr, 1);
-            array_push($arr, 1);
-            array_push($arr, $rows['stu_lhbx']);
+            // array_push($arr, $rows['stu_dormFlag']);
+            // array_push($arr, 1);
+            // array_push($arr, 1);
+            // array_push($arr, $rows['stu_lhbx']);
 
             array_push($arr, $rows['stu_retiredsoldier']);
             array_push($arr, $rows['stu_totalentrancescore']);
-            array_push($arr, $rows['stu_yj']);
-            array_push($arr, $rows['stu_fp']);
+            // array_push($arr, $rows['stu_yj']);
+            // array_push($arr, $rows['stu_fp']);
             array_push($arr, $rows['stu_dormnumber']);
             array_push($arr, $rows['stu_nameofschoolrunningpoint']);
             array_push($arr, $rows['stu_classstudents']);
@@ -262,7 +266,12 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_demobilizedtime']);
             array_push($arr, $rows['stu_demobilizedstyle']);
             array_push($arr, $rows['stu_health']);
-            array_push($arr, $rows['stu_area']);
+            // array_push($arr, $rows['stu_area']);
+            array_push($arr, $rows['stu_guangzhouHukou']);
+            array_push($arr, $rows['stu_guangzhouprimaryschool']);
+            array_push($arr, $rows['stu_sourceprovince']);
+            array_push($arr, $rows['stu_shengyuancity']);
+            
   
 
             foreach ($arr as $key => $value) { // 列写入

@@ -241,6 +241,14 @@
             </div>
         </div>
 
+        <div class="layui-form-item layui-for layui-col-xs10 layui-col-sm6 layui-col-md4">
+            <label class="layui-form-label">何时毕业:</label>
+            <div class="layui-input-block">
+                <input type="text" id="stu_bytime" name="stu_bytime" value="{$stuinfo['stu_bytime']}"
+                       class="layui-input" placeholder="点击选择时间">
+            </div>
+        </div>
+
         <div class="layui-form-item">
             <label class="layui-form-label">招生年份:</label>
             <div class="layui-input-block">
@@ -403,7 +411,7 @@
                     <option value="五年">五年</option>
                     <option value="六年" selected="selected">六年</option>
                     {else/}
-                    <option value="二年">三年</option>
+                    <option value="二年">二年</option>
                     <option value="三年" selected="selected">三年</option>
                     <option value="四年">四年</option>
                     <option value="五年">五年</option>
@@ -602,10 +610,10 @@
             </div>
         </div>
 
-        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md6">
+     <!--    <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md6">
             <label class="layui-form-label">是否扶贫</label>
             <div class="layui-input-block">
-                <select name="stu_fp">请选择一种文化程度
+                <select name="stu_fp">请选择一种扶贫方式
                     {if condition="$stuinfo['stu_fp'] == '广州市教育扶贫(增城、从化扶贫)'"}
                     <option value="否">否</option>
                     <option value="广州市教育扶贫(增城、从化扶贫)" selected="selected">广州市教育扶贫(增城、从化扶贫)</option>
@@ -719,9 +727,9 @@
                     {/if}
                 </select>
             </div>
-        </div>
+        </div> -->
 
-        <div class="layui-form-item">
+        <!-- <div class="layui-form-item">
             <label class="layui-form-label">是否应届:</label>
             <div class="layui-input-block">
                 {if condition="$stuinfo['stu_yj'] == '否'"}
@@ -732,9 +740,9 @@
                 <input type="radio" name="stu_yj" value="否" title="否">
                 {/if}
             </div>
-        </div>
+        </div> -->
 
-        <div class="layui-form-item">
+        <!-- <div class="layui-form-item">
             <label class="layui-form-label">联合办学:</label>
             <div class="layui-input-block">
                 {if condition="$stuinfo['stu_lhbx'] == '是'"}
@@ -745,9 +753,9 @@
                 <input type="radio" name="stu_lhbx" value="否" title="否" checked>
                 {/if}
             </div>
-        </div>
+        </div> -->
 
-        <div class="layui-form-item">
+       <!--  <div class="layui-form-item">
             <label class="layui-form-label">是否住宿:</label>
             <div class="layui-input-block">
                 {if condition="$stuinfo['stu_dormFlag'] == '否'"}
@@ -758,7 +766,7 @@
                 <input type="radio" name="stu_dormFlag" value="否" title="否" lay-filter="stu_dormFlag">
                 {/if}
             </div>
-        </div>
+        </div> -->
 
 
         <div class="layui-form-item">
@@ -788,10 +796,39 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
+        <!-- <div class="layui-form-item">
             <label class="layui-form-label">学生类别:</label>
             <div class="layui-input-block">
                 <input type="text" name="stu_classstudents" value="应届毕业" class="layui-input definite">
+            </div>
+        </div> -->
+
+        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+            <label class="layui-form-label">学生类别:</label>
+            <div class="layui-input-block">
+                <select name="stu_classstudents">请选择学生类别
+                    {if condition="$stuinfo['stu_classstudents'] == '05.在职人员'"}
+                    <option value="01.应届毕业">01.应届毕业</option>
+                    <option value="05.在职人员" selected>05.在职人员</option>
+                    <option value="10.非在职人员">10.非在职人员</option>
+                    <option value="15.退役士兵">15.退役士兵</option>
+                    {elseif condition="$stuinfo['stu_classstudents'] == '10.非在职人员'" /}
+                    <option value="01.应届毕业">01.应届毕业</option>
+                    <option value="05.在职人员">05.在职人员</option>
+                    <option value="10.非在职人员"  selected>10.非在职人员</option>
+                    <option value="15.退役士兵">15.退役士兵</option>
+                    {elseif condition="$stuinfo['stu_classstudents'] == '15.退役士兵'" /}
+                    <option value="01.应届毕业">01.应届毕业</option>
+                    <option value="05.在职人员">05.在职人员</option>
+                    <option value="10.非在职人员">10.非在职人员</option>
+                    <option value="15.退役士兵"  selected>15.退役士兵</option>
+                    {else/}
+                    <option value="01.应届毕业" selected>01.应届毕业</option>
+                    <option value="05.在职人员">05.在职人员</option>
+                    <option value="10.非在职人员">10.非在职人员</option>
+                    <option value="15.退役士兵">15.退役士兵</option>
+                    {/if}
+                </select>
             </div>
         </div>
 
@@ -830,17 +867,147 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
+        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
             <label class="layui-form-label">学生状态:</label>
             <div class="layui-input-block">
-                {if condition="$stuinfo['stu_state']"}
-                <input type="text" name="stu_state" value="{$stuinfo['stu_state']}" class="layui-input definite">
-                {else/}
-                <input type="text" name="stu_state" value="在校" class="layui-input definite">
-                {/if}
+                <select name="stu_state">请选择学生状态
+                    {if condition="$stuinfo['stu_state'] == '05.休学'"}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学" selected>05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '10.转入'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入" selected>10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '15.转出'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出"  selected>15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '20.退学'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学" selected>20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '25.复学'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学" selected>25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '30.留级'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级" selected>30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '35.开除'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除" selected>35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '40.肄业'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业" selected>40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '45.毕业'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业" selected>45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {elseif condition="$stuinfo['stu_state'] == '50.结业'" /}
+                    <option value="01.在校">01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业" selected>50.结业</option>
+                    {else/}
+                    <option value="01.在校" selected>01.在校</option>
+                    <option value="05.休学">05.休学</option>
+                    <option value="10.转入">10.转入</option>
+                    <option value="15.转出">15.转出</option>
+                    <option value="20.退学">20.退学</option>
+                    <option value="25.复学">25.复学</option>
+                    <option value="30.留级">30.留级</option>
+                    <option value="35.开除">35.开除</option>
+                    <option value="40.肄业">40.肄业</option>
+                    <option value="45.毕业">45.毕业</option>
+                    <option value="50.结业">50.结业</option>
+                    {/if}
+                </select>
             </div>
         </div>
-
+<!-- 
         <div class="layui-form-item layui-for">
             <label class="layui-form-label">健康状况:</label>
             <div class="layui-input-block">
@@ -850,15 +1017,233 @@
                 <input type="text" name="stu_health" value="健康或良好" class="layui-input definite">
                 {/if}
             </div>
+        </div> -->
+
+        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+            <label class="layui-form-label">健康状况:</label>
+            <div class="layui-input-block">
+                <select name="stu_health">请选择学生健康状况
+                    {if condition="$stuinfo['stu_health'] == '02.一般或较弱'"}
+                    <option value="01.健康或良好">01.健康或良好</option>
+                    <option value="02.一般或较弱"  selected>02.一般或较弱</option>
+                    <option value="04.有生理缺陷">04.有生理缺陷</option>
+                    <option value="05.有残疾">05.有残疾</option>
+                    <option value="09.其他">09.其他</option>
+                    {elseif condition="$stuinfo['stu_health'] == '04.有生理缺陷'" /}
+                   <option value="01.健康或良好">01.健康或良好</option>
+                    <option value="02.一般或较弱">02.一般或较弱</option>
+                    <option value="04.有生理缺陷"  selected>04.有生理缺陷</option>
+                    <option value="05.有残疾">05.有残疾</option>
+                    <option value="09.其他">09.其他</option>
+                    {elseif condition="$stuinfo['stu_health'] == '05.有残疾'" /}
+                   <option value="01.健康或良好">01.健康或良好</option>
+                    <option value="02.一般或较弱">02.一般或较弱</option>
+                    <option value="04.有生理缺陷">04.有生理缺陷</option>
+                    <option value="05.有残疾"  selected>05.有残疾</option>
+                    <option value="09.其他">09.其他</option>
+                    {elseif condition="$stuinfo['stu_health'] == '09.其他'" /}
+                   <option value="01.健康或良好">01.健康或良好</option>
+                    <option value="02.一般或较弱">02.一般或较弱</option>
+                    <option value="04.有生理缺陷">04.有生理缺陷</option>
+                    <option value="05.有残疾">05.有残疾</option>
+                    <option value="09.其他"  selected>09.其他</option>
+                    {else/}
+                    <option value="01.健康或良好" selected>01.健康或良好</option>
+                    <option value="02.一般或较弱">02.一般或较弱</option>
+                    <option value="04.有生理缺陷">04.有生理缺陷</option>
+                    <option value="05.有残疾">05.有残疾</option>
+                    <option value="09.其他">09.其他</option>
+                    {/if}
+                </select>
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
+            <label class="layui-form-label">广州市户口地区:</label>
+            <div class="layui-input-block">
+                <select name="stu_guangzhouHukou" id="stu_guangzhouHukou" lay-filter="guangzhouHukou">请选择一个地区
+                    {if condition="$stuinfo['stu_guangzhouHukou'] == '荔湾区'"}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区" selected="selected">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '越秀区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区" selected="selected">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '海珠区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区" selected="selected">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '天河区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区" selected="selected">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '白云区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区" selected="selected">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '黄埔区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区" selected="selected">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '番禺区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区" selected="selected">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '花都区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区" selected="selected">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '南沙区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区" selected="selected">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {elseif condition="$stuinfo['stu_guangzhouHukou'] == '从化区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区" selected="selected">从化区</option>
+                    <option value="增城区">增城区</option>
+                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '增城区'" /}
+                    <option value="">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区" selected="selected">增城区</option>
+                    {else/}
+                    <option value=""  selected="selected">非广州市户口</option>
+                    <option value="荔湾区">荔湾区</option>
+                    <option value="越秀区">越秀区</option>
+                    <option value="海珠区">海珠区</option>
+                    <option value="天河区">天河区</option>
+                    <option value="白云区">白云区</option>
+                    <option value="黄埔区">黄埔区</option>
+                    <option value="番禺区">番禺区</option>
+                    <option value="花都区">花都区</option>
+                    <option value="南沙区">南沙区</option>
+                    <option value="从化区">从化区</option>
+                    <option value="增城区">增城区</option>
+                    {/if}
+                </select>
+            </div>
         </div>
 
         <div class="layui-form-item layui-for">
-            <label class="layui-form-label">何时毕业于何学校:</label>
+            <label class="layui-form-label">原毕业学校（广州市就填写）:</label>
             <div class="layui-input-block">
-                <input type="text" name="stu_graduateFromSchool" value="{$stuinfo['stu_graduateFromSchool']}"
-                       class="layui-input definite">
+                <input type="text" name="stu_guangzhouprimaryschool" value="{$stuinfo['stu_guangzhouprimaryschool']}" class="layui-input" id="guangzhouprimaryschool">
             </div>
         </div>
+
+         <div class="layui-form-item layui-for">
+            <label class="layui-form-label">原毕业学校生源省:</label>
+            <div class="layui-input-block">
+                <input type="text" name="stu_sourceprovince" value="{$stuinfo['stu_sourceprovince']}" class="layui-input definite" placeholder="请填写毕业学校所在的省份名称">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-for">
+            <label class="layui-form-label">原毕业学校生源市:</label>
+            <div class="layui-input-block">
+                <input type="text" name="stu_shengyuancity" value="{$stuinfo['stu_shengyuancity']}" class="layui-input definite" placeholder="请填写毕业学校所在的市名称">
+            </div>
+        </div>
+
 
         <div class="layui-form-item layui-for">
             <label class="layui-form-label">家庭成员(户主):</label>
@@ -875,6 +1260,10 @@
                                class="layui-input definite">
             </div>
         </div>
+
+
+
+        
 
         <div class="layui-form-item">
             <label class="layui-form-label">是否退役士兵:</label>
@@ -901,13 +1290,72 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
+        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5" lay-filter="stu_originalmilitaryrank">
             <label class="layui-form-label">原军衔:</label>
             <div class="layui-input-block">
-                <input type="text" name="stu_originalmilitaryrank" value="{$stuinfo['stu_originalmilitaryrank']}"
-                       class="layui-input stu_retiredsoldier" id="test">
+                <select name="stu_originalmilitaryrank" id="stu_originalmilitaryrank">请选择一个军衔
+                    {if condition="$stuinfo['stu_originalmilitaryrank'] == '01.列兵'"}
+                    <option value="">非退役士兵</option>
+                    <option value="01.列兵"  selected="selected">01.列兵</option>
+                    <option value="02.上等兵">02.上等兵</option>
+                    <option value="03.一级士官">03.一级士官</option>
+                    <option value="04.二级士官">04.二级士官</option>
+                    <option value="05.三级士官">05.三级士官</option>
+                    <option value="06.四级士官">06.四级士官</option>
+                    {elseif condition="$stuinfo['stu_originalmilitaryrank'] == '02.上等兵'" /}
+                    <option value="">非退役士兵</option>
+                    <option value="01.列兵">01.列兵</option>
+                    <option value="02.上等兵" selected="selected">02.上等兵</option>
+                    <option value="03.一级士官">03.一级士官</option>
+                    <option value="04.二级士官">04.二级士官</option>
+                    <option value="05.三级士官">05.三级士官</option>
+                    <option value="06.四级士官">06.四级士官</option>
+                    {elseif condition="$stuinfo['stu_originalmilitaryrank'] == '03.一级士官'" /}
+                    <option value="">非退役士兵</option>
+                    <option value="01.列兵">01.列兵</option>
+                    <option value="02.上等兵">02.上等兵</option>
+                    <option value="03.一级士官" selected="selected">03.一级士官</option>
+                    <option value="04.二级士官">04.二级士官</option>
+                    <option value="05.三级士官">05.三级士官</option>
+                    <option value="06.四级士官">06.四级士官</option>
+                    {elseif condition="$stuinfo['stu_originalmilitaryrank'] == '04.二级士官'" /}
+                     <option value="">非退役士兵</option>
+                    <option value="01.列兵">01.列兵</option>
+                    <option value="02.上等兵">02.上等兵</option>
+                    <option value="03.一级士官">03.一级士官</option>
+                    <option value="04.二级士官" selected="selected">04.二级士官</option>
+                    <option value="05.三级士官">05.三级士官</option>
+                    <option value="06.四级士官">06.四级士官</option>
+                    {elseif condition="$stuinfo['stu_originalmilitaryrank'] == '05.三级士官'" /}
+                     <option value="">非退役士兵</option>
+                    <option value="01.列兵">01.列兵</option>
+                    <option value="02.上等兵">02.上等兵</option>
+                    <option value="03.一级士官">03.一级士官</option>
+                    <option value="04.二级士官">04.二级士官</option>
+                    <option value="05.三级士官" selected="selected">05.三级士官</option>
+                    <option value="06.四级士官">06.四级士官</option>
+                    {elseif condition="$stuinfo['stu_originalmilitaryrank'] == '06.四级士官'" /}
+                     <option value="">非退役士兵</option>
+                    <option value="01.列兵">01.列兵</option>
+                    <option value="02.上等兵">02.上等兵</option>
+                    <option value="03.一级士官">03.一级士官</option>
+                    <option value="04.二级士官">04.二级士官</option>
+                    <option value="05.三级士官">05.三级士官</option>
+                    <option value="06.四级士官" selected="selected">06.四级士官</option>
+                    {else/}
+                     <option value=""  selected="selected">非退役士兵</option>
+                    <option value="01.列兵">01.列兵</option>
+                    <option value="02.上等兵">02.上等兵</option>
+                    <option value="03.一级士官">03.一级士官</option>
+                    <option value="04.二级士官">04.二级士官</option>
+                    <option value="05.三级士官">05.三级士官</option>
+                    <option value="06.四级士官">06.四级士官</option>
+                    {/if}
+                </select>
             </div>
         </div>
+
+
 
         <div class="layui-form-item layui-for">
             <label class="layui-form-label">入伍地:</label>
@@ -934,21 +1382,50 @@
             </div>
         </div>
 
-        <div class="layui-form-item layui-for">
+        <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
             <label class="layui-form-label">退伍方式:</label>
             <div class="layui-input-block">
-                <input type="text" name="stu_demobilizedstyle" value="{$stuinfo['stu_demobilizedstyle']}"
-                       class="layui-input stu_retiredsoldier">
+                <select name="stu_demobilizedstyle" id="stu_demobilizedstyle" lay-filter="guangzhouHukou">请选择一个退伍方式
+                    {if condition="$stuinfo['stu_demobilizedstyle'] == '01.退伍义务兵'"}
+                    <option value="">非退役士兵</option>
+                    <option value="01.退伍义务兵" selected="selected">01.退伍义务兵</option>
+                    <option value="02.复员士官">02.复员士官</option>
+                    <option value="03.转业士官">03.转业士官</option>
+                    {elseif condition="$stuinfo['stu_demobilizedstyle'] == '02.复员士官'" /}
+                    <option value="">非退役士兵</option>
+                    <option value="01.退伍义务兵">01.退伍义务兵</option>
+                    <option value="02.复员士官" selected="selected">02.复员士官</option>
+                    <option value="03.转业士官">03.转业士官</option>
+                    {elseif condition="$stuinfo['stu_demobilizedstyle'] == '03.转业士官'" /}
+                    <option value="">非退役士兵</option>
+                    <option value="01.退伍义务兵"></option>
+                    <option value="02.复员士官">02.复员士官</option>
+                    <option value="03.转业士官" selected="selected">03.转业士官</option>
+                    {else/}
+                    <option value="" selected="selected">非退役士兵</option>
+                    <option value="01.退伍义务兵">01.退伍义务兵</option>
+                    <option value="02.复员士官">02.复员士官</option>
+                    <option value="03.转业士官">03.转业士官</option>
+                    {/if}
+                </select>
             </div>
         </div>
 
 
-        <div class="layui-form-item layui-for">
+
+        <!-- <div class="layui-form-item layui-for">
             <label class="layui-form-label">地区:</label>
             <div class="layui-input-block">
                 <input type="text" name="stu_area" value="{$stuinfo['stu_area']}" class="layui-input">
             </div>
-        </div>
+        </div> -->
+
+        
+
+       
+
+
+
 
         <div class="layui-form-item layui-for">
             <label class="layui-form-label">中考准考证号:</label>

@@ -12,7 +12,7 @@ namespace app\student\controller;
 use app\student\model\student;
 use app\student\validate\Info;
 use app\student\validate\Retiredsoldier;
-use app\student\validate\DormFlag;
+use app\student\validate\gzhk;
 
 class Stuinfo extends BaseController {
     public function index(){
@@ -61,13 +61,22 @@ class Stuinfo extends BaseController {
             }
         }
 
-        if ($info['stu_dormFlag'] == '是') {
-            $Info = (new DormFlag())->goCheck();
+        // if ($info['stu_dormFlag'] == '是') {
+        //     $Info = (new DormFlag())->goCheck();
+        //     if (is_object($Info)) {
+        //         return json($Info);
+        //     }
+        // } else {
+        //     $info['stu_dormnumber'] = '';
+        // }
+
+        if ($info['stu_guangzhouHukou']) {
+            $Info = (new gzhk())->goCheck();
             if (is_object($Info)) {
                 return json($Info);
             }
         } else {
-            $info['stu_dormnumber'] = '';
+            $info['stu_guangzhouprimaryschool'] = '';
         }
 
 

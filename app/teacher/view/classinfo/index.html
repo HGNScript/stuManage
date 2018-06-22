@@ -34,14 +34,26 @@
                 <div class="layui-form layui-col-md12 x-so" id="searchForm">
                     <input id="input" type="text" name="search" placeholder="请输入学生姓名或学号"  class="layui-input">
                     <button type="button" id="search" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
+
                 </div>
             </div>
-             <a href="/teacher/Classinfo/export?class_id={$class['class_id']}" class="layui-btn" id="excel">
-                 导出班级数据
-                </a>
+
+            <button class="layui-btn layui-btn-danger" id="delAll"><i class="layui-icon"></i>批量删除</button>
+            <a class="layui-btn" href="addClassstu?class_id={$class_id}"><i class="layui-icon"></i>添加</a>
+            <button type="button" class="layui-btn" id="excel">
+                <i class="layui-icon">&#xe67c;</i>批量添加
+            </button>
+
+            <a href="/teacher/Classinfo/export?class_id={$class['class_id']}" class="layui-btn">
+
+                导出班级数据
+            </a>
             <table class="layui-table">
                 <thead>
                 <tr>
+                    <th>
+                        <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                    </th>
                     <th>学号</th>
                     <th>学生名称</th>
                     <th>性别</th>

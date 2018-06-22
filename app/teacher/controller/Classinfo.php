@@ -120,5 +120,40 @@ class Classinfo extends BaseController {
     }
 
 
+    public function addClassStu(){
+        $class_id = input('get.class_id');
+        $this->assign('class_id', $class_id);
+        return $this->fetch();
+    }
+
+    public function editClassStu() {
+        $class_id = input('get.class_id');
+        $stu_id = input('get.stu_id');
+        $oldClassStu = (new ClasssinfoModel)->getOldClassStu($stu_id);
+
+        $this->assign('class_id', $class_id);
+        $this->assign('stu_id', $stu_id);
+        $this->assign('oldClassStu', $oldClassStu);
+        return $this->fetch();
+    }
+
+
+    public function addAndEditStu(){
+        if (request()->isAjax()) {
+            $data = input('post.');
+            $class_id = input('get.class_id');
+            $stu_id = input('get.stu_id');
+            $validate = (new AddClassstu())->goCheck();
+            if ($validate) {
+                if (is_object($validate)) {
+                    return json($validate);
+                }
+            }
+            $res = (new ClasssinfoModel)->addAndEditClassStu($data, $stu_id, $class_id);
+            return json($res);
+        }
+    }
+
+
 
 }

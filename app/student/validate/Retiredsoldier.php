@@ -13,11 +13,11 @@ class Retiredsoldier extends BaseValidate
 {
     protected $rule = [
         'stu_originaltroops' => 'require|chs',
-        'stu_originalmilitaryrank' => 'require|chs',
+        'stu_originalmilitaryrank' => 'require',
         'stu_enlist' => 'require|chs',
         'stu_enlisttime' => 'require',
         'stu_demobilizedtime' => 'require',
-        'stu_demobilizedstyle' => 'require|chs',
+        'stu_demobilizedstyle' => 'require',
 
 
 
@@ -27,7 +27,6 @@ class Retiredsoldier extends BaseValidate
         'stu_originaltroops.chs' => '"原部队"只能为中文',
 
         'stu_originalmilitaryrank.require' => '"原军衔"不能为空',
-        'stu_originalmilitaryrank.chs' => '"原军衔"只能为中文',
 
         'stu_enlist.require' => '"入伍地"不能为空',
         'stu_enlist.chs' => '"入伍地"只能为中文',
@@ -37,7 +36,6 @@ class Retiredsoldier extends BaseValidate
 
 
         'stu_demobilizedstyle.require' => '"退伍方式"不能为空',
-        'stu_demobilizedstyle.chs' => '"退伍方式"只能为中文',
 
     ];
 }

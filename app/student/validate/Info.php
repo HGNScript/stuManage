@@ -45,14 +45,13 @@ class Info extends BaseValidate {
         'stu_totalentrancescore' => 'require',
 
         'stu_nameofschoolrunningpoint' => 'require|chs',
-        'stu_classstudents' => 'require|chs',
         'stu_hukouquyu' => 'require|chs',
 //        'stu_hukouaddressf' => 'require|chs',
-        'stu_state' => 'require|chs',
+        // 'stu_state' => 'require|chs',
 
 
 
-        'stu_health' => 'require|chs',
+        'stu_health' => 'require',
 
         'stu_guangzhouHukou' => 'chs',
         'stu_guangzhouprimaryschool' => 'chs',
@@ -85,7 +84,11 @@ class Info extends BaseValidate {
         'family_work4' => 'chsAlphaNum',
 
 
-        'stu_graduateFromSchool' => 'require|chsAlphaNum',
+        'stu_bytime' => 'require',
+
+        'stu_sourceprovince' => 'require|chsAlphaNum',
+        'stu_shengyuancity' => 'require|chsAlphaNum',
+
         
 
     ];
@@ -132,7 +135,7 @@ class Info extends BaseValidate {
         'stu_classstudents.require' => '"学生类别"不能为空',
         'stu_hukouquyu.require' => '"户口区域"不能为空',
 //        'stu_hukouaddressf.require' => '"户籍所在地"不能为空',
-        'stu_state.require' => '"学生状态"不能为空',
+        // 'stu_state.require' => '"学生状态"不能为空',
 
         'stu_health.require' => '"健康状况"不能为空',
 
@@ -167,7 +170,6 @@ class Info extends BaseValidate {
         'stu_retiredsoldier.chs' => '"是否退役士兵"只能为中文',
         'stu_totalentrancescore.number' => '"入学总分"只能为数字',
         'stu_nameofschoolrunningpoint.chs' => '"办学点名称"只能为中文',
-        'stu_classstudents.chs' => '"学生类别"只能为中文',
         'stu_hukouquyu.chs' => '"户口区域"只能为中文',
 //        'stu_hukouaddressf.chs' => '"户籍所在地"只能为中文',
         'stu_state.chs' => '"学生状态"只能为中文',
@@ -175,7 +177,6 @@ class Info extends BaseValidate {
 
 
         
-        'stu_health.chs' => '健康状况只能为中文',
         'stu_guangzhouHukou.chs' => '广州市户口地区只能为中文',
         'stu_guangzhouprimaryschool.chs' => '原毕业学校只能为中文',
         'stu_sourceprovince.chs' => '原毕业学校只能为中文',
@@ -235,10 +236,15 @@ class Info extends BaseValidate {
 
 
 
-        'stu_graduateFromSchool.chsAlphaNum' => '"何时毕业于何学校"只能是汉字、字母和数字',
-        'stu_graduateFromSchool.require' => '"何时毕业于何学校"不能为空',
+        'stu_bytime.require' => '"何时毕业"不能为空',
 
 
+
+        'stu_sourceprovince.require' => '"原毕业学校生源省"不能为空',
+        'stu_sourceprovince.chsAlphaNum' => '"原毕业学校生源省"只能为汉字、字母和数字',
+        'stu_shengyuancity.require' => '"原毕业学校生源市"不能为空',
+        'stu_shengyuancity.chsAlphaNum' => '"原毕业学校生源市"只能为汉字、字母和数字',
+        
 
 
 

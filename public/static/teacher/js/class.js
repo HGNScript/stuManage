@@ -1,11 +1,28 @@
 var pageData = null;
 $(function () {
 
+    var excelurl = '/admin/Classinfo/excelAddStu?staffRoom=';
+    excel(excelurl);
+
+    var addAndEditurl = '/admin/Classinfo/addAndEditStu?class_id=';
+    var hrefUrl = '/admin/Classinfo/index?staffRoom='
+    // addAndEdit(addAndEditurl, hrefUrl)
+
+    delAllClick()
+
     page(null);
 
     search()
+    delclick()
 
 })
+
+function delAllClick() {
+    $('#delAll').click(function () {
+        var delurl = '/admin/Classinfo/delClassStu'
+        delAll(delurl);
+    })
+}
 
 function page(search) {
     var staffRoom = $('#staffRoom').val()
@@ -58,6 +75,7 @@ function page(search) {
                         })
 
                         checkbox()
+                        delclick()
                     }
                 });
             }
@@ -73,6 +91,9 @@ function showData(data) {
         var grade = $('#grade').val();
         $.each(data, function (index, array) {
             data_html += `<tr>
+                                    <td>
+                                       <div class="checkbox layui-unselect layui-form-checkbox" lay-skin="primary" data-id="` + array['stu_id'] + `"><i class="layui-icon">&#xe605;</i></div>
+                                    </td>
                                     <td>` + array['stu_number'] + `</td>
                                     <td>` + array['stu_name'] + `</td>
                                     <td>` + array['stu_sex'] + `</td>
@@ -83,11 +104,28 @@ function showData(data) {
                                          <a href="/teacher/ClassInfo/stuInfo?stu_id=` + array['stu_id'] + `">
                                         <span class="layui-badge-rim layui-bg-blue">查看学生信息</span>
                                       </a>
+                                      
+                                      <a title="编辑学生信息" href="/admin/Classinfo/editClassStu?stu_id=` + array['stu_id'] + `&class_id=` + array['class_id'] + `">
+                                            <span class="layui-badge-rim layui-bg-orange">编辑学生信息</span>  
+                                          </a>
+                                              <a title="删除" class="del" data-id="` + array['stu_id'] + `" href="javascript:;">
+                                            <span class="layui-badge">删除</span>  
                                             </td>
-                                        </tr>`;
+                          </tr>`;
+
+
         });
+
     }
     return data_html
+}
+
+function delclick() {
+    $('.del').click(function () {
+        var id = $(this).attr('data-id')
+        var url = '/admin/Classinfo/delClassStu'
+        del(url, id)
+    })
 }
 
 

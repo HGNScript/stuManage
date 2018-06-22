@@ -7,6 +7,7 @@
  */
 
 namespace app\student\model;
+use think\Session;
 
 
 use app\admin\model\Hk;
@@ -68,6 +69,7 @@ class student extends Model {
             (new Reduction())->allowField(true)->save($info);
         }
 
+        Session::set('student.stu_name',$info['stu_name']);
         return $this->allowField(true)->save($info,['stu_id' => $stu_id]);
 
     }

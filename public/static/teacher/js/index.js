@@ -124,6 +124,8 @@ $(function(){
     }
 
 
+
+
     var _main = function(){
         editPsd()
         editInfo()
