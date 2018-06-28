@@ -126,12 +126,12 @@ var examine = function () {
                                  if (reduction_flag == 2) {
                                     layer.alert("已通过免学费申请,但通知发送不成功," + res.msg.errmsg, function(index){
                                         layer.close(index);
-                                        location.reload();
+                                        notice()
                                     });
                                 } else {
                                     layer.alert("未通过免学费申请,但通知发送不成功," + res.msg.errmsg, function(index){
                                         layer.close(index);
-                                        location.reload();
+                                        notice()
                                     });
                                 }
 

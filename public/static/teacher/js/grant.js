@@ -129,12 +129,12 @@ var examine = function () {
                                  if (grant_flag == 2) {
                                     layer.alert("已通过助学金申请,但通知发送不成功," + res.msg.errmsg, function(index){
                                         layer.close(index);
-                                        location.reload();
+                                        notice()
                                     });
                                 } else {
                                     layer.alert("未通过助学金申请,但通知发送不成功," + res.msg.errmsg, function(index){
                                         layer.close(index);
-                                        location.reload();
+                                        notice()
                                     });
                                 }
 
