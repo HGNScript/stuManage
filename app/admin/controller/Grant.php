@@ -55,7 +55,7 @@ class Grant extends Controller {
         $grant['stu_identity'] = str_split($grant['stu_identity']);
 
         $this->assign('grant', $grant);
-        $this->assign('stuinfo', null);
+        // $this->assign('stuinfo', null);
         return $this->fetch();
     }
 
