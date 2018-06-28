@@ -93,6 +93,7 @@ var examine = function () {
 
                         if (res['msg'].result == 0) {
                             if (reduction_flag == 2) {
+
                                 if (res['msg'].detail[0]['result'] != 0) {
                                     layer.alert("已通过免学费申请,但" + res['msg'].detail[0]['errmsg'] + ",通知发送不成功", function (index) {
                                         layer.close(index);
@@ -105,6 +106,7 @@ var examine = function () {
                                     });
                                 }
                             } else {
+
                                 if (res['msg'].detail[0]['result'] != 0) {
                                     layer.alert("未通过免学费申请," + res['msg'].detail[0]['errmsg'] + "通知发送不成功", function (index) {
                                         layer.close(index);
@@ -120,7 +122,23 @@ var examine = function () {
                                 }
                             }
                         } else {
-                            layer.msg("服务器出现错误")
+                             if (res.msg.result != 0) {
+                                 if (reduction_flag == 2) {
+                                    layer.alert("已通过免学费申请,但通知发送不成功," + res.msg.errmsg, function(index){
+                                        layer.close(index);
+                                        location.reload();
+                                    });
+                                } else {
+                                    layer.alert("未通过免学费申请,但通知发送不成功," + res.msg.errmsg, function(index){
+                                        layer.close(index);
+                                        location.reload();
+                                    });
+                                }
+
+                            } else {
+                                layer.msg("服务器出现错误")
+                                
+                            }
                         }
                     } else {
                         layer.msg(res['msg'])

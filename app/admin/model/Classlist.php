@@ -239,7 +239,7 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_familylow']);
             array_push($arr, $rows['stu_sourceincome']);
             array_push($arr, $rows['stu_postalcode']);
-            array_push($arr, $rows['stu_number']);
+            array_push($arr, '\''.$rows['stu_number']);
             array_push($arr, $rows['stu_differentcountries']);
             array_push($arr, $rows['stu_certificatestyle']);
             array_push($arr, $rows['stu_hukouaddresstow']);

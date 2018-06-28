@@ -857,12 +857,12 @@
         <div class="layui-form-item">
             <label class="layui-form-label">是否三侨:</label>
             <div class="layui-input-block">
-                {if condition="$stuinfo['stu_sanqiao'] == '否'"}
-                <input type="radio" name="stu_sanqiao" value="是" title="是">
-                <input type="radio" name="stu_sanqiao" checked value="否" title="否">
-                {else/}
+                {if condition="$stuinfo['stu_sanqiao'] == '是'"}
                 <input type="radio" name="stu_sanqiao" checked value="是" title="是">
                 <input type="radio" name="stu_sanqiao" value="否" title="否">
+                {else/}
+                <input type="radio" name="stu_sanqiao" value="是" title="是">
+                <input type="radio" name="stu_sanqiao" checked  value="否" title="否">
                 {/if}
             </div>
         </div>

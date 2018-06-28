@@ -21,7 +21,16 @@ var stuinfoNotice = function () {
                 },
                 success: function (res) {
                     layer.close(layer.index);
+                    console.log(res)
                     if (res['valid'] == 1) {
+
+                        if (res.msg.result != 0) {
+                            layer.alert("已驳回学生信息,但通知发送不成功," + res.msg.errmsg, function(index){
+                                layer.close(index);
+                                location.reload();
+                            });
+                        }
+
                         if (res['msg'].detail[0]['result'] != 0) {
                             if (noticeFlag == 'infoBug') {
                                 layer.alert("已驳回学生信息,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
@@ -37,6 +46,7 @@ var stuinfoNotice = function () {
                             }
                             
                         } else {
+
                             if (noticeFlag == 'infoBug') {
                                  layer.alert("已驳回学生信息，已将通知发送至学生", function(index){
                                     layer.close(index);

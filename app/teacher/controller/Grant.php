@@ -108,6 +108,7 @@ class Grant extends Controller {
 
         $res = (new \app\teacher\model\Grant())->save(['grant_flag' => $grant_flag], ['grant_id' => $grant_id]);
 
+
         if ($res) {
             if($grant_flag == 2) {
                 $paramsArr = ["已通过"];
