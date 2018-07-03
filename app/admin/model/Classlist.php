@@ -209,16 +209,16 @@ class Classlist extends BaseModel {
             $arr = [];
             array_push($arr, $rows['stu_studystyle']);
             array_push($arr, $rows['stu_name']);
-            array_push($arr, '\''.$rows['stu_identity']);
+            array_push($arr, $rows['stu_identity'] . "\t");
             array_push($arr, $rows['stu_sex']);
 
 
             $card = $rows['stu_identity'];
 
             $stu_birthday = strlen($card)==15 ? ('19' . substr($card, 6, 6)) : substr($card, 6, 8);
-            array_push($arr, '\''.$stu_birthday);
+            array_push($arr, $stu_birthday);
             array_push($arr, $rows['stu_nation']);
-            array_push($arr, '\''.$rows['stu_phone']);
+            array_push($arr, $rows['stu_phone'] . "\t");
             array_push($arr, $rows['stu_politicalstatus']);
             array_push($arr, $rows['stu_hukouaddress']);
             array_push($arr, $rows['stu_hokoustyle']);
@@ -231,15 +231,15 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_Preschooleducation']);
             array_push($arr, $rows['stu_schoolsystem']);
             array_push($arr, $rows['stu_familycontact']);
-            array_push($arr, '\''.$rows['stu_familyphone']);
-            array_push($arr, $rows['stu_totalannualincomefamily']);
-            array_push($arr, $rows['stu_percapitaincomefamily']);
+            array_push($arr, $rows['stu_familyphone'] . "\t");
+            array_push($arr, $rows['stu_totalannualincomefamily'] . "\t");
+            array_push($arr, $rows['stu_percapitaincomefamily'] . "\t");
             array_push($arr, $rows['stu_100thousand']);
             array_push($arr, $rows['stu_familydifficulties']);
             array_push($arr, $rows['stu_familylow']);
             array_push($arr, $rows['stu_sourceincome']);
-            array_push($arr, $rows['stu_postalcode']);
-            array_push($arr, '\''.$rows['stu_number']);
+            array_push($arr, $rows['stu_postalcode'] . "\t");
+            array_push($arr, $rows['stu_number'] . "\t");
             array_push($arr, $rows['stu_differentcountries']);
             array_push($arr, $rows['stu_certificatestyle']);
             array_push($arr, $rows['stu_hukouaddresstow']);
@@ -256,7 +256,7 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_nameofschoolrunningpoint']);
             array_push($arr, $rows['stu_classstudents']);
             array_push($arr, $rows['stu_hukouquyu']);
-            array_push($arr, $rows['stu_hukouaddressf']);
+            array_push($arr, $rows['stu_hukouaddressf'] . "\t");
             array_push($arr, $rows['stu_sanqiao']);
             array_push($arr, $rows['stu_state']);
             array_push($arr, $rows['stu_originaltroops']);
@@ -300,7 +300,7 @@ class Classlist extends BaseModel {
 
         $objPHPExcel->setActiveSheetIndex(0); // 设置活动单指数到第一个表,所以Excel打开这是第一个表
 
-        $fileName = $class_name['class_name'].'.xls';
+        $fileName = $class_name['class_grade']."级".$class_name['class_name'].'.xls';
 
         header('Content-Disposition: attachment;filename='.$fileName);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

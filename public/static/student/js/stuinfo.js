@@ -1,5 +1,8 @@
 var v = null
+
 $(function () {
+
+
     top()
     eachShow()
     stuInfoSubmit()
@@ -7,6 +10,7 @@ $(function () {
     noBlur()
     identity()
     guangzhouHukou()
+    checkAddress()
 
     var v = $('#stu_guangzhouHukou').val()
     checkVal(v)
@@ -259,6 +263,7 @@ $(function () {
 
 
     function stuInfoKeep() {
+
         var info = $("#stuInfoForm").serialize();
         $.ajax({
             type: "post",
@@ -288,10 +293,13 @@ $(function () {
                 }
             }
         });
+
+        
     }
 
 
     function stuInfoSubmit() {
+
         $('#stuInfoSubmit').click(function () {
 
             var stu_infoflag = $('#stu_infoflag').val()
@@ -487,30 +495,35 @@ $(function () {
 
         layui.use('form', function(){
             var form = layui.form;
-          
+
+            form.render('select')
+
             form.on('select(guangzhouHukou)', function(data){
-                checkVal(data.value)
+                checkVal()
             });      
         
         });
     }
 
-    function checkVal(val){
+    function checkVal(){
         var obj = $('#guangzhouprimaryschool')
 
-        if (!val) {
-            obj.attr({disabled: 'disabled'})
-            obj.attr({placeholder: '如果您是广州市户口，请选择广州市户口地区后再填写此项'})
-            obj.val('');
-            obj.removeClass("definite")
-            $('#guangzhouprimaryschool').css({"borderColor": "#ccc"})
 
-        } else {
+        var str = $('#stu_hukouaddress').val()
+     
+        if (str.indexOf("广州市") != -1) {
             obj.addClass('definite')
             obj.removeAttr("disabled")
             obj.attr({placeholder: ''})
             eachShow()
             noBlur()
+
+        } else {
+            obj.attr({disabled: 'disabled'})
+            obj.attr({placeholder: '是广州市户口才可填写此项'})
+            obj.val('');
+            obj.removeClass("definite")
+            $('#guangzhouprimaryschool').css({"borderColor": "#ccc"})
         }
 
     }
@@ -519,5 +532,27 @@ $(function () {
 
 })
 
+
+function checkAddress(){
+
+    layui.use('form', function(){
+        form = layui.form
+
+        var str = $('#stu_hukouaddress').val()
+     
+        if (str.indexOf("广州市") != -1) {
+
+            $('#stu_guangzhouHukou').removeAttr("disabled")
+            form.render('select')
+        } else {
+            $('#stu_guangzhouHukou').attr({disabled: 'disabled'})
+            form.render('select') 
+
+        }
+
+    })
+   
+
+}
 
 

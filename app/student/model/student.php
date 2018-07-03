@@ -98,4 +98,37 @@ class student extends Model {
         return Hk::where('hk_code', $code)->value('hk_address');
     }
 
+
+    public function getHK($code, $stu_id){
+
+        $HK = $this->getHK_address($code);
+
+        $res = $this->where('stu_id', $stu_id)->update(['stu_hukouaddress' => $HK]);
+
+//        if ($res) {
+//            return json(['msg' => '编辑成功', 'valid' => 1]);
+//        } else {
+//            return json(['msg' => '获取户口所在地出现异常，请检查身份证号码是否填写正确', 'valid' => 0]);
+//        }
+
+    }
+
+    public function setSR($card, $stu_id){
+
+
+        $stu_birthday = strlen($card)==15 ? ('19' . substr($card, 6, 6)) : substr($card, 6, 8);
+
+
+        $res = $this->where('stu_id', $stu_id)->update(['stu_birthday' => $stu_birthday]);
+
+//        if ($res) {
+//            return json(['msg' => '编辑成功', 'valid' => 1]);
+//        } else {
+//            return json(['msg' => '获取生日所在地出现异常，请检查身份证号码是否填写正确', 'valid' => 0]);
+//        }
+
+    }
+
+
+
 }

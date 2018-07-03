@@ -70,13 +70,28 @@ class Stuinfo extends BaseController {
         //     $info['stu_dormnumber'] = '';
         // }
 
-        if ($info['stu_guangzhouHukou']) {
+//        if ($info['stu_guangzhouHukou']) {
+//            $Info = (new gzhk())->goCheck();
+//            if (is_object($Info)) {
+//                return json($Info);
+//            }
+//        } else {
+//            $info['stu_guangzhouprimaryschool'] = '';
+//        }
+
+        $str = $info['stu_hukouaddress'];
+        if(strpos($str,'广州市') === false){
+
+            $info['stu_guangzhouprimaryschool'] = '';
+            $info['stu_guangzhouHukou'] = '';
+
+        }else{
+
             $Info = (new gzhk())->goCheck();
             if (is_object($Info)) {
-                return json($Info);
+               return json($Info);
             }
-        } else {
-            $info['stu_guangzhouprimaryschool'] = '';
+
         }
 
 
@@ -100,18 +115,11 @@ class Stuinfo extends BaseController {
         }
     }
 
-    public function getHK(){
-        $code = input('post.code');
-        $HK = (new student())->getHK_address($code);
-
-        if ($HK) {
-            return json(['HK' => $HK, 'valid' => 1]);
-        } else {
-            return json(['msg' => '获取户口所在地出现异常，请检查身份证号码是否填写正确', 'valid' => 0]);
-        }
-
-
-    }
+//    public function getHK(){
+//        $code = input('post.code');
+//        (new student())->getHK($code);
+//
+//    }
 
 
 

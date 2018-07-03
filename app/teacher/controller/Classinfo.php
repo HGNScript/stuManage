@@ -10,6 +10,7 @@ namespace app\teacher\controller;
 
 use app\admin\model\Classinfo as ClasssinfoModel;
 use app\admin\model\Classlist;
+use app\student\controller\Stuinfo;
 use app\student\model\student;
 use app\admin\model\Classlist as classListModel;
 
@@ -88,11 +89,23 @@ class Classinfo extends BaseController {
     public function dbClickEdit(){
         $stu_id = input('get.stu_id');
         $name = input('post.name');
+
         $val = input('post.val');
 
         $res = (new \app\student\model\student())->dbClickEdit($stu_id, $name, $val);
 
-        if ($res) {
+        if ($name == 'stu_identity') {
+
+            $str = substr($val, 0, 6);
+
+            $HK = (new student())->getHK($str, $stu_id);
+
+            $stu_birthday = (new student())->setSR($val, $stu_id);
+
+        }
+
+
+        if ($res || $res == 0) {
             return json($res = ['valid' => 1, 'msg' => '编辑学生信息成功']);
         } else {
             return json($res = ['valid' => 0, 'msg' => '编辑学生信息错误']);

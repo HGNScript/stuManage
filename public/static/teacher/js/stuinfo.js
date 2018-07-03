@@ -74,16 +74,17 @@ var stuinfoNotice = function () {
 
 var editInfo = function () {
     $('.dbclick').dblclick(function(){
-        if ($(this).html() == '还未填写') {
+        // if ($(this).html() == '还未填写') {
 
             var name = $(this).attr('data-name')
+            var val = $(this).html()
 
             var parent = $(this).parent()
             $(this).remove()
 
 
 
-            parent.append('<input class="layui-input" id="input" style="width: 20%;display: inline-block;height: 25px;"></input>')
+            parent.append('<input class="layui-input" id="input" style="width: 25%;display: inline-block;height: 25px;" value="'+val+'">')
             parent.children().focus()
 
             var span = $(this)
@@ -91,7 +92,6 @@ var editInfo = function () {
             $('#input').blur(function(){
                 var stu_id = $('#stu_id').val()
                 var val = $(this).val()
-                console.log(val)
 
                 $("#input").remove()
 
@@ -108,6 +108,8 @@ var editInfo = function () {
                                 time: 600,
                                 end: function(){
                                     parent.append(`<span>`+val+`<span>`)
+                                    location.reload()
+
                                 }
                             });
                         } else {
@@ -115,7 +117,7 @@ var editInfo = function () {
                                 icon: 2, //提示的样式
                                 time: 600,
                                 end: function(){
-                                    parent.append(`<span class="dbclick layui-badge" data-name="stu_originaltroops">还未填写</span>`)
+                                    // parent.append(`<span class="dbclick layui-badge" data-name="stu_originaltroops">还未填写</span>`)
                                     location.reload()
                                 }
                             });
@@ -124,7 +126,7 @@ var editInfo = function () {
                     }
                 })
             })
-        }
+        // }
 
     })
 

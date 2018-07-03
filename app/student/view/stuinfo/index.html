@@ -66,7 +66,7 @@
 <div class="content layui-row">
     <form action="" method=""
           class="form layui-form layui-col-xs12 layui-col-sm6 layui-col-md6 layui-col-md-offset3 layui-col-sm-offset3 "
-          id="stuInfoForm">
+          id="stuInfoForm" lay-filter="form">
 
         <h3 class="text-center">个人信息表</h3>
 
@@ -97,14 +97,14 @@
         <div class="layui-form-item">
             <label class="layui-form-label">姓名:</label>
             <div class="layui-input-block">
-                <input type="text" name="stu_name" value="{$stuinfo['stu_name']}" class="layui-input definite">
+                <input type="text" name="stu_name" value="{$stuinfo['stu_name']}" class="layui-input definite " readonly="readonly">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">学号:</label>
             <div class="layui-input-block">
-                <input type="text" name="stu_number" value="{$stuinfo['stu_number']}" class="layui-input definite">
+                <input type="text" name="stu_number" value="{$stuinfo['stu_number']}" class="layui-input definite" readonly="readonly">
             </div>
         </div>
 
@@ -119,13 +119,13 @@
             <label class="layui-form-label">身份证号码:</label>
             <div class="layui-input-block">
                 <input type="text" name="stu_identity" value="{$stuinfo['stu_identity']}" class="layui-input definite"
-                       id="stu_identity">
+                       id="stu_identity" readonly="readonly">
                 <span  id="prompt" class="layui-badge" style="position: absolute; right: 0px;display: none;"></span>
             </div>
         </div>
 
 
-        {if condition="$stuinfo['stu_sex'] == '女'"}
+ <!--        {if condition="$stuinfo['stu_sex'] == '女'"}
         <div class="layui-form-item">
             <label class="layui-form-label">性别:</label>
             <div class="layui-input-block">
@@ -142,12 +142,21 @@
                 <input type="radio" name="stu_sex" value="女" title="女">
             </div>
         </div>
-        {/if}
+        {/if} -->
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别:</label>
+            <div class="layui-input-block">
+      
+                <input type="text" name="stu_sex" value="{$stuinfo['stu_sex']}"
+                       class="layui-input stu_dormnumber definite" readonly="readonly">
+            </div>
+        </div>
 
         <div class="layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5">
             <label class="layui-form-label">出生日期:</label>
             <div class="layui-input-block">
-                <input type="text" name="stu_birthday" value="{$stuinfo['stu_birthday']}" placeholder="点击选择时间"
+                <input type="text" name="stu_birthday" value="{$stuinfo['stu_birthday']}"
                        class="layui-input" id="stu_birthday" readonly="readonly">
             </div>
         </div>
@@ -772,13 +781,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">宿舍号:</label>
             <div class="layui-input-block">
-                {if condition="$stuinfo['stu_dormFlag'] == '否'"}
+              <!--   {if condition="$stuinfo['stu_dormFlag'] == '否'"}
                 <input type="text" name="stu_dormnumber" value="" class="layui-input stu_dormnumber"
                        placeholder="请选择是否住宿后再填写宿舍号" disabled>
-                {else/}
+                {else/} -->
                 <input type="text" name="stu_dormnumber" value="{$stuinfo['stu_dormnumber']}"
-                       class="layui-input stu_dormnumber definite" placeholder="X-XXX-X">
-                {/if}
+                       class="layui-input stu_dormnumber definite" placeholder="X-XXX-X" readonly="readonly">
+                <!-- {/if} -->
             </div>
         </div>
 
@@ -1063,9 +1072,8 @@
             <div class="layui-input-block">
                 <select name="stu_guangzhouHukou" id="stu_guangzhouHukou" lay-filter="guangzhouHukou">请选择一个地区
                     {if condition="$stuinfo['stu_guangzhouHukou'] == '荔湾区'"}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区" selected="selected">荔湾区</option>
-                    <option value="越秀区">越秀区</option>
+                    <option value="越秀区" >越秀区</option>
                     <option value="海珠区">海珠区</option>
                     <option value="天河区">天河区</option>
                     <option value="白云区">白云区</option>
@@ -1076,7 +1084,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '越秀区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区" selected="selected">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1089,7 +1096,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '海珠区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区" selected="selected">海珠区</option>
@@ -1102,7 +1108,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '天河区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1115,7 +1120,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '白云区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1128,7 +1132,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '黄埔区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1141,7 +1144,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '番禺区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1154,7 +1156,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '花都区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1167,7 +1168,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '南沙区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1180,7 +1180,6 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区">增城区</option>
                     {elseif condition="$stuinfo['stu_guangzhouHukou'] == '从化区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1193,7 +1192,6 @@
                     <option value="从化区" selected="selected">从化区</option>
                     <option value="增城区">增城区</option>
                      {elseif condition="$stuinfo['stu_guangzhouHukou'] == '增城区'" /}
-                    <option value="">非广州市户口</option>
                     <option value="荔湾区">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
@@ -1206,8 +1204,7 @@
                     <option value="从化区">从化区</option>
                     <option value="增城区" selected="selected">增城区</option>
                     {else/}
-                    <option value=""  selected="selected">非广州市户口</option>
-                    <option value="荔湾区">荔湾区</option>
+                    <option value="荔湾区" selected="selected">荔湾区</option>
                     <option value="越秀区">越秀区</option>
                     <option value="海珠区">海珠区</option>
                     <option value="天河区">天河区</option>
@@ -1293,7 +1290,7 @@
         <div class="layui-form-item layui-form-item layui-col-xs10 layui-col-sm6 layui-col-md5" lay-filter="stu_originalmilitaryrank">
             <label class="layui-form-label">原军衔:</label>
             <div class="layui-input-block">
-                <select name="stu_originalmilitaryrank" id="stu_originalmilitaryrank">请选择一个军衔
+                <select name="stu_originalmilitaryrank" id="stu_originalmilitaryrank" disabled="disabled">请选择一个军衔
                     {if condition="$stuinfo['stu_originalmilitaryrank'] == '01.列兵'"}
                     <option value="">非退役士兵</option>
                     <option value="01.列兵"  selected="selected">01.列兵</option>
@@ -1369,7 +1366,7 @@
             <label class="layui-form-label">入伍时间:</label>
             <div class="layui-input-block">
                 <input placeholder="点击选择时间" type="text" name="stu_enlisttime" value="{$stuinfo['stu_enlisttime']}"
-                       id="enlisttime" class="layui-input retiredsoldierTime">
+                       id="enlisttime" class="layui-input retiredsoldierTime" disabled="disabled">
             </div>
         </div>
 
@@ -1378,7 +1375,7 @@
             <div class="layui-input-block">
                 <input placeholder="点击选择时间" type="text" name="stu_demobilizedtime"
                        value="{$stuinfo['stu_demobilizedtime']}" id="demobilizedtime"
-                       class="layui-input retiredsoldierTime">
+                       class="layui-input retiredsoldierTime" disabled="disabled">
             </div>
         </div>
 

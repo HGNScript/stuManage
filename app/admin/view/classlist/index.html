@@ -31,7 +31,7 @@
                     <button type="button" id="search" class="layui-btn"><i class="layui-icon">&#xe615;</i></button>
                 </div>
             </div>
-            {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2)"}
+            {if condition="(session('admin.admin_authority') != 3)"}
              <button class="layui-btn layui-btn-danger" id="delAll"><i class="layui-icon"></i>批量删除</button>
                 <a class="layui-btn" href="addClasslist?staffRoom={$staffRoom}&grade={$grade}"><i class="layui-icon"></i>添加</a>
                 <button type="button" class="layui-btn" id="excel">

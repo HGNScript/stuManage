@@ -86,7 +86,7 @@ function page(search) {
 function showData(data) {
     var data_html = ""
     if (!data.length > 0) {
-        $("#tbody").append('<td colspan="7" style="text-align: center;"> 暂时没有数据 </td>');
+        $("#tbody").append('<td colspan="8" style="text-align: center;"> 暂时没有数据 </td>');
     } else {
         var grade = $('#grade').val();
         $.each(data, function (index, array) {

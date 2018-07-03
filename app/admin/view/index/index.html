@@ -47,7 +47,7 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-                    <li>
+           <!--          <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>基础部</cite>
@@ -66,7 +66,8 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 11)"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -87,6 +88,9 @@
                             </li>
                         </ul>
                     </li>
+                    {/if}
+
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 12)"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -107,6 +111,9 @@
                             </li>
                         </ul>
                     </li>
+                    {/if}
+
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 13)"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -127,6 +134,10 @@
                             </li>
                         </ul>
                     </li>
+                    {/if}
+
+
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 14)"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -147,6 +158,9 @@
                             </li>
                         </ul>
                     </li>
+                    {/if}
+
+
                     {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2)"}
                     <li>
                         <a class="delGrade" data-grade="{$v['grade_name']}">
@@ -158,6 +172,8 @@
                 </ul>
             </li>
             {/foreach}
+
+            {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2)"}
             <li>
                 <a _href="/admin/Index/addGrade" )">
                 <i class="layui-icon">&#xe654;</i>
@@ -165,6 +181,8 @@
 
                 </a>
             </li>
+            {/if}
+
             <!--<li>-->
             <!--<a href="javascript:;">-->
             <!--<i class="iconfont">&#xe723;</i>-->
