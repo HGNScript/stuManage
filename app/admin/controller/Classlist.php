@@ -11,6 +11,7 @@ namespace app\admin\controller;
 use app\admin\model\Classlist as classListModel;
 use app\admin\model\Classtch as ClasstchModel;
 use app\admin\validate\AddClasslist;
+use app\student\model\student;
 
 class Classlist extends BaseController {
     public function index() {
@@ -137,5 +138,20 @@ class Classlist extends BaseController {
 
         (new classListModel)->export($objPHPExcel, $stuData, $class_name);
 
+    }
+
+    public function gradeExpot(){
+        $stu_grade = input('get.stu_grade');
+
+        vendor("PHPExcel.PHPExcel");
+
+        $objPHPExcel = new \PHPExcel();
+//        $class_name = classListModel::get($class_id);
+
+        $objPHPExcel->getProperties();
+
+        $stuData = student::where('stu_grade', '=', $stu_grade)->order('class_id')->select();
+
+        (new classListModel)->export($objPHPExcel, $stuData, null);
     }
 }

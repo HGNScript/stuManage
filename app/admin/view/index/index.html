@@ -160,6 +160,12 @@
                     </li>
                     {/if}
 
+                    <li>
+                        <a class="gradeExpot" href="/admin/Classlist/gradeExpot?stu_grade={$v['grade_name']}">
+                            <i class="layui-icon" style="font-size: 18px;">&#xe621;</i>
+                            <cite>导出年级数据</cite>
+                        </a>
+                    </li>
 
                     {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2)"}
                     <li>
@@ -169,6 +175,7 @@
                         </a>
                     </li>
                     {/if}
+
                 </ul>
             </li>
             {/foreach}

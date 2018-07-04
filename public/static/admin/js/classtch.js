@@ -34,7 +34,7 @@ function page(search) {
                     elem: 'test1' //注意，这里的 test1 是 ID，不用加 # 号
                     ,
                     count: len, //数据总数，从服务端得到
-                    limit: 5,
+                    limit: 10,
                     jump: function (obj, first) {
                         if (obj.curr > 1) {
 

@@ -9,6 +9,8 @@
 namespace app\admin\model;
 
 
+use app\student\model\classModel;
+
 class Classlist extends BaseModel {
 
     protected $pk = 'class_id';
@@ -179,7 +181,6 @@ class Classlist extends BaseModel {
             '原毕业学校生源省',
             '原毕业学校生源市',
         ];
-        $test = [];
         $charactors = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
         foreach ($header as $key => $v) {
@@ -206,6 +207,10 @@ class Classlist extends BaseModel {
         $objActSheet = $objPHPExcel->getActiveSheet();
 
         foreach ($stuData as $key => $rows) { // 行写入
+
+            $class = self::get($rows['class_id']);
+
+
             $arr = [];
             array_push($arr, $rows['stu_studystyle']);
             array_push($arr, $rows['stu_name']);
@@ -224,9 +229,9 @@ class Classlist extends BaseModel {
             array_push($arr, $rows['stu_hokoustyle']);
             array_push($arr, $rows['stu_specialty']);
             array_push($arr, $rows['stu_graduation']);
-            array_push($arr, $rows['class_grade']);
+            array_push($arr, $rows['stu_grade']);
             array_push($arr, $rows['stu_enrollmentquarter']);
-            array_push($arr, $rows['class_name']);
+            array_push($arr, $class['class_name']);
             array_push($arr, $rows['stu_professionallevel']);
             array_push($arr, $rows['stu_Preschooleducation']);
             array_push($arr, $rows['stu_schoolsystem']);
@@ -300,7 +305,11 @@ class Classlist extends BaseModel {
 
         $objPHPExcel->setActiveSheetIndex(0); // 设置活动单指数到第一个表,所以Excel打开这是第一个表
 
-        $fileName = $class_name['class_grade']."级".$class_name['class_name'].'.xls';
+        if ($class_name) {
+            $fileName = $class_name['class_grade']."级".$class_name['class_name'].'.xls';
+        } else {
+            $fileName = $stuData[0]['stu_grade']."级".'.xls';
+        }
 
         header('Content-Disposition: attachment;filename='.$fileName);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

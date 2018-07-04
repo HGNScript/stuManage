@@ -152,11 +152,45 @@ $(function(){
         });
     }
 
+    var gradeExpot = function () {
+                
+        $('.gradeExpot').click(function(){
+            var stu_grade = $(this).attr('data-grade')
+
+            $.ajax({
+                type: "GET",
+                url: '/admin/Classlist/gradeExpot?stu_grade=' + stu_grade ,
+                traditional: true,
+                dataType: "json",
+                success: function (data) {
+                    // if (!data['msg']) {
+                    //     layer.msg('添加成功', {
+                    //         icon: 1, //提示的样式
+                    //         time: 1000, //2秒关闭（如果不配置，默认是3秒）//设置后不需要自己写定时关闭了，单位是毫秒
+                    //         end: function () {
+                    //             parent.location.reload();
+                    //         }
+                    //     });
+                    // } else {
+                    //     layer.msg(data['msg'], {
+                    //         icon: 2, //提示的样式
+                    //         time: 1000,
+                    //     });
+                    // }
+                }
+            });
+        })
+
+                
+
+    }
+
     var _main = function(){
         delGrade()
         editPsd()
         editInfo()
         addGrade()
+        // gradeExpot()
 
     }
     _main()
