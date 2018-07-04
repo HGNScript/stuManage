@@ -17,7 +17,7 @@ class tch extends Model {
 
     public function checkUser($classtch_number, $classtch_password) {
         $data =[
-            'classtch_number' => $classtch_number,
+            'classtch_number' => trim($classtch_number),
             'classtch_password' => md5($classtch_password),
         ];
         $teacher = $this->where([

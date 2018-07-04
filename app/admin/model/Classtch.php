@@ -54,7 +54,7 @@ class Classtch extends BaseModel {
                 foreach($excel_array as $k=>$v) {
                     $n = $this->where('classtch_number', $v[0])->find();
                     if (!$n) {
-                        $data[$k]['classtch_number'] = $v[0];
+                        $data[$k]['classtch_number'] = trim($v[0]);
                         $data[$k]['classtch_name'] = $v[1];
                         $data[$k]['classtch_phone'] = $v[2];
                         $data[$k]['classtch_email'] = $v[3];

@@ -19,7 +19,7 @@ class student extends Model {
     protected $table = 'student';
 
     public function getLoginStu($number, $password) {
-        return $this->where('stu_number', $number)->where('stu_password', md5($password))->find();
+        return $this->where('stu_number', trim($number))->where('stu_password', md5($password))->find();
     }
 
     public function getStuInfo($stu_id) {

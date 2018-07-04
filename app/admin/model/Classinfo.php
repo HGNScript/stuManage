@@ -54,7 +54,7 @@ class Classinfo extends BaseModel {
                 $n = $this->where('stu_number', $v[1])->find();
                 if (!$n) {
                     $data[$k]['stu_name'] = $v[0];
-                    $data[$k]['stu_number'] = $v[1];
+                    $data[$k]['stu_number'] = trim($v[1]);
                     $data[$k]['stu_sex'] = $v[2];
                     $data[$k]['stu_identity'] = $v[3];
                     $data[$k]['stu_dormnumber'] = $v[4];

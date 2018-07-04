@@ -17,13 +17,15 @@ class Login extends Model {
 
     public function getAdmin($admin_number, $admin_password) {
         $data =[
-            'admin_number' => $admin_number,
+            'admin_number' => trim($admin_number),
             'admin_password' => md5($admin_password),
         ];
+
         $admin = $this->where([
             'admin_number' => $data['admin_number'],
             'admin_password' => $data['admin_password'],
         ])->find();
+
         return $admin;
 
     }

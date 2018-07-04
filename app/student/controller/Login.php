@@ -17,6 +17,7 @@ use think\Session;
 use app\student\validate\Login as loginValidate;
 
 class Login extends Controller {
+
     public function login() {
         if (request()->isAjax()) {
 
