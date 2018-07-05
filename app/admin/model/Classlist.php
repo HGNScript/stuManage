@@ -120,7 +120,7 @@ class Classlist extends BaseModel {
                     ->find();
     }
 
-    public function export($objPHPExcel, $stuData, $class_name) {
+    public function export($objPHPExcel, $stuData, $class_name ,$stu_grade) {
         $header=[
             '学习形式',
             '姓名',
@@ -308,8 +308,10 @@ class Classlist extends BaseModel {
         if ($class_name) {
             $fileName = $class_name['class_grade']."级".$class_name['class_name'].'.xls';
         } else {
-            $fileName = $stuData[0]['stu_grade']."级".'.xls';
+            $fileName = $stu_grade."级".'.xls';
         }
+
+        $fileName = rawurlencode($fileName);
 
         header('Content-Disposition: attachment;filename='.$fileName);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -317,5 +319,6 @@ class Classlist extends BaseModel {
         $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
         $objWriter->save('php://output'); // 文件通过浏览器下载
+        exit;
     }
 }

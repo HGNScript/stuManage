@@ -152,6 +152,6 @@ class Classlist extends BaseController {
 
         $stuData = student::where('stu_grade', '=', $stu_grade)->order('class_id')->select();
 
-        (new classListModel)->export($objPHPExcel, $stuData, null);
+        (new classListModel)->export($objPHPExcel, $stuData, null, $stu_grade);
     }
 }
