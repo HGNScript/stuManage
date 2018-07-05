@@ -89,6 +89,7 @@ $(function () {
 
                 $('#enlisttime').attr({disabled: 'disabled'})
                 $('#demobilizedtime').attr({disabled: 'disabled'})
+
                 obj.attr({disabled: 'disabled'})
                 obj.removeAttr("style")
                 obj.attr({borderColor: '1px solid #ccc'})
@@ -133,10 +134,15 @@ $(function () {
 
     function retiredsoldier(){
 
+
         var flag = $('#stu_retiredsoldier').val()
         var obj = $('.stu_retiredsoldier')
 
         if (flag != '是') {
+
+            $('#enlisttime').attr({disabled: 'disabled'})
+            $('#demobilizedtime').attr({disabled: 'disabled'})
+            
             obj.attr({disabled: 'disabled'})
             obj.val('请选择是否退役士兵后在填写')
 
@@ -157,6 +163,9 @@ $(function () {
             obj.addClass('definite')
             $('.retiredsoldierTime').css({"borderColor": "#5FB878"}) 
             $('#stu_originalmilitaryrank').removeAttr("disabled")
+
+            $('#enlisttime').removeAttr("disabled")
+            $('#demobilizedtime').removeAttr("disabled")
 
 
             

@@ -17,7 +17,7 @@ class Stureduction extends BaseController {
     public function index(){
         $stu_id = session('student.stu_id');
         $reduction = (new Reduction)->getReduction($stu_id);
-        $reduction['stu_identity'] = str_split($reduction['stu_identity']);
+        $reduction['stu_identity'] = str_split(trim($reduction['stu_identity']));
 
         $this->assign('stuinfo', $reduction);
         return $this->fetch();

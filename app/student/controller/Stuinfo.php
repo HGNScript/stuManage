@@ -26,6 +26,7 @@ class Stuinfo extends BaseController {
         $stuinfo['stu_birthday'] = $stu_birthday;
 
         $this->assign('stuinfo', $stuinfo);
+
         return $this->fetch();
     }
 
@@ -59,7 +60,15 @@ class Stuinfo extends BaseController {
             if (is_object($Info)) {
                 return json($Info);
             }
+        } else {
+            $info['stu_originaltroops'] = '';
+            $info['stu_originalmilitaryrank'] = '';
+            $info['stu_enlist'] = '';
+            $info['stu_enlisttime'] = '';
+            $info['stu_demobilizedtime'] = '';
+            $info['stu_demobilizedstyle'] = '';
         }
+
 
         // if ($info['stu_dormFlag'] == '是') {
         //     $Info = (new DormFlag())->goCheck();

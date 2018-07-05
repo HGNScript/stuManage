@@ -52,12 +52,12 @@ class Classtch extends BaseModel {
                 $data = [];
                 $i = 0;
                 foreach($excel_array as $k=>$v) {
-                    $n = $this->where('classtch_number', $v[0])->find();
+                    $n = $this->where('classtch_number', trim($v[0]))->find();
                     if (!$n) {
                         $data[$k]['classtch_number'] = trim($v[0]);
-                        $data[$k]['classtch_name'] = $v[1];
-                        $data[$k]['classtch_phone'] = $v[2];
-                        $data[$k]['classtch_email'] = $v[3];
+                        $data[$k]['classtch_name'] = trim($v[1]);
+                        $data[$k]['classtch_phone'] = trim($v[2]);
+                        $data[$k]['classtch_email'] = trim($v[3]);
                         $data[$k]['classtch_staffRoom'] = $staffRoom;
                         $data[$k]['classtch_password'] = md5('gzcj');
                     }

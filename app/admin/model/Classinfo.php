@@ -51,13 +51,13 @@ class Classinfo extends BaseModel {
             $i = 0;
 
             foreach($excel_array as $k=>$v) {
-                $n = $this->where('stu_number', $v[1])->find();
+                $n = $this->where('stu_number', trim($v[1]))->find();
                 if (!$n) {
-                    $data[$k]['stu_name'] = $v[0];
+                    $data[$k]['stu_name'] = trim($v[0]);
                     $data[$k]['stu_number'] = trim($v[1]);
-                    $data[$k]['stu_sex'] = $v[2];
-                    $data[$k]['stu_identity'] = $v[3];
-                    $data[$k]['stu_dormnumber'] = $v[4];
+                    $data[$k]['stu_sex'] = trim($v[2]);
+                    $data[$k]['stu_identity'] = trim($v[3]);
+                    $data[$k]['stu_dormnumber'] = trim($v[4]);
                     $data[$k]['class_id'] = $class_id;
                     $data[$k]['stu_password'] = md5('gzcj');
                     $data[$k]['stu_grade'] = $class_grade['class_grade'];

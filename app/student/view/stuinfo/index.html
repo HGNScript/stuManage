@@ -1340,8 +1340,8 @@
                     <option value="05.三级士官">05.三级士官</option>
                     <option value="06.四级士官" selected="selected">06.四级士官</option>
                     {else/}
-                     <option value=""  selected="selected">非退役士兵</option>
-                    <option value="01.列兵">01.列兵</option>
+                     <option value="">非退役士兵</option>
+                    <option value="01.列兵" selected="selected">01.列兵</option>
                     <option value="02.上等兵">02.上等兵</option>
                     <option value="03.一级士官">03.一级士官</option>
                     <option value="04.二级士官">04.二级士官</option>
@@ -1366,7 +1366,7 @@
             <label class="layui-form-label">入伍时间:</label>
             <div class="layui-input-block">
                 <input placeholder="点击选择时间" type="text" name="stu_enlisttime" value="{$stuinfo['stu_enlisttime']}"
-                       id="enlisttime" class="layui-input retiredsoldierTime" disabled="disabled">
+                       id="enlisttime" class="layui-input retiredsoldierTime">
             </div>
         </div>
 
@@ -1375,7 +1375,7 @@
             <div class="layui-input-block">
                 <input placeholder="点击选择时间" type="text" name="stu_demobilizedtime"
                        value="{$stuinfo['stu_demobilizedtime']}" id="demobilizedtime"
-                       class="layui-input retiredsoldierTime" disabled="disabled">
+                       class="layui-input retiredsoldierTime">
             </div>
         </div>
 

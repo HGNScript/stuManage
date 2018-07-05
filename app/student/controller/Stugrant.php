@@ -16,9 +16,10 @@ class Stugrant extends BaseController {
     public function index(){
         $stu_id = session('student.stu_id');
         $grantdata = (new grant)->getGrant($stu_id);
-        $grantdata['stu_identity'] = str_split($grantdata['stu_identity']);
+        $grantdata['stu_identity'] = str_split(trim($grantdata['stu_identity']));
 
         $this->assign('stuinfo', $grantdata);
+
         return $this->fetch();
     }
 
