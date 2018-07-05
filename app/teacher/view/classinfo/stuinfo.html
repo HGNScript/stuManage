@@ -269,9 +269,13 @@
 </fieldset>
     {if condition="$stuInfo"}
     <input type="hidden" value="{$stuInfo['stu_id']}" id="stu_id">
+    <input type="hidden" value="{$stuInfo['class_id']}" id="class_id">
     {else/}
     <input type="hidden" value="{$stuHead['stu_id']}" id="stu_id">
+    <input type="hidden" value="{$stuHead['class_id']}" id="class_id">
     {/if}
+
+
 </div>
 
 </body>

@@ -16,17 +16,17 @@ var stuinfoNotice = function () {
                 dataType: "json",
                 data: {'stu_id': stu_id},
                 beforeSend:function(XMLHttpRequest){
-                    layer.close(layer.index);
+                    // layer.close(layer.index);
                     layer.load()
                 },
                 success: function (res) {
                     layer.close(layer.index);
-                    console.log(res)
                     if (res['valid'] == 1) {
 
                         if (res.msg.result != 0) {
                             layer.alert("已驳回学生信息,但通知发送不成功," + res.msg.errmsg, function(index){
                                 layer.close(index);
+                                notice()
                                 location.reload();
                             });
                         }
@@ -36,11 +36,13 @@ var stuinfoNotice = function () {
                                 layer.alert("已驳回学生信息,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
                                     layer.close(index);
                                     // javascript:history.back(-1)
+                                    notice()
                                     location.reload();
                                 });
                             } else {
                                 layer.alert(res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
                                     layer.close(index);
+                                    notice()
                                     location.reload();
                                 });
                             }
@@ -50,6 +52,7 @@ var stuinfoNotice = function () {
                             if (noticeFlag == 'infoBug') {
                                  layer.alert("已驳回学生信息，已将通知发送至学生", function(index){
                                     layer.close(index);
+                                    notice()
                                     location.reload();
                                 });
                             } else {
@@ -130,4 +133,46 @@ var editInfo = function () {
 
     })
 
+}
+
+var notice = function (){
+    var class_id = $('#class_id').val()
+    console.log(class_id)
+    $.ajax({
+        type: "get",
+        url: '/teacher/Index/classNotice?class_id='+class_id,
+        traditional: true,
+        dataType: "json",
+        beforeSend:function(XMLHttpRequest){
+            layer.close(layer.index);
+            layer.load()
+        },
+        success: function(data) {
+
+            parent.$(".grant").each(function(i){
+                var _this = $(this)
+                var class_name = $(this).parents("ul").prev().children('cite').html()
+
+                if (data['class_name'] == class_name) {
+                    if (data['grant']) {
+
+                        parent.$('.layui-this').find("span").replaceWith(`<span class="layui-badge">`+data['grant']+`</span>`)
+
+                        _this.html('')
+                        _this.html('助学金申请&nbsp;&nbsp;&nbsp;<span class="layui-badge">'+data['grant']+'</span>')
+
+                    } else {
+
+                        parent.$('.layui-this').find("span").remove()
+
+                        _this.html('')
+                        _this.html('助学金申请')
+                    }
+                }
+            });
+
+            javascript:history.back(-1)
+
+        }
+    });
 }

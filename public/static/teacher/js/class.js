@@ -27,20 +27,23 @@ function delAllClick() {
 function page(search) {
     var staffRoom = $('#staffRoom').val()
     var class_id = $('#class_id').val()
-    layui.use('laypage', function () {
+    layui.use(['laypage', 'layer'], function () {
+
         var laypage = layui.laypage;
         var data = {'curr': null, 'limit': null, 'staffRoom': staffRoom, 'search': search};
+
         $.ajax({
             type: "post",
             url: '/teacher/Classinfo/index?class_id=' + class_id,
             traditional: true,
             dataType: "json",
             data: data,
-            // beforeSend: function (){
-            //     layer.load()
-            // },
+            beforeSend: function (){
+                layer.load()
+            },
             success: function (data) {
-                // layer.close(layer.index);
+                layer.closeAll();
+
                 var len = data.length
                 pageData = data
 

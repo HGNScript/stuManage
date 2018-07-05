@@ -8,11 +8,15 @@
 
 namespace app\teacher\controller;
 
+use app\admin\controller\Reduction;
 use app\admin\model\Classinfo as ClasssinfoModel;
 use app\admin\model\Classlist;
 use app\student\controller\Stuinfo;
 use app\student\model\student;
 use app\admin\model\Classlist as classListModel;
+use app\teacher\model\Grant;
+use think\Db;
+use think\Exception;
 
 class Classinfo extends BaseController {
     public function index() {
@@ -58,12 +62,28 @@ class Classinfo extends BaseController {
 
     public function stuinfoNotice(){
         $stu_infoflag = 0;
+
         $stu_id = input('post.stu_id');
         $noticeFlag = input('get.noticeFlag');
 
         $stuinfo = \app\student\model\student::get($stu_id);
 
-        $res = (new \app\student\model\student())->save(['stu_infoflag' => $stu_infoflag], ['stu_id' => $stu_id]);
+        Db::startTrans();
+        try{
+
+            $res = (new \app\student\model\student())->save(['stu_infoflag' => $stu_infoflag], ['stu_id' => $stu_id]);
+            $grant = (new Grant())->save(['grant_flag' => $stu_infoflag], ['stu_id' => $stu_id]);
+            $reduction = (new \app\teacher\model\reduction())->save(['reduction_flag' => $stu_infoflag], ['stu_id' => $stu_id]);
+
+            Db::commit();
+
+        } catch (Exception $e) {
+
+            Db::rollback();
+            return json($res = ['valid' => 0, 'msg' => $e]);
+        }
+
+
 
 
 
