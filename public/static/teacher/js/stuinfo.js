@@ -98,13 +98,21 @@ var editInfo = function () {
 
                 $("#input").remove()
 
+                var authority= $("#authority").val()              
+                if (authority) {
+                    var url = '/admin/Classinfo/dbClickEdit?stu_id=' + stu_id
+                } else {
+                    var url = '/teacher/Classinfo/dbClickEdit?stu_id=' + stu_id
+                }
+
                 $.ajax({
                     type: "post",
-                    url: '/teacher/Classinfo/dbClickEdit?stu_id=' + stu_id,
+                    url: url,
                     traditional: true,
                     dataType: "json",
                     data: {'name': name, 'val' : val},
                     success: function(res) {
+
                         if (res['valid']) {
                             layer.msg(res['msg'], {
                                 icon: 1, //提示的样式

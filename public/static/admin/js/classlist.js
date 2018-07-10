@@ -15,7 +15,7 @@ $(function () {
 function page(search) {
     var staffRoom = $('#staffRoom').val()
     var grade = $('#grade').val()
-    layui.use('laypage', function () {
+    layui.use(['laypage','layer'], function () {
         var laypage = layui.laypage;
         var data = {'curr': null, 'limit': null, 'staffRoom': staffRoom, 'search': search, 'grade': grade};
         $.ajax({
@@ -24,7 +24,12 @@ function page(search) {
             traditional: true,
             dataType: "json",
             data: data,
+            beforeSend: function (){
+                parent.layer.load()
+            },
             success: function (data) {
+                parent.layer.closeAll();
+
 
                 var len = data.length
                 pageData = data

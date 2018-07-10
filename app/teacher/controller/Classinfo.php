@@ -46,6 +46,8 @@ class Classinfo extends BaseController {
         if (!$stu_infoflag) {
             $this->assign('stuInfo', null);
             $this->assign('stuHead', $stuInfo);
+            $this->assign('authority', 'false');
+            
             return $this->fetch();
         } else {
             foreach ($stuInfo as $key => $v) {
@@ -53,7 +55,11 @@ class Classinfo extends BaseController {
                     // $stuInfo[$key] = '<span class="layui-badge">还未填写</span>';
                 }
             }
+
+
             $this->assign('stuInfo', $stuInfo);
+            $this->assign('authority', 'false');
+
             return $this->fetch();
         }
 

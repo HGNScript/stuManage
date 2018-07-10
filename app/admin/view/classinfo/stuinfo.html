@@ -36,19 +36,21 @@
     }
     td {
         position: relative;
+        font-weight: bold;
         
     }
     td span{
         display: inline-block;
         text-align: left;
-        position: absolute;
-        left: 200px;
+        padding-left: 10px;
+        color: #000066;
+        /*position: absolute;*/
+        /*left: 200px;*/
     }
     td input{
         display: inline-block;
         text-align: left;
-        position: absolute;
-        left: 200px;
+        padding-left: 10px;
     }
     .layui-badge {
         position: absolute;
@@ -275,6 +277,9 @@
     {else/}
     <input type="hidden" value="{$stuHead['stu_id']}" id="stu_id">
     {/if}
+
+    <input type="hidden" value="{$authority}" id="authority">
+    
 </div>
 
 

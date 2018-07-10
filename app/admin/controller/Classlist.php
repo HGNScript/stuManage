@@ -136,7 +136,7 @@ class Classlist extends BaseController {
 
         $stuData = (new \app\admin\model\Classinfo())->getExportData($class_id);
 
-        (new classListModel)->export($objPHPExcel, $stuData, $class_name);
+        (new classListModel)->export($objPHPExcel, $stuData, $class_name, null);
 
     }
 

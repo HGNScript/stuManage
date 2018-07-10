@@ -99,6 +99,8 @@ class Classinfo extends BaseController {
         if (!$stu_infoflag) {
             $this->assign('stuInfo', null);
             $this->assign('stuHead', $stuInfo);
+            $this->assign('authority', 'true');
+            
             return $this->fetch();
         } else {
             // foreach ($stuInfo as $key => $v) {
@@ -107,7 +109,39 @@ class Classinfo extends BaseController {
             //     }
             // }
             $this->assign('stuInfo', $stuInfo);
+            $this->assign('authority', 'true');
+
+           // dump(1);exit;
+
             return $this->fetch();
         }
+    }
+
+    public function dbClickEdit(){
+        $stu_id = input('get.stu_id');
+        $name = input('post.name');
+
+        $val = input('post.val');
+
+        $res = (new \app\student\model\student())->dbClickEdit($stu_id, $name, $val);
+
+        if ($name == 'stu_identity') {
+
+            $str = substr($val, 0, 6);
+
+            $HK = (new student())->getHK($str, $stu_id);
+
+            $stu_birthday = (new student())->setSR($val, $stu_id);
+
+        }
+
+
+        if ($res || $res == 0) {
+            return json($res = ['valid' => 1, 'msg' => '编辑学生信息成功']);
+        } else {
+            return json($res = ['valid' => 0, 'msg' => '编辑学生信息错误']);
+        }
+
+
     }
 }
