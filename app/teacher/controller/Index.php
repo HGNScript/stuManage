@@ -87,16 +87,21 @@ class Index extends BaseController {
 
     public function notice() {
         $classtch_id = Session::get('teacher.classtch_id');
+        $admin_id = Session::get('admin.admin_id');
+        $admin_authority = Session::get('admin.admin_authority');
 
-        $notice = (new tch())->notice($classtch_id);
+        $notice_flag = input('get.notice_flag');
+
+        $notice = (new tch())->notice($classtch_id, $admin_authority, $notice_flag);
 
         return json($notice);
     }
 
     public function classNotice() {
         $class_id = input('get.class_id');
+        $leave_flag_top = input('get.leave_flag_top');
 
-        $notice = (new tch())->classNotice($class_id);
+        $notice = (new tch())->classNotice($class_id, $leave_flag_top);
 
         return json($notice);
     }

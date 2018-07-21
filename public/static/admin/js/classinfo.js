@@ -33,6 +33,8 @@ function page(search) {
                 parent.layer.closeAll();
 
                 var len = data.length
+                $('#count').html(len)
+
                 pageData = data
 
                 laypage.render({

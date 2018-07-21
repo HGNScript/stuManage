@@ -24,22 +24,27 @@
     .layui-form-label {
         padding-left: 10px;
     }
+
     .layui-form-label {
         font-weight: bold;
     }
+
     .layui-input {
         text-align: left;
     }
+
     .layui-textarea {
-        border-color:  #FF0000;
+        border-color: #FF0000;
     }
 
     h3 {
         margin-bottom: 20px;
     }
+
     .default {
         border-color: #5FB878;
     }
+
     .record {
         float: right;
         margin-bottom: 10px;
@@ -89,215 +94,257 @@
     <div class="layui-col-xs10 layui-col-sm10 layui-col-md6 layui-col-md-offset3 layui-col-sm-offset1 layui-col-xs-offset1">
         <form action="" method="" class="layui-form" id="leave">
             <h3 class="text-center">请假条</h3>
-            <a href="javascript:;" onclick="x_admin_show('请假记录','/student/Stuleave/LeaveRecord?stu_id={:session('student.stu_id')}')" style="font-size: 14px;">
+            <a href="javascript:;"
+               onclick="x_admin_show('请假记录','/student/Stuleave/LeaveRecord?stu_id={:session('student.stu_id')}')"
+               style="font-size: 14px;">
                 <span class="record layui-badge layui-bg-blue">
                     查看请假条历史记录
                 </span>
-            </a>    
+            </a>
 
             {if condition="$leave"}
             <div class="layui-form-item">
-                <label class="layui-form-label">姓名:</label>  
+                <label class="layui-form-label">姓名:</label>
                 <div class="layui-input-block">
-                    <input type="text" name="leave_name" value="{$leave['leave_name']}" class="layui-input default" >
+                    <input type="text" name="leave_name" value="{$leave['leave_name']}" class="layui-input default">
                 </div>
             </div>
             {if condition="$leave['leave_sex'] == '女'"}
             <div class="layui-form-item">
-                <label class="layui-form-label">性别:</label> 
+                <label class="layui-form-label">性别:</label>
                 <div class="layui-input-block">
-                    <input type="radio" name="leave_sex" value="男" title="男" >
-                    <input type="radio" name="leave_sex" value="女" title="女" checked >
+                    <input type="radio" name="leave_sex" value="男" title="男">
+                    <input type="radio" name="leave_sex" value="女" title="女" checked>
                 </div>
             </div>
-                
+
             {else/}
             <div class="layui-form-item">
-                <label class="layui-form-label">性别:</label> 
+                <label class="layui-form-label">性别:</label>
                 <div class="layui-input-block">
-                    <input type="radio" name="leave_sex" value="男" title="男" checked >
-                    <input type="radio" name="leave_sex" value="女" title="女" >
+                    <input type="radio" name="leave_sex" value="男" title="男" checked>
+                    <input type="radio" name="leave_sex" value="女" title="女">
                 </div>
             </div>
             {/if}
             <div class="layui-form-item">
-                <label class="layui-form-label">学号:</label>   
-                 <div class="layui-input-block">
-                    <input type="text" name="leave_number" value="{$leave['leave_number']}" class="layui-input default" >
+                <label class="layui-form-label">学号:</label>
+                <div class="layui-input-block">
+                    <input type="text" name="leave_number" value="{$leave['leave_number']}" class="layui-input default" readonly="readonly">
                 </div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label">班级: </label>   
+                <label class="layui-form-label">班级: </label>
                 <div class="layui-input-block">
-                    <input type="text" name="leave_className" value="{$leave['leave_className']}" class="layui-input default" >
+                    <input type="text" name="leave_className" value="{$leave['leave_className']} "
+                           class="layui-input default" readonly="readonly">
                 </div>
             </div>
 
-                {if condition="$leave['leave_category'] == '事假'"}
-                <div class="layui-form-item">
-                    <label class="layui-form-label">请假类别: </label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_category" checked="checked" value="事假" title="事假">
-                        <input type="radio" name="leave_category" value="病假" title="病假">
-                        <input type="radio" name="leave_category" value="其他" title="其他">
-                    </div>
+            {if condition="$leave['leave_category'] == '事假'"}
+            <div class="layui-form-item">
+                <label class="layui-form-label">请假类别: </label>
+                <div class="layui-input-block">
+                    <input type="radio" name="leave_category" checked="checked" value="事假" title="事假">
+                    <input type="radio" name="leave_category" value="病假" title="病假">
+                    <input type="radio" name="leave_category" value="其他" title="其他">
+                </div>
                 <div>
-                {elseif condition="$leave['leave_category'] == '病假'"/}
-                <div class="layui-form-item">
-                         <label class="layui-form-label">请假类别: </label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_category"  value="事假" title="事假">
-                        <input type="radio" name="leave_category" value="病假" checked="checked" title="病假">
-                        <input type="radio" name="leave_category" value="其他" title="其他">
-                    </div>
-                </div>
-                {elseif condition="$leave['leave_category'] == '其他'"/}
-                <div class="layui-form-item">
+                    {elseif condition="$leave['leave_category'] == '病假'"/}
+                    <div class="layui-form-item">
                         <label class="layui-form-label">请假类别: </label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_category" value="事假" title="事假"> 
-                        <input type="radio" name="leave_category" value="病假" title="病假">
-                        <input type="radio" name="leave_category" value="其他" checked="checked" title="其他">
+                        <div class="layui-input-block">
+                            <input type="radio" name="leave_category" value="事假" title="事假">
+                            <input type="radio" name="leave_category" value="病假" checked="checked" title="病假">
+                            <input type="radio" name="leave_category" value="其他" title="其他">
+                        </div>
                     </div>
-                </div>
-                {else/}
-                <div class="layui-form-item">
+                    {elseif condition="$leave['leave_category'] == '其他'"/}
+                    <div class="layui-form-item">
                         <label class="layui-form-label">请假类别: </label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_category" checked="checked" value="事假" title="事假">
-                        <input type="radio" name="leave_category" value="病假" title="病假">
-                        <input type="radio" name="leave_category" value="其他" title="其他">
+                        <div class="layui-input-block">
+                            <input type="radio" name="leave_category" value="事假" title="事假">
+                            <input type="radio" name="leave_category" value="病假" title="病假">
+                            <input type="radio" name="leave_category" value="其他" checked="checked" title="其他">
+                        </div>
                     </div>
-                </div>
-                {/if}
+                    {else/}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">请假类别: </label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="leave_category" checked="checked" value="事假" title="事假">
+                            <input type="radio" name="leave_category" value="病假" title="病假">
+                            <input type="radio" name="leave_category" value="其他" title="其他">
+                        </div>
+                    </div>
+                    {/if}
 
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">请假原因: </label>
-                    <div class="layui-input-block">
-                        <textarea class="layui-textarea" name="leave_content" style="width: 100%;border-color: #5FB878" >{$leave['leave_content']}</textarea>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">请假原因: </label>
+                        <div class="layui-input-block">
+                            <textarea class="layui-textarea" name="leave_content"
+                                      style="width: 100%;border-color: #5FB878">{$leave['leave_content']}</textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
+
+                    <div class="layui-form-item">
                         <label class="layui-form-label">请假时间: </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="leave_startTime" value="{$leave['leave_startTime']}" placeholder="点击选择时间" id="time" class="layui-input" style="display: inline-block;width: 200px;border-color: #5FB878;">
-                         至
-                        <input type="text" name="leave_endTime" placeholder="点击选择时间" value="{$leave['leave_endTime']}" id="time2" class="layui-input" style="display: inline-block;width: 200px;border-color: #5FB878;">
-                    </div>
-                </div>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_startTime" value="{$leave['leave_startTime']}"
+                                   placeholder="点击选择时间" id="time" class="layui-input"
+                                   style="display: inline-block;width: 200px;border-color: #5FB878;">
 
-                 <div class="layui-form-item">
-                    <label class="layui-form-label">联系电话:</label>   
-                     <div class="layui-input-block">
-                        <input type="text" name="stu_phone" value="{$leave['stu_phone']}" class="layui-input default" >
-                    </div>
-                </div>
+                            <input type="radio" name="meridiem" checked="checked" value="上午" title="上午">
+                            <input type="radio" name="meridiem" value="下午" title="下午">
+                        </div>
+                        <div style="padding-left: 200px;">
+                            至
+                        </div>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_endTime" placeholder="点击选择时间"
+                                   value="{$leave['leave_endTime']}" id="time2" class="layui-input"
+                                   style="display:inline-block;width: 200px;border-color: #5FB878;">
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">家长电话:</label>   
-                     <div class="layui-input-block">
-                        <input type="text" name="leave_parentPhone" value="{$leave['leave_parentPhone']}" class="layui-input default" >
+                            <input type="radio" name="meridiemend" checked="checked" value="上午" title="上午">
+                            <input type="radio" name="meridiemend" value="下午" title="下午">
+                        </div>
+
                     </div>
-                </div>
-            
-            
-            <input type="hidden" value="{$leave['leave_id']}" name="id">
-            <input type="hidden" value="0" name="leave_flag" id="leave_flag">
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">联系电话:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="stu_phone" value="{$leave['stu_phone']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">家长电话:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_parentPhone" value="{$leave['leave_parentPhone']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
+                    </div>
 
 
+                    <input type="hidden" value="{$leave['leave_id']}" name="id">
+                    <input type="hidden" value="0" name="leave_flag" id="leave_flag">
 
-            {else/}
-                <div class="layui-form-item">
-                    <label class="layui-form-label">姓名:</label>  
-                    <div class="layui-input-block">
-                        <input type="text" name="leave_name" value="{$stuinfo['stu_name']}" class="layui-input default" >
+
+                    {else/}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">姓名:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_name" value="{$stuinfo['stu_name']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
                     </div>
-                </div>
-                {if condition="$stuinfo['stu_sex'] == '女'"}
-                <div class="layui-form-item">
-                    <label class="layui-form-label">性别:</label> 
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_sex" value="男" title="男" >
-                        <input type="radio" name="leave_sex" value="女" title="女" checked >
+                    {if condition="$stuinfo['stu_sex'] == '女'"}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">性别:</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="leave_sex" value="男" title="男">
+                            <input type="radio" name="leave_sex" value="女" title="女" checked>
+                        </div>
                     </div>
-                </div>
-                    
-                {else/}
-                <div class="layui-form-item">
-                    <label class="layui-form-label">性别:</label> 
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_sex" value="男" title="男" checked >
-                        <input type="radio" name="leave_sex" value="女" title="女" >
+
+                    {else/}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">性别:</label>
+                        <div class="layui-input-block">
+                            <input type="radio" name="leave_sex" value="男" title="男" checked>
+                            <input type="radio" name="leave_sex" value="女" title="女">
+                        </div>
                     </div>
-                </div>
-                {/if}
-                <div class="layui-form-item">
-                    <label class="layui-form-label">学号:</label>   
-                     <div class="layui-input-block">
-                        <input type="text" name="leave_number" value="{$stuinfo['stu_number']}" class="layui-input default" >
+                    {/if}
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">学号:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_number" value="{$stuinfo['stu_number']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">班级: </label>   
-                    <div class="layui-input-block">
-                        <input type="text" name="leave_className" value="{$stuinfo['class_name']}" class="layui-input default" >
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">班级: </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_className" value="{$stuinfo['class_name']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
                     </div>
-                </div>
-                   
-                <div class="layui-form-item">
+
+                    <div class="layui-form-item">
                         <label class="layui-form-label">请假类别: </label>
-                    <div class="layui-input-block">
-                        <input type="radio" name="leave_category" checked="checked" value="事假" title="事假">
-                        <input type="radio" name="leave_category" value="病假" title="病假">
-                        <input type="radio" name="leave_category" value="其他" title="其他">
+                        <div class="layui-input-block">
+                            <input type="radio" name="leave_category" checked="checked" value="事假" title="事假">
+                            <input type="radio" name="leave_category" value="病假" title="病假">
+                            <input type="radio" name="leave_category" value="其他" title="其他">
+                        </div>
                     </div>
-                </div>
 
-                <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">请假原因: </label>
-                    <div class="layui-input-block">
-                        <textarea class="layui-textarea definite" name="leave_content" style="width: 100%;" ></textarea>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">请假原因: </label>
+                        <div class="layui-input-block">
+                            <textarea class="layui-textarea definite" name="leave_content"
+                                      style="width: 100%;"></textarea>
+                        </div>
                     </div>
-                </div>
-                <div class="layui-form-item">
-                    <label class="layui-form-label">请假时间: </label>
-                    <div class="layui-input-block">
-                        <input type="text" name="leave_startTime" value="" placeholder="点击选择时间" id="time" class="layui-input" style="display: inline-block;width: 200px;border-color: #FF0000;">
-                         至
-                        <input type="text" name="leave_endTime" placeholder="点击选择时间" value="" id="time2" class="layui-input" style="display: inline-block;width: 200px;border-color: #FF0000;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">请假时间: </label>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_startTime" value="" placeholder="点击选择时间" id="time"
+                                   class="layui-input"
+                                   style="display: inline-block;width: 200px;border-color: #FF0000;">
+
+                            <input type="radio" name="meridiem" checked="checked" value="上午" title="上午">
+                            <input type="radio" name="meridiem" value="病假" title="下午">
+                        </div>
+                        <div style="padding-left: 200px;">
+                            至
+                        </div>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_endTime" placeholder="点击选择时间" value="" id="time2"
+                                   class="layui-input"
+                                   style="display: inline-block;width: 200px;border-color: #FF0000;">
+
+                            <input type="radio" name="meridiemend" checked="checked" value="上午" title="上午">
+                            <input type="radio" name="meridiemend" value="病假" title="下午">
+                        </div>
+
                     </div>
-                </div>
 
-                 <div class="layui-form-item">
-                    <label class="layui-form-label">联系电话:</label>   
-                     <div class="layui-input-block">
-                        <input type="text" name="stu_phone" value="{$stuinfo['stu_phone']}" class="layui-input default" >
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">联系电话:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="stu_phone" value="{$stuinfo['stu_phone']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
                     </div>
-                </div>
 
-                <div class="layui-form-item">
-                    <label class="layui-form-label">家长电话:</label>   
-                     <div class="layui-input-block">
-                        <input type="text" name="leave_parentPhone" value="{$stuinfo['stu_familyphone']}" class="layui-input default" >
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">家长电话:</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="leave_parentPhone" value="{$stuinfo['stu_familyphone']}"
+                                   class="layui-input default" readonly="readonly">
+                        </div>
                     </div>
-                </div>
 
-            {/if}
+                    {/if}
 
-            <input type="hidden" value="{$leave['leave_id']}" name="id">
-            {if condition="$leave['leave_flag'] == 0"}
-            <input type="hidden" value="0" name="leave_flag" id="leave_flag">
-            {else/}
-            <input type="hidden" value="{$leave['leave_flag']}" name="leave_flag" id="leave_flag">
-            {/if}
+                    <input type="hidden" value="{$leave['leave_id']}" name="id">
+                    {if condition="$leave['leave_flag'] == 0"}
+                    <input type="hidden" value="0" name="leave_flag" id="leave_flag">
+                    {else/}
+                    <input type="hidden" value="{$leave['leave_flag']}" name="leave_flag" id="leave_flag">
+                    {/if}
 
         </form>
     </div>
 </div>
-    <div class="btn-group btn-group-lg " style="margin:58px auto;width: 160px;">
-        <button type="button" class="layui-btn submit" id="leavefoKeep">保存</button>
-        <button type="button" class="layui-btn layui-btn-warm submit" id="leavefoSubmit">提交</button>
-    </div>
+<div class="btn-group btn-group-lg " style="margin:58px auto;width: 160px;">
+    <button type="button" class="layui-btn submit" id="leavefoKeep">保存</button>
+    <button type="button" class="layui-btn layui-btn-warm submit" id="leavefoSubmit">提交</button>
+</div>
 </div>
 
 
@@ -305,7 +352,7 @@
 
 <!-- 页脚 -->
 <footer>
-    <p>@CopyRight 2013 Bootply | ALL rights reserved</p>
+    <p>@CopyRight {:date('Y', time())} Bootply | ALL rights reserved</p>
 </footer>
 </body>
 </html>

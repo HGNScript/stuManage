@@ -11,8 +11,9 @@ namespace app\admin\controller;
 use app\admin\model\Classinfo as ClasssinfoModel;
 use app\admin\validate\AddClassstu;
 use app\admin\model\Classlist;
+use think\Controller;
 
-class Classinfo extends BaseController {
+class Classinfo extends Controller {
     public function index() {
         if (request()->isAjax()) {
             $data = input('post.');
@@ -42,6 +43,23 @@ class Classinfo extends BaseController {
         return json($res);
     }
 
+    //导入教研室学生数据
+    public function excelAddStuAll(){
+        //import('phpexcel.PHPExcel', EXTEND_PATH);//方法二
+        vendor("PHPExcel.PHPExcel"); //方法一
+        $objPHPExcel = new \PHPExcel();
+
+        //获取表单上传文件
+        $file = request()->file('excel');
+        $info = $file->validate(['size'=>800000,'ext'=>'xlsx,xls,csv'])->move(ROOT_PATH . 'public' . DS . 'excel');
+        $grade_name = input('post.grade_name');
+        $staffRoom = input('post.staffRoom');
+
+        $res = (new ClasssinfoModel())->excelAddStuAll($info, $grade_name, $staffRoom);
+
+        return json($res);
+    }
+
 
     public function addAndEditStu(){
         if (request()->isAjax()) {
@@ -58,6 +76,7 @@ class Classinfo extends BaseController {
             return json($res);
         }
     }
+
     /**
      * 添加页面
      */

@@ -26,6 +26,7 @@ class Leave extends Model {
         if ($info['id']) {
             if ($leave_flag) {
                 $info['leave_flag'] = $leave_flag;
+                $info['leave_flag_top'] = '';
                 return $this->allowField(true)->save($info, ['leave_id' => $info['id']]);
             } else {
                 return $this->allowField(true)->save($info, ['leave_id' => $info['id']]);
@@ -33,6 +34,8 @@ class Leave extends Model {
         } else {
             if ($leave_flag) {
                 $info['leave_flag'] = $leave_flag;
+                $info['leave_flag_top'] = '';
+
                 return $this->allowField(true)->save($info);
             } else {
                 return $this->allowField(true)->save($info);

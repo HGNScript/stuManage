@@ -32,12 +32,15 @@
                 </div>
             </div>
             {if condition="session('admin.admin_authority') !=3"}
-            <xblock>
+            <xblock class="layui-row">
                 <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                 <a class="layui-btn" href="addClasstch?staffRoom={$staffRoom}"><i class="layui-icon"></i>添加</a>
                 <button type="button" class="layui-btn" id="excel">
                     <i class="layui-icon">&#xe67c;</i>批量添加
                 </button>
+
+
+                <span class="layui-col-md-offset6 layui-col-sm-offset4 layui-col-xs-offset4" style="font-size: 14px;">共<span id="count" style="font-size: 14px;"></span>条数据</span>
                 <a class="layui-btn layui-btn-small" style="float:right" href="javascript:location.replace(location.href);" title="刷新">
                     <i class="layui-icon">&#xe669;</i></a>
             </xblock>

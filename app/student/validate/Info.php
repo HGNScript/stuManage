@@ -65,23 +65,24 @@ class Info extends BaseValidate {
         'family_relationship1' => 'require|chs',
         'family_work1' => 'require|chsAlphaNum',
 
-        'family_name2' => 'chs',
-        'family_sex2' => 'chs',
-        'family_age2' => 'number',
-        'family_relationship2' => 'chs',
-        'family_work2' => 'chsAlphaNum',
+        'family_name2' => 'require|chs',
+        'family_sex2' => 'require|chs',
+        'family_age2' => 'require|number',
+        'family_relationship2' => 'require|chs',
+        'family_work2' => 'require|chsAlphaNum',
 
-        'family_name3' => 'chs',
-        'family_sex3' => 'chs',
-        'family_age3' => 'number',
-        'family_relationship3' => 'chs',
-        'family_work3' => 'chsAlphaNum',
 
-        'family_name4' => 'chs',
-        'family_sex4' => 'chs',
-        'family_age4' => 'number',
-        'family_relationship4' => 'chs',
-        'family_work4' => 'chsAlphaNum',
+//        'family_name3' => 'chs',
+//        'family_sex3' => 'chs',
+//        'family_age3' => 'number',
+//        'family_relationship3' => 'chs',
+//        'family_work3' => 'chsAlphaNum',
+//
+//        'family_name4' => 'chs',
+//        'family_sex4' => 'chs',
+//        'family_age4' => 'number',
+//        'family_relationship4' => 'chs',
+//        'family_work4' => 'chsAlphaNum',
 
 
         'stu_bytime' => 'require',
@@ -156,6 +157,7 @@ class Info extends BaseValidate {
 
 
         'stu_schoolsystem.chs' => '"学制"只能为中文',
+
         'stu_familycontact.chs' => '"家庭联系人"只能为中文',
 
         'stu_familyphone.number' => '"家庭联系电话"只能为数字',
@@ -185,54 +187,60 @@ class Info extends BaseValidate {
         'stu_grade.require' => '"招生年份"不能为空',
 
 
-        'family_name1.require' => '家庭成员至少需填写户主信息',
-        'family_name1.chs' => '家庭成员名称只能为中文',
+        'family_name1.require' => '户主信息不能为空',
+        'family_name1.chs' => '户主名称只能为中文',
 
-        'family_sex1.require' => '家庭成员性别不能为空',
-        'family_sex1.chs' => '家庭成员性别只能为中文',
+        'family_sex1.require' => '户主性别不能为空',
+        'family_sex1.chs' => '户主性别只能为中文',
 
-        'family_age1.require' => '家庭成员年龄不能为空',
-        'family_age1.number' => '年龄只能为数字',
+        'family_age1.require' => '户主年龄不能为空',
+        'family_age1.number' => '户主年龄只能为数字',
 
-        'family_relationship1.require' => '家庭成员与本人关系不能为空',
-        'family_relationship1.chs' => '家庭成员与本人关系只能为中文',
+        'family_relationship1.require' => '户主与本人关系不能为空',
+        'family_relationship1.chs' => '户主与本人关系只能为中文',
 
-        'family_work1.require' => '家庭成员工作或学校单位不能为空',
-        'family_work1.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+        'family_work1.require' => '户主工作或学校单位不能为空',
+        'family_work1.chsAlphaNum' => '户主工作或学校单位只能为汉字、字母和数字',
 
 
+
+        'family_name2.require' => '家庭成员名称不能为空',
         'family_name2.chs' => '家庭成员名称只能为中文',
 
+        'family_sex2.require' => '家庭成员性别不能为空',
         'family_sex2.chs' => '家庭成员性别只能为中文',
 
+        'family_age2.require' => '家庭成员年龄不能为空',
         'family_age2.number' => '年龄只能为数字',
 
         'family_relationship2.chs' => '家庭成员与本人关系只能为中文',
+        'family_relationship2.chs' => '家庭成员与本人关系只能为中文',
 
+        'family_work2.require' => '家庭成员工作或学校单位不能为空',
         'family_work2.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
 
 
-        'family_name3.chs' => '家庭成员名称只能为中文',
-
-        'family_sex3.chs' => '家庭成员性别只能为中文',
-
-        'family_age3.number' => '年龄只能为数字',
-
-        'family_relationship3.chs' => '家庭成员与本人关系只能为中文',
-
-        'family_work3.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
-
-
-
-        'family_name4.chs' => '家庭成员名称只能为中文',
-
-        'family_sex4.chs' => '家庭成员性别只能为中文',
-
-        'family_age4.number' => '年龄只能为数字',
-
-        'family_relationship4.chs' => '家庭成员与本人关系只能为中文',
-
-        'family_work4.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+//        'family_name3.chs' => '家庭成员名称只能为中文',
+//
+//        'family_sex3.chs' => '家庭成员性别只能为中文',
+//
+//        'family_age3.number' => '年龄只能为数字',
+//
+//        'family_relationship3.chs' => '家庭成员与本人关系只能为中文',
+//
+//        'family_work3.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
+//
+//
+//
+//        'family_name4.chs' => '家庭成员名称只能为中文',
+//
+//        'family_sex4.chs' => '家庭成员性别只能为中文',
+//
+//        'family_age4.number' => '年龄只能为数字',
+//
+//        'family_relationship4.chs' => '家庭成员与本人关系只能为中文',
+//
+//        'family_work4.chsAlphaNum' => '家庭成员工作或学校单位只能为汉字、字母和数字',
 
 
 

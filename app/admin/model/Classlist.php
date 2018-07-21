@@ -66,9 +66,9 @@ class Classlist extends BaseModel {
                 foreach($excel_array as $k=>$v) {
                     // $n = $this->where('class_name', $v[0])->find();
                     // if (!$n) {
-                        $data[$k]['class_specialty'] = trim($v[0]);
-                        $data[$k]['class_name'] = trim($v[1]);
-                        $data[$k]['class_grade'] = $grade;
+                    $data[$k]['class_name'] = trim($v[0]);
+                    $data[$k]['class_specialty'] = trim($v[1]);
+                    $data[$k]['class_grade'] = $grade;
                         $data[$k]['class_staffRoom'] = $staffRoom;;
                     // }
                     $i++;
@@ -89,6 +89,10 @@ class Classlist extends BaseModel {
                 return  $res = ['valid' => 0, 'msg' => $file->getError()];
             }
     }
+
+
+
+
 
     public function addAndEditClasslist($data, $class_id) {
         if ($class_id) {

@@ -39,12 +39,14 @@ function page(search) {
             dataType: "json",
             data: data,
             beforeSend: function (){
-                layer.load()
+                index = parent.layer.load()
             },
             success: function (data) {
-                layer.closeAll();
+                parent.layer.close(index)
 
                 var len = data.length
+                $('#count').html(len)
+
                 pageData = data
 
                 laypage.render({

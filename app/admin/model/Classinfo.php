@@ -99,6 +99,77 @@ class Classinfo extends BaseModel {
         }
     }
 
+    //教研室导入学生
+    public function excelAddStuAll($info, $grade_name, $staffRoom){
+
+        if($info){
+            $exclePath = $info->getSaveName();  //获取文件名
+            $file_name = ROOT_PATH . 'public' . DS . 'excel' . DS . $exclePath;   //上传文件的地址
+            $objReader =\PHPExcel_IOFactory::createReader('Excel2007');
+            $obj_PHPExcel =$objReader->load($file_name, $encode = 'utf-8');  //加载文件内容,编码utf-8
+            $excel_array=$obj_PHPExcel->getsheet(0)->toArray();   //转换为数组格式
+            array_shift($excel_array);  //删除第一个数组(标题);
+            $data = [];
+            $i = 0;
+
+            foreach($excel_array as $k=>$v) {
+                $class = (new Classlist())->where('class_grade', $grade_name)
+                    ->where('class_staffRoom', $staffRoom)
+                    ->where('class_name', $v[5])->find();
+
+                $n = $this->where('stu_number', trim($v[1]))->find();
+                if (!$n) {
+                    $data[$k]['stu_name'] = trim($v[0]);
+                    $data[$k]['stu_number'] = trim($v[1]);
+                    $data[$k]['stu_sex'] = trim($v[2]);
+                    $data[$k]['stu_identity'] = trim($v[3]);
+                    $data[$k]['stu_dormnumber'] = trim($v[4]);
+                    $data[$k]['class_id'] = $class['class_id'];
+                    $data[$k]['stu_password'] = md5('gzcj');
+                    $data[$k]['stu_grade'] = $grade_name;
+                    $data[$k]['stu_specialty'] = $class['class_specialty'];
+
+                    $card = $data[$k]['stu_identity'];
+
+                    $stu_birthday = strlen($card)==15 ? ('19' . substr($card, 6, 6)) : substr($card, 6, 8);
+
+                    $data[$k]['stu_birthday'] = $stu_birthday;
+
+                    $code = substr($card, 0, 6);
+
+                    $data[$k]['stu_hukouaddress'] = self::getHK_address($code);
+                    $data[$k]['stu_hukouaddressf'] = $code;
+
+
+                }
+                $i++;
+            }
+
+            $data = $this->arrOnly($data, 'stu_number');
+
+            // (new \app\student\model\grant())->allowField(true)->saveAll($data);
+            // (new \app\student\model\Reduction())->allowField(true)->saveAll($data);
+
+            $success=$this->saveAll($data); //批量插入数据
+            $success = sizeof($success);
+
+            $error=$i-$success;
+            if ($success) {
+                return  $res = ['valid' => 1, 'msg' => "共导入{$i}条，成功{$success}条，失败{$error}条。"];
+            } else {
+                return  $res = ['valid' => 0, 'msg' => "共导入{$i}条，成功{$success}条，失败{$error}条。"];
+            }
+        }else{
+            // 上传失败获取错误信息
+            return  $res = ['valid' => 0, 'msg' => '上传文件出错'];
+        }
+    }
+
+    protected function getHK_address($code){
+        return Hk::where('hk_code', $code)->value('hk_address');
+    }
+
+
     public function addAndEditClassStu($data, $stu_id, $class_id) {
         $class_grade = (new Classlist)->where('class_id', $class_id)->find();
 
@@ -169,10 +240,6 @@ class Classinfo extends BaseModel {
 
     public function getStuInfoFlag($stu_id) {
         return $this->where('stu_id', $stu_id)->value('stu_infoflag');
-    }
-
-    protected function getHK_address($code){
-        return Hk::where('hk_code', $code)->value('hk_address');
     }
 
 }

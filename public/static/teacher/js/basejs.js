@@ -12,10 +12,11 @@ function excel(url){
             accept: 'file',
             field: 'excel',
             before: function() {
-                load = layer.load()
+                index = parent.layer.load()
             },
             done: function(data) {
-                layer.close(load)
+                parent.layer.close(index)
+
                 if (data['valid']) {
                     layer.msg(data['msg'],{
                     icon: 1, //提示的样式

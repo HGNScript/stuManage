@@ -60,6 +60,7 @@ class Classinfo extends BaseController {
             $this->assign('stuInfo', $stuInfo);
             $this->assign('authority', 'false');
 
+
             return $this->fetch();
         }
 
@@ -154,7 +155,8 @@ class Classinfo extends BaseController {
 
         $stuData = (new \app\admin\model\Classinfo())->getExportData($class_id);
 
-        (new classListModel)->export($objPHPExcel, $stuData, $class_name);
+
+        (new classListModel)->export($objPHPExcel, $stuData, $class_name, null);
 
     }
 

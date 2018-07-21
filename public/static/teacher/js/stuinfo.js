@@ -17,10 +17,11 @@ var stuinfoNotice = function () {
                 data: {'stu_id': stu_id},
                 beforeSend:function(XMLHttpRequest){
                     // layer.close(layer.index);
-                    layer.load()
+                    index = parent.layer.load()
                 },
                 success: function (res) {
-                    layer.close(layer.index);
+                    parent.layer.close(index)
+
                     if (res['valid'] == 1) {
 
                         if (res.msg.result != 0) {
@@ -96,6 +97,10 @@ var editInfo = function () {
                 var stu_id = $('#stu_id').val()
                 var val = $(this).val()
 
+                if (val == '还未填写') {
+                    val = ''
+                }
+
                 $("#input").remove()
 
                 var authority= $("#authority").val()              
@@ -152,10 +157,10 @@ var notice = function (){
         traditional: true,
         dataType: "json",
         beforeSend:function(XMLHttpRequest){
-            layer.close(layer.index);
-            layer.load()
+            index1 = parent.layer.load()
         },
         success: function(data) {
+            parent.layer.close(index1);
 
             parent.$(".grant").each(function(i){
                 var _this = $(this)

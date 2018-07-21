@@ -26,17 +26,16 @@ $(function () {
 
 var notice = function (){
     var class_id = $('#class_id').val()
-    console.log(class_id)
     $.ajax({
         type: "get",
         url: '/teacher/Index/classNotice?class_id='+class_id,
         traditional: true,
         dataType: "json",
         beforeSend:function(XMLHttpRequest){
-            layer.close(layer.index);
-            layer.load()
+            index = parent.layer.load()
         },
         success: function(data) {
+            parent.layer.close(index);
 
             parent.$(".grant").each(function(i){
                 var _this = $(this)

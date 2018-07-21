@@ -76,7 +76,7 @@ $(function(){
     var notice = function (){
         $.ajax({
             type: "get",
-            url: '/teacher/Index/notice',
+            url: '/teacher/Index/notice?notice_flag=' + 2,
             traditional: true,
             dataType: "json",
             success: function(data) {

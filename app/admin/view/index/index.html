@@ -47,27 +47,29 @@
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
-           <!--          <li>
-                        <a href="javascript:;">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>基础部</cite>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a _href="/admin/Classtch/index?staffRoom=基础部">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>教师列表</cite>
-                                </a>
-                            </li>
-                            <li>
-                                <a  _href="/admin/Classlist/index?staffRoom=基础部&grade={$v['grade_name']}">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>班级列表</cite>
-                                </a>
-                            </li>
-                        </ul>
-                    </li> -->
-                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 11)"}
+                    <!--          <li>
+                                 <a href="javascript:;">
+                                     <i class="iconfont">&#xe6a7;</i>
+                                     <cite>基础部</cite>
+                                 </a>
+                                 <ul class="sub-menu">
+                                     <li>
+                                         <a _href="/admin/Classtch/index?staffRoom=基础部">
+                                             <i class="iconfont">&#xe6a7;</i>
+                                             <cite>教师列表</cite>
+                                         </a>
+                                     </li>
+                                     <li>
+                                         <a  _href="/admin/Classlist/index?staffRoom=基础部&grade={$v['grade_name']}">
+                                             <i class="iconfont">&#xe6a7;</i>
+                                             <cite>班级列表</cite>
+                                         </a>
+                                     </li>
+                                 </ul>
+                             </li> -->
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR
+                    (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 11) OR
+                    (session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101)"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -81,16 +83,24 @@
                                 </a>
                             </li>
                             <li>
-                                <a  _href="/admin/Classlist/index?staffRoom=机电信息教研室&grade={$v['grade_name']}">
+                                <a _href="/admin/Classlist/index?staffRoom=机电信息教研室&grade={$v['grade_name']}">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>班级列表</cite>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="upload" href="javascript:;" data-staffRoom="机电信息教研室" data-grade_name="{$v['grade_name']}">
+                                    <i class="layui-icon">&#xe67c;</i>
+                                    <cite>导入学生数据</cite>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     {/if}
 
-                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 12)"}
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR
+                    (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 12 OR
+                    (session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101))"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -104,16 +114,24 @@
                                 </a>
                             </li>
                             <li>
-                                <a  _href="/admin/Classlist/index?staffRoom=经济管理教研室&grade={$v['grade_name']}">
+                                <a _href="/admin/Classlist/index?staffRoom=经济管理教研室&grade={$v['grade_name']}">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>班级列表</cite>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="upload" href="javascript:;" data-staffRoom="经济管理教研室" data-grade="{$v['grade_name']}">
+                                    <i class="layui-icon">&#xe67c;</i>
+                                    <cite>导入学生数据</cite>
                                 </a>
                             </li>
                         </ul>
                     </li>
                     {/if}
 
-                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 13)"}
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR
+                    (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 13 OR
+                    (session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101))"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -127,9 +145,15 @@
                                 </a>
                             </li>
                             <li>
-                                <a  _href="/admin/Classlist/index?staffRoom=艺术设计教研室&grade={$v['grade_name']}">
+                                <a _href="/admin/Classlist/index?staffRoom=艺术设计教研室&grade={$v['grade_name']}">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>班级列表</cite>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="upload" href="javascript:;" data-staffRoom="艺术设计教研室" data-grade="{$v['grade_name']}">
+                                    <i class="layui-icon">&#xe67c;</i>
+                                    <cite>导入学生数据</cite>
                                 </a>
                             </li>
                         </ul>
@@ -137,7 +161,9 @@
                     {/if}
 
 
-                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 14)"}
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR
+                    (session('admin.admin_authority') == 3) OR (session('admin.admin_authority') == 14 OR
+                    (session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101))"}
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont">&#xe6a7;</i>
@@ -156,6 +182,12 @@
                                     <cite>班级列表</cite>
                                 </a>
                             </li>
+                            <li>
+                                <a class="upload" href="javascript:;" data-staffRoom="建筑工程教研室" data-grade="{$v['grade_name']}">
+                                    <i class="layui-icon">&#xe67c;</i>
+                                    <cite>导入学生数据</cite>
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     {/if}
@@ -167,7 +199,8 @@
                         </a>
                     </li>
 
-                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2)"}
+                    {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR
+                    (session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101) "}
                     <li>
                         <a class="delGrade" data-grade="{$v['grade_name']}">
                             <i class="layui-icon" style="font-size: 18px;color: red;">&#xe640;</i>
@@ -180,11 +213,32 @@
             </li>
             {/foreach}
 
-            {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2)"}
+            {if condition="(session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101) "}
             <li>
-                <a _href="/admin/Index/addGrade" )">
-                <i class="layui-icon">&#xe654;</i>
-                <cite>添加年级</cite>
+                 {if condition="(session('admin.admin_authority') == 100)"}
+                 <a _href="/admin/Leave/index?leave_flag=1&leave_flag_top=4">
+                    <i class="layui-icon">&#xe60a;</i>
+                    <cite class="leave">请假审查</cite>
+
+                </a>
+                 {/if}
+                 {if condition="(session('admin.admin_authority') == 101)"}
+                 <a _href="/admin/Leave/index?leave_flag=1&leave_flag_top=5">
+                    <i class="layui-icon">&#xe60a;</i>
+                    <cite class="leave">请假申请</cite>
+
+                </a>
+                 {/if}
+
+            </li>
+            {/if}
+
+            {if condition="(session('admin.admin_authority') == 1) OR (session('admin.admin_authority') == 2) OR
+            (session('admin.admin_authority') == 100) OR (session('admin.admin_authority') == 101) "}
+            <li>
+                <a _href="/admin/Index/addGrade">
+                    <i class="layui-icon">&#xe654;</i>
+                    <cite>添加年级</cite>
 
                 </a>
             </li>
@@ -234,15 +288,15 @@
 </body>
 
 
-    <div class="layui-form-item" id="delgrade" style="margin: 10px">
-        <label for="password" class="layui-form-label">
-            管理员密码
-        </label>
-        <div class="layui-input-inline">
-            <input type="password" id="password" name="password" autocomplete="off" class="layui-input"
-                   placeholder="管理员密码">
-        </div>
+<div class="layui-form-item" id="delgrade" style="margin: 10px">
+    <label for="password" class="layui-form-label">
+        管理员密码
+    </label>
+    <div class="layui-input-inline">
+        <input type="password" id="password" name="password" autocomplete="off" class="layui-input"
+               placeholder="管理员密码">
     </div>
+</div>
 <script type="text/javascript" src="__STATIC__/admin/js/index.js"></script>
 
 </html>

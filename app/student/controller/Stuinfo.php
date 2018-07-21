@@ -96,10 +96,10 @@ class Stuinfo extends BaseController {
 
         }else{
 
-            $Info = (new gzhk())->goCheck();
-            if (is_object($Info)) {
-               return json($Info);
-            }
+//            $Info = (new gzhk())->goCheck();
+//            if (is_object($Info)) {
+//               return json($Info);
+//            }
 
         }
 

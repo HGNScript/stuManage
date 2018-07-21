@@ -31,10 +31,10 @@ var notice = function () {
         traditional: true,
         dataType: "json",
         beforeSend: function (XMLHttpRequest) {
-            layer.close(layer.index);
-            layer.load()
+            index = parent.layer.load()
         },
         success: function (data) {
+            parent.layer.close(index);
 
             parent.$(".reduction").each(function (i) {
                 var _this = $(this)

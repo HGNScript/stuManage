@@ -1,4 +1,6 @@
+var class_id = null
 $(function () {
+    class_id = $('#class_id').val()
     examine()
     $('#search').click(function(){
         search()
@@ -21,18 +23,17 @@ $(function () {
 })
 
 var notice = function (){
-    var class_id = $('#class_id').val()
         $.ajax({
             type: "get",
             url: '/teacher/Index/classNotice?class_id='+class_id,
             traditional: true,
             dataType: "json",
             beforeSend:function(XMLHttpRequest){
-                layer.close(layer.index);
-                layer.load()
+                index = layer.load()
             },
             success: function(data) {
                 layer.close(layer.index);
+                
                 parent.$(".leave").each(function(i){
                     var _this = $(this)
                     var class_name = $(this).parents("ul").prev().children('cite').html()
@@ -55,7 +56,8 @@ var notice = function (){
                     }
                 });
 
-                javascript:history.back(-1)
+                location.href='/teacher/Leave/index?class_id=' + class_id + '&leave_flag=1'
+                
 
             }
         });
@@ -65,14 +67,20 @@ var notice = function (){
 var examine = function () {
     $('.examine').click(function () {
         var leave_flag = $(this).attr('data-leave_flag')
+        var leave_flag_top = $(this).attr('data-leave_flag_top')
         var leave_id = $('#leave_id').val()
         var msg = ''
 
 
         if (leave_flag == 2) {
             msg = '确定该文件审查通过，并通知学生吗'
-        } else {
+        } else if (leave_flag == 3) {
             msg = '确定该文件审查不通过，并通知学生吗，'
+        } else if (leave_flag_top == 4) {
+            msg = '确定将该文件提交到叶科长处，并通知叶科长吗'
+        } else if (leave_flag_top == 5) {
+            msg = '确定将该文件提交到林校长处，并通知林校长吗'
+
         }
 
         layer.confirm(msg, function (index) {
@@ -81,7 +89,7 @@ var examine = function () {
                 url: '/teacher/Leave/examineRequest',
                 traditional: true,
                 dataType: "json",
-                data: {'leave_flag': leave_flag, 'leave_id': leave_id},
+                data: {'leave_flag': leave_flag, 'leave_id': leave_id, 'leave_flag_top': leave_flag_top},
                 beforeSend:function(XMLHttpRequest){
                     layer.close(layer.index);
                     layer.load()
@@ -92,30 +100,53 @@ var examine = function () {
                         if (leave_flag == 2) {
                             if (res['msg'].detail[0]['result'] != 0) {
                                 layer.alert("已通过请假申请,但"+res['msg'].detail[0]['errmsg']+",通知发送不成功", function(index){
-                                    layer.close(index);
                                     notice()
 
                                 });
                             } else {
                                 layer.alert("已通过请假申请，已将通知发送至学生", function(index){
-                                    layer.close(index);
                                     notice()
                                 });
                             }
-                        } else {
+                        } else if(leave_flag == 3){
                             if (res['msg'].detail[0]['result'] != 0) {
                                 layer.alert("未通过请假申请,"+res['msg'].detail[0]['errmsg']+"通知发送不成功", function(index){
-                                    layer.close(index);
                                     notice()
                                 });
 
                             } else {
                                 layer.alert("未通过请假申请，已将通知发送至学生", function(index){
-                                    layer.close(index);
                                     notice()
                                 });
 
                             }
+                        } else if (leave_flag_top == 4) {
+                             if (res['msg'].detail[0]['result'] != 0) {
+                                layer.alert("已将请假申请发送至叶科长,"+res['msg'].detail[0]['errmsg']+"通知发送不成功", function(index){
+                                    notice()
+                                });
+
+                            } else {
+                                layer.alert("已将请假申请发送至叶科长", function(index){
+                                    notice()
+                                });
+
+                            }
+                           
+                        } else if (leave_flag_top == 5) {
+
+                            if (res['msg'].detail[0]['result'] != 0) {
+                                layer.alert("已将请假申请发送至林校长,"+res['msg'].detail[0]['errmsg']+"通知发送不成功", function(index){
+                                    notice()
+                                });
+
+                            } else {
+                                layer.alert("已将请假申请发送至林校长", function(index){
+                                    notice()
+                                });
+
+                            }
+                  
                         }
                     } else {
                         layer.msg(res['msg'])

@@ -23,7 +23,13 @@ input {
 .layui-form-item {
 	/*width: 40%;*/
     /*display: inline-block*/
+    position: relative;
+
 }
+
+/*.layui-input-block {
+    position: relative;
+}*/
 .layui-form-label {
 	padding-right: 0px;
 	padding-left: 0px;
@@ -57,3 +63,57 @@ input {
 	bottom: 10px;
 }
 */
+
+/*.layui-form-item:after {
+	content: "";
+	width: 10px;
+	height: 10px;
+	border: 1px solid red;
+	clear: both;
+	display: inline-block;
+	position: absolute;
+	margin-left: 90%;
+	margin-top: 80px;
+}*/
+
+.definiteshow {
+	position: absolute;
+	right: -20px;
+	top: 8px;
+}
+
+.definiteshow,
+.definiteshow-family1,
+.definiteshow-family2,
+.definiteshow-family2,
+.definiteshow-family3,
+.definiteshow-family4,
+.definiteshow-family5,
+.layui-icon{
+	color: #CC3333;
+}
+
+.definiteshow-family1,.definiteshow-family2,.definiteshow-family2,.definiteshow-family3,.definiteshow-family4,.definiteshow-family5{
+	position: absolute;
+	right: -20px;
+}
+
+.definiteshow-family1 {
+	top: 25px;
+}
+
+.definiteshow-family2 {
+	top: 78px;
+}
+
+.definiteshow-family3 {
+	top: 132px;
+}
+.definiteshow-family4 {
+	top: 25px;
+}
+
+.definiteshow-family5 {
+	top: 78px;
+}
+

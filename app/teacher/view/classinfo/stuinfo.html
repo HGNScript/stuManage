@@ -34,19 +34,20 @@
         color: #666;
     }
     td {
-        position: relative;
+        /*position: relative;*/
     }
     td span{
         display: inline-block;
         text-align: left;
-        position: absolute;
-        left: 24%;
+        font-weight: bold;
+        /*position: absolute;*/
+        /*left: 40%;*/
     }
     td input{
         display: inline-block;
         text-align: left;
-        position: absolute;
-        left: 24%;
+        /*position: absolute;*/
+        /*left: 40%;*/
     }
     .layui-badge {
         position: absolute;
@@ -117,7 +118,13 @@
                 </tr>
                 <tr>
                     <td>毕业学校: <span class="dbclick" data-name="stu_graduation">{$stuInfo['stu_graduation']}</span></td>
-                    <td>招生年份: <span class="dbclick" data-name="stu_enrolmentyear">{$stuInfo['class_grade']}</span></td>
+                    <td>毕业时间:
+                        {if condition="$stuInfo['stu_bytime']"}
+                        <span class="dbclick" data-name="stu_bytime">{$stuInfo['stu_bytime']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_bytime">还未填写</span>
+                        {/if}
+                    </td>
                 </tr>
                 <tr>
                     <td>招生季度: <span class="dbclick" data-name="stu_enrollmentquarter">{$stuInfo['stu_enrollmentquarter']}</span></td>
@@ -258,6 +265,68 @@
                         {else/}
                         <span class="dbclick layui-badge" data-name="stu_shengyuancity">还未填写</span>
                         {/if} 
+                    </td>
+                    <td>原毕业学校源市: 
+                        {if condition="$stuInfo['stu_hukouaddresstow']"}
+                        <span class="dbclick" data-name="stu_hukouaddresstow">{$stuInfo['stu_hukouaddresstow']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_hukouaddresstow">还未填写</span>
+                        {/if} 
+                    </td>
+                </tr>
+                <tr>
+                    <td>招生年份: <span class="dbclick" data-name="stu_enrolmentyear">{$stuInfo['class_grade']}</span></td>
+                    <td>家庭地址及固定电话:
+                        {if condition="$stuInfo['stu_familyAddesPhone']"}
+                        <span class="dbclick" data-name="stu_familyAddesPhone">{$stuInfo['stu_familyAddesPhone']}</span>
+                        {else/}
+                        <span class="dbclick layui-badge" data-name="stu_familyAddesPhone">还未填写</span>
+                        {/if}
+                    </td>
+                </tr>
+
+
+
+                </tbody>
+            </table>
+            <div class="x-nav">家庭成员</div>
+            <table class="layui-table">
+                <thead>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>与本人关系</th>
+                    <th>工作或学校单位</th>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span class="dbclick" data-name="family_name1">{$stuInfo['family_name1']}</span></td>
+                    <td>
+                        <span class="dbclick" data-name="family_sex1">{$stuInfo['family_sex1']}</span>
+                    </td>
+                    <td>
+                        <span class="dbclick" data-name="family_age1">{$stuInfo['family_age1']}</span>
+                    </td>
+                    <td>
+                        <span class="dbclick" data-name="family_relationship1">{$stuInfo['family_relationship1']}</span>
+                    </td>
+                    <td>
+                        <span class="dbclick" data-name="family_work1">{$stuInfo['family_work1']}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span class="dbclick" data-name="family_name2">{$stuInfo['family_name2']}</span></td>
+                    <td>
+                        <span class="dbclick" data-name="family_sex2">{$stuInfo['family_sex2']}</span>
+                    </td>
+                    <td>
+                        <span class="dbclick" data-name="family_age2">{$stuInfo['family_age2']}</span>
+                    </td>
+                    <td>
+                        <span class="dbclick" data-name="family_relationship2">{$stuInfo['family_relationship2']}</span>
+                    </td>
+                    <td>
+                        <span class="dbclick" data-name="family_work2">{$stuInfo['family_work2']}</span>
                     </td>
                 </tr>
                 </tbody>

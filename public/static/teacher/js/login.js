@@ -8,7 +8,12 @@ $(function() {
             traditional: true,
             dataType: "json",
             data: info,
+            beforeSend: function (XMLHttpRequest) {
+                index = layer.load()
+            },
             success: function(data) {
+                layer.close(index)
+                
                 if (!data['msg']) {
                     location.href='/tchIndex';
                 } else{

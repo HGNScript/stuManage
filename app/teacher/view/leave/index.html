@@ -51,7 +51,7 @@
         <legend>
             {$class['class_grade']}&nbsp;{$class['class_staffRoom']}&nbsp;{$class['class_name']}&nbsp;&nbsp;&nbsp;请假文件
 
-            {if condition="$leave_flag == 1"}
+            {if condition="$leave_flag == 1 OR $leave_flag == 4 OR $leave_flag == 5"}
             <span class="layui-badge-rim layui-bg-orange">待审查</span>
             {elseif condition="$leave_flag == 2" /}
             <span class="layui-badge-rim layui-bg-green">申请通过</span>

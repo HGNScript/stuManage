@@ -43,7 +43,7 @@
             {/if}
         </legend>
         <div class="layui-field-box">
-            <table class="layui-table" >
+            <table class="layui-table">
                 <tbody>
                 <tr>
                     <td>姓名: {$leave['leave_name']}</td>
@@ -60,10 +60,15 @@
                     <td>请假类别: {$leave['leave_category']}</td>
                 </tr>
                 <tr>
-                    <td>请假原因: <br><p>&nbsp;&nbsp;&nbsp;&nbsp;{$leave['leave_content']}</p></td>
+                    <td>请假原因: <br>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;{$leave['leave_content']}</p></td>
                 </tr>
                 <tr>
-                    <td>请假时间:&nbsp;&nbsp;{$leave['leave_startTime']} 至 {$leave['leave_endTime']}</td>
+                    <td>请假时间:&nbsp;&nbsp;{$leave['leave_startTime']}{$leave['meridiem']} <span
+                            style="font-weight: bold;font-size: 16px;">至 </span>
+                        {$leave['leave_endTime']}{$leave['meridiemend']}
+                        <span style="font-weight: bold;font-size: 16px;">共{$day}天</span>
+                    </td>
                 </tr>
                 <tr>
                     <td>联系电话: {$leave['stu_phone']}</td>
@@ -75,7 +80,13 @@
             </table>
             {if condition="$leave['leave_flag'] == 1"}
             <div style="display: flex; justify-content:center;">
+                {if condition="$day < 3"}
                 <button class="layui-btn examine" data-leave_flag="2">通过审查</button>
+                {elseif condition="$day >= 7"/}
+                <button class="layui-btn examine" data-leave_flag="1" data-leave_flag_top="5">提交到林校长</button>
+                {elseif condition="$day >= 3"/}
+                <button class="layui-btn examine" data-leave_flag="1" data-leave_flag_top="4">提交到叶科长</button>
+                {/if}
                 <button class="layui-btn layui-btn-danger examine" data-leave_flag="3">未通过审查</button>
             </div>
             {/if}
@@ -84,7 +95,6 @@
         </div>
     </fieldset>
 </div>
-
 
 
 </body>

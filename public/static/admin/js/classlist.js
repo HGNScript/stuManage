@@ -32,6 +32,9 @@ function page(search) {
 
 
                 var len = data.length
+
+                $('#count').html(len)
+
                 pageData = data
 
                 laypage.render({
